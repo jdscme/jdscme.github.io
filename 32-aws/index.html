@@ -1,0 +1,603 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>32 tecnologias para uma PoC de Microsserviços na AWS - J David S Carvalho</title>
+<script>(function(){try{var t=localStorage.getItem('jdsc-theme');document.documentElement.setAttribute('data-theme',(t==='light'||t==='dark')?t:'dark');}catch(e){}})();</script>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,700;1,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../style.css">
+<meta name="description" content="Em 2020, decidi consolidar em um único software tecnologias que eu vinha estudando em separado e conceitos que, por vezes, se apresentavam somente em teoria.">
+<link rel="canonical" href="https://jdsc.me/32-aws/">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='12' fill='%230d0c0a'/%3E%3Ctext x='32' y='47' font-family='Georgia,serif' font-size='42' font-weight='700' text-anchor='middle' fill='%23f0b04a'%3EJ%3C/text%3E%3C/svg%3E">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="J David S Carvalho">
+<meta property="og:locale" content="pt_BR">
+<meta property="og:title" content="32 tecnologias para uma PoC de Microsserviços na AWS">
+<meta property="og:description" content="Em 2020, decidi consolidar em um único software tecnologias que eu vinha estudando em separado e conceitos que, por vezes, se apresentavam somente em teoria.">
+<meta property="og:url" content="https://jdsc.me/32-aws/">
+<meta name="twitter:card" content="summary">
+</head>
+<body class="kind-post">
+<div class="page">
+<header class="site-header">
+  <div class="toggle-slot"><button class="theme-toggle" id="theme-toggle" type="button" aria-label="Alternar modo claro/escuro" title="Alternar claro/escuro"><span aria-hidden="true">☾</span></button>
+<script>(function(){var b=document.getElementById('theme-toggle'),r=document.documentElement;
+function cur(){var t=r.getAttribute('data-theme');if(t)return t;return 'dark';}
+function paint(){b.firstChild.textContent=cur()==='dark'?'\u2600':'\u263E';}
+b.addEventListener('click',function(){var n=cur()==='dark'?'light':'dark';r.setAttribute('data-theme',n);try{localStorage.setItem('jdsc-theme',n);}catch(e){}paint();});
+paint();})();</script></div>
+  <p class="ornament">❧</p>
+  <p class="brand"><a href="../">J David S Carvalho</a></p>
+  <p class="tagline">Aprendizado contínuo</p>
+  <nav><a href="../">Início</a><a href="../cv.pdf">Currículo</a><a href="../livros/">Livros</a></nav>
+  <p class="rule">⁂</p>
+</header>
+<main class="content"><article class="post"><header class="entry-header"><h1 class="entry-title">32 tecnologias para uma PoC de Microsserviços na AWS</h1><p class="meta"><time datetime="2021-02-22">22 de fevereiro de 2021</time> <span class="sep">·</span> <span class="cats"><a href="../category/arquitetura/">Arquitetura</a></span></p></header><div class="entry-content"><p>Em 2020, decidi consolidar em um único software tecnologias que eu vinha estudando em separado e conceitos que, por vezes, se apresentavam somente em teoria.</p>
+<p>Essas tecnologias encontram-se na imagem abaixo. Clique na imagem para expandi-la.</p>
+<p><a href="../assets/uploads/2021/05/ms-poc-tecs.jpg"><img alt="" class="aligncenter wp-image-249 size-full" height="1037" loading="lazy" src="../assets/uploads/2021/05/ms-poc-tecs.jpg" width="1571"/></a></p>
+<p>Imagem inspirada no <a href="https://landscape.cncf.io/" rel="noopener" target="_blank">landspace da CNCF</a>.</p>
+<p>À seguir, o texto explicando o projeto, a arquitetura e o software.</p>
+<nav></nav>
+<h2 id="projeto">Projeto<a aria-label="Link para esta seção" class="anchor" href="#projeto">#</a></h2>
+<p>A estrutura abaixo da descrição do projeto foi inspirada no conteúdo da página 115 do <a href="https://www.pmi.org/pmbok-guide-standards" rel="noopener" target="_blank">PMBOK</a> – 4ª Edição.</p>
+<h3 id="escopo">Escopo<a aria-label="Link para esta seção" class="anchor" href="#escopo">#</a></h3>
+<p>O escopo do projeto consiste em criar um software para materializar alguns conceitos de microsserviços. Por isso, adotei o termo PoC (proof of concept).</p>
+<p>Com o objetivo de criar um software mais próximo possível da realidade e atendendo às restrições do projeto, criei uma empresa fictícia chamada Deltacare que atua no mercado de seguro saúde. Utilizei o domínio de seguros porque eu trabalhei nele e conheço alguns de seus processos e regras de negócio.</p>
+<h3 id="exclus-o">Exclusão<a aria-label="Link para esta seção" class="anchor" href="#exclus-o">#</a></h3>
+<p>Embora fundamental para um projeto com microserviço, devido as restrições do projeto, encontra-se fora de escopo:</p>
+<ul>
+<li><strong>Backend For Frontend</strong>: Para minimizar e segmentar chamadas do frontend para o backend (mais info: <a href="https://philcalcado.com/2015/09/18/the_back_end_for_front_end_pattern_bff.html" rel="noopener" target="_blank">BFF</a>);</li>
+<li><strong>Log centralizado</strong>: Para investigar transações entre microsserviços, mesmo das instâncias que foram finalizadas (mais info: <a href="https://docs.aws.amazon.com/pt_br/AmazonCloudWatch/latest/logs/WhatIsCloudWatchLogs.html" rel="noopener" target="_blank">Amazon CloudWatch</a> | <a href="https://cloud.google.com/logging/docs?hl=pt-br" rel="noopener" target="_blank">Cloud Logging</a> | <a href="https://www.elastic.co/pt/elastic-stack" rel="noopener" target="_blank">Elastic Stack</a>);</li>
+<li><strong>APM</strong>: Para minimizar problemas na experiência de usuário (mais info: <a href="https://newrelic.com/products/application-monitoring" rel="noopener" target="_blank">New Relic</a> | <a href="https://www.dynatrace.com/" rel="noopener" target="_blank">Dynatrace</a> | <a href="https://www.elastic.co/guide/en/apm/agent/java/current/intro.html" rel="noopener" target="_blank">Elastic APM</a>);</li>
+<li><strong>Teste de carga</strong>: Para minimizar problemas na experiência de usuário (mais info: <a href="https://jmeter.apache.org/" rel="noopener" target="_blank">JMeter</a> | <a href="https://gatling.io/" rel="noopener" target="_blank">Gatling</a> | <a href="https://k6.io/" rel="noopener" target="_blank">k6</a>);</li>
+<li><strong>Teste de integração</strong>: Para garantir que os componentes de uma API funcionem integrados (mais info: <a href="https://rest-assured.io/" rel="noopener" target="_blank">REST Assured</a>);</li>
+<li><strong>Teste funcional/tela/E2E</strong>: Para garantir que o comportamento do software atenda aos critérios de aceitação (mais info: <a href="https://www.selenium.dev/" rel="noopener" target="_blank">Selenium</a> | <a href="https://www.cypress.io/" rel="noopener" target="_blank">Cypress</a> | <a href="https://playwright.dev/" rel="noopener" target="_blank">Playwright</a>);</li>
+<li><strong>BDD</strong>: Para minimizar problema de comunicação entre os especialistas de negócio e times do projeto para entender os requisitos funcionais e não-funcionais (mais info: <a href="https://dannorth.net/introducing-bdd/" rel="noopener" target="_blank">Introdução</a> | <a href="https://cucumber.io/" rel="noopener" target="_blank">Cucumber</a> | <a href="https://www.oreilly.com/library/view/bdd-in-action/9781617291654/" rel="noopener" target="_blank">BDD in Action</a>);</li>
+<li><strong>BPM</strong>: Para minimizar problema de comunicação entre os especialistas e analistas de negócio para entender o comportamento da empresa (mais infos: <a href="https://www.abpmp-br.org/educacao/bpm-cbok/" rel="noopener" target="_blank">CBOK</a>);</li>
+<li><strong>DDD</strong>: Para minimizar a falta de sinergia entre negócio e tecnologia (mais infos: <a href="https://www.oreilly.com/library/view/patterns-principles-and/9781118714706/" rel="noopener" target="_blank">PPP-DDD</a> | <a href="https://www.amazon.com.br/Implementando-Domain-Driven-design-Vernon/dp/8576089521/" rel="noopener" target="_blank">I-DDD</a>);</li>
+<li><strong>Arquitetura Empresarial</strong>: Para minimizar a falta de sinergia entre negócio e tecnologia (mais infos: <a href="https://pubs.opengroup.org/architecture/togaf9-doc/arch/" rel="noopener" target="_blank">TOGAF</a> | <a href="https://www.opengroup.org/archimate-forum/archimate-overview" rel="noopener" target="_blank">ArchiMate</a> | <a href="https://www.archimatetool.com/" rel="noopener" target="_blank">Archi</a>);</li>
+<li><strong>Chaos Engineering</strong>: Para minimizar problema inesperado em produção quando um componente possui um comportamento diferente do comum (mais infos: <a href="https://principlesofchaos.org/pt/" rel="noopener" target="_blank">Princípios</a> | <a href="https://istio.io/latest/docs/tasks/traffic-management/" rel="noopener" target="_blank">Traffic Management</a>);</li>
+<li><strong>Estratégias de Deployment</strong>: Para minimizar o risco de novas entregas em produção (mais infos: <a href="https://docs.aws.amazon.com/whitepapers/latest/introduction-devops-aws/deployment-strategies.html" rel="noopener" target="_blank">Conceitos</a> | <a href="https://martinfowler.com/bliki/CanaryRelease.html" rel="noopener" target="_blank">Canary Release</a> | <a href="https://martinfowler.com/articles/feature-toggles.html" rel="noopener" target="_blank">Feature Toogles</a> | <a href="https://medium.com/microsoftazure/canary-release-strategy-using-kubernetes-istio-helm-fb49c0406f07" rel="noopener" target="_blank">Exemplos</a>);</li>
+<li><strong>Branching workflows</strong>: Para melhorar e padronizar o trabalho de programadores no mesmo repositório (mais info: <a href="https://medium.com/@patrickporto/4-branching-workflows-for-git-30d0aaee7bf" rel="noopener" target="_blank">Conceitos</a> | <a href="https://danielkummer.github.io/git-flow-cheatsheet/index.pt_BR.html" rel="noopener" target="_blank">git-flow</a>);</li>
+<li><strong>Richardson Maturity Model</strong>: Para padronizar e melhor a qualidade de REST APIs (mais infos: <a href="https://martinfowler.com/articles/richardsonMaturityModel.html" rel="noopener" target="_blank">Conceitos</a>).</li>
+</ul>
+<p>Considerando esses itens:</p>
+<ul>
+<li>As pipelines não possuem teste de carga, teste de integração e teste funcional/tela/E2E;</li>
+<li>Os diagramas/viewpoints aqui apresentados não possuem uma linguagem definida (<a href="https://www.opengroup.org/archimate-forum/archimate-overview" rel="noopener" target="_blank">ArchiMate</a> ou <a href="https://c4model.com/" rel="noopener" target="_blank">C4 Model</a>, por exemplo).</li>
+</ul>
+<h3 id="entrega">Entrega<a aria-label="Link para esta seção" class="anchor" href="#entrega">#</a></h3>
+<p>Os códigos encontram-se no Github. <a href="https://github.com/delta-care" rel="noopener" target="_blank">https://github.com/delta-care</a></p>
+<p>As imagens encontram-se no Dockerhub. <a href="https://hub.docker.com/u/deltacare" rel="noopener" target="_blank">https://hub.docker.com/u/deltacare</a></p>
+<p>Os projetos de análise encontram-se no SonarCloud. <a href="https://sonarcloud.io/organizations/delta-care/projects" rel="noopener" target="_blank">https://sonarcloud.io/organizations/delta-care/projects</a></p>
+<h3 id="restri-o">Restrição<a aria-label="Link para esta seção" class="anchor" href="#restri-o">#</a></h3>
+<p>O projeto não possuiu financiamento além do meu. Desse modo, restringiu-se à execução do menor tempo e custo possível.</p>
+<p>Sobre tempo, foi pouco mais de 8 semanas. Sobre custo, foi $64 dólares. A distribuição do custo por dia e serviço utilizado encontra-se abaixo.</p>
+<p>Utilizei os serviços da AWS. O serviço <a href="https://aws.amazon.com/pt/ec2/" rel="noopener" target="_blank">EC2</a> esteve ligado somente quando utilizado (somente uma máquina). Fiz o mesmo com o <a href="https://aws.amazon.com/pt/rds/" rel="noopener" target="_blank">RDS</a>, com exceção de alguns dias.</p>
+<p><a href="../assets/uploads/2021/05/aws-custo-diario.jpg"><img alt="" class="aligncenter wp-image-56 size-full" height="621" loading="lazy" src="../assets/uploads/2021/05/aws-custo-diario.jpg" width="1011"/></a></p>
+<h3 id="premissa">Premissa<a aria-label="Link para esta seção" class="anchor" href="#premissa">#</a></h3>
+<p>Não encontrada.</p>
+<h2 id="arquitetura">Arquitetura<a aria-label="Link para esta seção" class="anchor" href="#arquitetura">#</a></h2>
+<p>O software para o domínio do problema em questão poderia ser perfeitamente criado por um monolito bem estruturado e, se necessário, quebrado em microsserviços posteriormente.</p>
+<p>No entanto, o objetivo é a criação de um software com arquitetura de microsserviços independente se o domínio do problema exige ou não tal arquitetura.</p>
+<p>Então, a arquitetura resultante está representada na imagem abaixo.</p>
+<p><a href="../assets/uploads/2021/05/arq-dc.jpg"><img alt="" class="aligncenter wp-image-222 size-full" height="1130" loading="lazy" src="../assets/uploads/2021/05/arq-dc.jpg" width="1636"/></a></p>
+<p>Imagem inspirada no <a href="https://github.com/dotnet-architecture/eShopOnContainers" rel="noopener" target="_blank">eShop da Microsoft</a>.</p>
+<h3 id="componentes">Componentes<a aria-label="Link para esta seção" class="anchor" href="#componentes">#</a></h3>
+<p>As duas partes envolvidas de traços azul representam a esquerda o usuário, no qual encontra-se logado e já baixou os arquivos da SPA, e a direita o ambiente da AWS, com todos os componentes rodando e gerenciados pelo Kubernetes e Istio (detalhes na seção OPS abaixo).</p>
+<p>Os seis componentes envolvidos de traços cinzas são os quais armazenados no <a href="https://github.com/delta-care" rel="noopener" target="_blank">Github da Deltacare</a>.</p>
+<p>Os quatros componentes de API possuem losango porque sua arquitetura representa a <a href="https://alistair.cockburn.us/hexagonal-architecture/" rel="noopener" target="_blank">arquitetura de portas e adaptadores ou hexagonal</a>.</p>
+<h3 id="padr-es">Padrões<a aria-label="Link para esta seção" class="anchor" href="#padr-es">#</a></h3>
+<p>Como o <a href="https://microservices.io/patterns/index.html" rel="noopener" target="_blank">texto do Chris Richardson</a> não possui uma boa imagem, utilizei abaixo a imagem de <a href="https://medium.com/@madhukaudantha/microservice-architecture-and-design-patterns-for-microservices-e0e5013fd58a" rel="noopener" target="_blank">outro texto</a>. Os padrões marcados em vermelho são os quais utilizei.</p>
+<p><a href="../assets/uploads/2021/05/padroes-microservico.jpg"><img alt="" class="aligncenter wp-image-62 size-full" height="772" loading="lazy" src="../assets/uploads/2021/05/padroes-microservico.jpg" width="727"/></a></p>
+<h2 id="ops">OPS<a aria-label="Link para esta seção" class="anchor" href="#ops">#</a></h2>
+<p>O primeiro passo do projeto foi criar o código da infraestrutura, conforme explicado abaixo. O resultado encontra-se <a href="https://github.com/delta-care/ops" rel="noopener" target="_blank">aqui</a>.</p>
+<h3 id="pacotes">Pacotes<a aria-label="Link para esta seção" class="anchor" href="#pacotes">#</a></h3>
+<p>O script <a class="js-navigation-open link-gray-dark" href="https://github.com/delta-care/ops/blob/main/01-install-pkg.sh" title="01-install-pkg.sh">01-install-pkg.sh</a> instala o <a href="https://www.terraform.io/" rel="noopener" target="_blank">Terraform</a> e <a href="https://www.ansible.com/" rel="noopener" target="_blank">Ansible</a>. Utilizei Ubuntu 18.04 LTS em minha máquina.</p>
+<h3 id="terraform">Terraform<a aria-label="Link para esta seção" class="anchor" href="#terraform">#</a></h3>
+<p>Com o Terraform instalado, rodei o script <a href="https://github.com/delta-care/ops/blob/main/02-create-ec2.sh" rel="noopener" target="_blank">02-create-ec2.sh</a> que, utilizando o script <em>./terraform/main.tf</em>, cria uma máquina na AWS atendendo as <a href="https://kubernetes.io/docs/setup/production-environment/tools/kubeadm/install-kubeadm/" rel="noopener" target="_blank">exigências do Kubernetes</a>.</p>
+<h3 id="ansible">Ansible<a aria-label="Link para esta seção" class="anchor" href="#ansible">#</a></h3>
+<p>Com o Ansible instalado, rodei o script <a href="https://github.com/delta-care/ops/blob/main/03-conf-env.sh" rel="noopener" target="_blank">03-conf-env.sh</a> que, utilizando o inventário <em>./ansible/inventory/aws_ec2.yaml</em>, executa os passos abaixo na máquina criada pelo Terraform.</p>
+<ul>
+<li>Instalar Docker;</li>
+<li>Instalar Kubernetes;</li>
+<li>Instalar Istio;
+<ul>
+<li>Instalar Grafana</li>
+<li>Instalar Jaeger</li>
+<li>Instalar Prometheus</li>
+<li>Instalar Kiali</li>
+<li>Criar gateway Istio
+<ul>
+<li>Host
+<ul>
+<li>kiali.ops.deltacare.xyz</li>
+<li>grafana.ops.deltacare.xyz</li>
+<li>prometheus.ops.deltacare.xyz</li>
+<li>jaeger.ops.deltacare.xyz</li>
+</ul>
+</li>
+<li>Porta
+<ul>
+<li>80</li>
+<li>443</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Criar virtual service Istio
+<ul>
+<li>URIs das ferramentas</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Configurar ambiente de operação (ops);
+<ul>
+<li>Criar namespace “ops”</li>
+<li>Instalar Keycloak</li>
+<li>Instalar Jenkins e suas roles</li>
+<li>Criar gateway Istio
+<ul>
+<li>Host
+<ul>
+<li>sso.deltacare.xyz</li>
+<li>jenkins.ops.deltacare.xyz</li>
+</ul>
+</li>
+<li>Porta
+<ul>
+<li>80</li>
+<li>443</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Criar virtual service Istio
+<ul>
+<li>URIs das ferramentas</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Configurar ambiente de desenvolvimento (dev);
+<ul>
+<li>Criar namespace “dev”</li>
+<li>Criar gateway Istio
+<ul>
+<li>Host
+<ul>
+<li>dev.deltacare.xyz</li>
+</ul>
+</li>
+<li>Porta
+<ul>
+<li>80</li>
+<li>443</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Criar virtual service Istio
+<ul>
+<li>URIs das APIs e SPA</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Configurar ambiente de produção (prd).
+<ul>
+<li>Criar namespace “prd”</li>
+<li>Criar gateway Istio
+<ul>
+<li>Host
+<ul>
+<li>app.deltacare.xyz</li>
+</ul>
+</li>
+<li>Porta
+<ul>
+<li>80</li>
+<li>443</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Criar virtual service Istio
+<ul>
+<li>URIs das APIs e SPA</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="aws-acm">AWS ACM<a aria-label="Link para esta seção" class="anchor" href="#aws-acm">#</a></h3>
+<p>Nesse momento na AWS, possuo uma máquina criada pelo Terraform e com pacotes instalados pelo Ansible.</p>
+<p>Nesse passo, utilizei o serviço <a href="https://aws.amazon.com/pt/certificate-manager/" rel="noopener" target="_blank">ACM</a> para criar os certificados SSL/TLS para habilitar as rotas HTTPS na porta 443 configuradas anteriormente pelo Istio (que utiliza o <a href="https://www.envoyproxy.io/" rel="noopener" target="_blank">Envoy Proxy</a>). A imagem abaixo apresenta o painel do ACM.</p>
+<p><a href="../assets/uploads/2021/05/aws-acm-dominios.jpg"><img alt="" class="aligncenter wp-image-79 size-full" height="636" loading="lazy" src="../assets/uploads/2021/05/aws-acm-dominios.jpg" width="1091"/></a></p>
+<h3 id="aws-elb">AWS ELB<a aria-label="Link para esta seção" class="anchor" href="#aws-elb">#</a></h3>
+<p>O próximo passo foi utilizar o serviço <a href="https://aws.amazon.com/pt/elasticloadbalancing/" rel="noopener" target="_blank">ELB</a> para criar um load balancer para ficar “na porta de entrada” do back-end recebendo e redirecionando requisições nas portas 80 e 443, conforme imagem abaixo.</p>
+<p>Note que cada listener possui, além da porta e protocolo, a rule que define a rota que será utilizada pelo load balancer. Cada rota possui uma ou mais instâncias do serviço EC2 que será escolhida para receber a requisição na sua porta configurada. Tal porta corresponde ao <a href="https://istio.io/latest/docs/tasks/traffic-management/ingress/ingress-control/" rel="noopener" target="_blank">ingress gateway do Istio</a> configurado anteriormente pelo Ansible.</p>
+<p><a href="../assets/uploads/2021/05/aws-elb.jpg"><img alt="" class="aligncenter wp-image-81 size-full" height="449" loading="lazy" src="../assets/uploads/2021/05/aws-elb.jpg" width="1374"/></a></p>
+<h3 id="aws-route-53">AWS Route 53<a aria-label="Link para esta seção" class="anchor" href="#aws-route-53">#</a></h3>
+<p>O próximo passo foi utilizar o serviço <a href="https://aws.amazon.com/pt/route53/" rel="noopener" target="_blank">Route 53</a>, que é o serviço de DNS da AWS, para configurar a relação entre nome de domínio versus nome do load balancer, conforme imagem abaixo.</p>
+<p><a href="../assets/uploads/2021/05/aws-route53.jpg"><img alt="" class="aligncenter wp-image-84 size-full" height="320" loading="lazy" src="../assets/uploads/2021/05/aws-route53.jpg" width="1241"/></a></p>
+<h3 id="aws-rds">AWS RDS<a aria-label="Link para esta seção" class="anchor" href="#aws-rds">#</a></h3>
+<p>O próximo passo foi utilizar o serviço <a href="https://aws.amazon.com/pt/rds/" rel="noopener" target="_blank">RDS</a> para configurar o banco de dados MySQL de cada API no ambiente dev e prd, conforme imagem abaixo.</p>
+<p><a href="../assets/uploads/2021/05/aws-rds.jpg"><img alt="" class="aligncenter wp-image-107 size-full" height="608" loading="lazy" src="../assets/uploads/2021/05/aws-rds.jpg" width="1507"/></a></p>
+<h3 id="aws-msk">AWS MSK<a aria-label="Link para esta seção" class="anchor" href="#aws-msk">#</a></h3>
+<p>O objetivo era usar o serviço <a href="https://aws.amazon.com/pt/msk/" rel="noopener" target="_blank">Amazon MSK</a> para adicionar a funcionalidade de mensagem assíncrona, mas acabei por baixar o Kafka e iniciar manualmente o servidor do Kafka e o serviço do <a href="https://zookeeper.apache.org/" rel="noopener" target="_blank">Zookeeper</a>.</p>
+<h3 id="aws-elasticache">AWS ElastiCache<a aria-label="Link para esta seção" class="anchor" href="#aws-elasticache">#</a></h3>
+<p>O objetivo era usar o serviço <a href="https://aws.amazon.com/pt/elasticache/" rel="noopener" target="_blank">Amazon ElastiCache</a> com Redis, mas acabei por baixar o Redis e iniciá-lo via Docker.</p>
+<h3 id="resultado">Resultado<a aria-label="Link para esta seção" class="anchor" href="#resultado">#</a></h3>
+<p>O resultado da atividade de ops está representada na imagem abaixo.</p>
+<p>O load balancer ouvindo nas portas 80 e 443, recebendo requisições com *.deltacare.xyz e encaminhando-as para um EC2 (no caso, tenho somente uma máquina EC2) na porta do ingress gateway Istio.</p>
+<p>O Ansible criou três namespaces Kubernetes. O “ops” para as ferramentas de operação. O “dev” para o ambiente de desenvolvimento. O “prd” para o ambiente de produção. Ambos na mesma máquina para atender a restrição de custo do projeto. Isso não é recomendado em um ambiente empresarial.</p>
+<p><a href="../assets/uploads/2021/05/ops.jpg"><img alt="" class="aligncenter wp-image-87 size-full" height="758" loading="lazy" src="../assets/uploads/2021/05/ops.jpg" width="832"/></a></p>
+<h2 id="secao"><a aria-label="Link para esta seção" class="anchor" href="#secao">#</a></h2>
+<h2 id="spa">SPA<a aria-label="Link para esta seção" class="anchor" href="#spa">#</a></h2>
+<h2 id="secao-2"><a href="../assets/uploads/2021/05/dc-spa-300x215.jpg"><img alt="" class="aligncenter wp-image-98 size-medium" height="215" loading="lazy" src="../assets/uploads/2021/05/dc-spa-300x215.jpg" width="300"/></a><a aria-label="Link para esta seção" class="anchor" href="#secao-2">#</a></h2>
+<h3 id="framework">Framework<a aria-label="Link para esta seção" class="anchor" href="#framework">#</a></h3>
+<p>Para criar a SPA (Single Page Application), escolhi o framework <a href="https://vuejs.org/" rel="noopener" target="_blank">Vue</a> por já ter utilizado em outros projetos.</p>
+<h3 id="bibliotecas">Bibliotecas<a aria-label="Link para esta seção" class="anchor" href="#bibliotecas">#</a></h3>
+<p>Como o projeto não possui requisitos de design, utilizei o <a href="https://vuetifyjs.com/" rel="noopener" target="_blank">Vuetify</a> por já possuir componentes prontos de design que utiliza <a href="https://material.io/" rel="noopener" target="_blank">material design</a>.</p>
+<p>Para criação de gráficos, utilizei o <a href="https://apexcharts.com/docs/vue-charts/" rel="noopener" target="_blank">Vue-ApexChart</a> por já possuir componentes modelados para Vue e com um design atraente.</p>
+<p>Para realizar requisições ao back-end, utilizei o famoso <a href="https://github.com/axios/axios" rel="noopener" target="_blank">Axios</a>.</p>
+<p>Para realizar autenticação e autorização, utilizei <a href="https://www.keycloak.org/" rel="noopener" target="_blank">keycloak</a>. Uma solução madura que se encontra no <a href="https://landscape.cncf.io/?selected=keycloak" rel="noopener" target="_blank">landspace do CNCF</a>.</p>
+<h3 id="artefatos">Artefatos<a aria-label="Link para esta seção" class="anchor" href="#artefatos">#</a></h3>
+<p>À seguir, uma breve descrição dos artefatos da <a href="https://github.com/delta-care/spa" rel="noopener" target="_blank">SPA armazenados no Github</a>.</p>
+<ul>
+<li>/helm: Contém os componentes Kubernetes e Istio necessários para instalar a SPA;</li>
+<li>/src: Contém o código-fonte da SPA;
+<ul>
+<li>/assets: Favicon.</li>
+<li>/components: Menu e toolbar usados pelas telas da SPA.</li>
+<li>/injects: Bibliotecas injetadas no main.js do Vue. No caso, axios e keycloak.</li>
+<li>/mixins: Javacript para definir o title das telas.</li>
+<li>/modules: Telas da SPA.
+<ul>
+<li>/router: Definição da rota de cada tela.</li>
+<li>/services: Definição dos serviços usados em cada tela.</li>
+<li>/views: Definição da view de cada tela.</li>
+</ul>
+</li>
+<li>/plugins: Bibliotecas injetadas como plugin no main.js do Vue. No caso, vuetify e vuelidate (não usei).</li>
+<li>/router: Definição principal das rotas.</li>
+<li>/store: Definição simples para o title das telas.</li>
+<li>/utils: Definição de métodos comuns.</li>
+<li>App.vue: Arquivo principal de view.</li>
+<li>main.js: Arquivo principal de script.</li>
+</ul>
+</li>
+<li>Dockerfile: Definição da imagem usando node e nginx;</li>
+<li>Jenkinsfile: Definição do pipeline (sem executar teste funcional, conforme descrito no item Exclusão);</li>
+<li>entrypoint.sh: Shellscript usado no Dockerfile para injetar as variáveis de ambiente e seus valores no index.html da SPA ;
+<ul>
+<li>Atualmente, enquanto escrevo esse texto, para mudar valor de variável de ambiente usado pelo Vue há necessidade de <a href="https://cli.vuejs.org/guide/mode-and-env.html" rel="noopener" target="_blank">recompilar o código</a>. Sendo assim, esse shellscript foi necessário (<a href="https://medium.com/js-dojo/vue-js-runtime-environment-variables-807fa8f68665" rel="noopener" target="_blank">mais info</a>) para não ser necessário recompilar o código ao mover a SPA de um ambiente (dev, por exemplo) para outro (prd, por exemplo). Assim, atendendo aos critérios de <a href="https://12factor.net/pt_br/" rel="noopener" target="_blank">The Twelve-Factor App</a>.</li>
+</ul>
+</li>
+<li>nginx.conf: Configuração personalizada do Nginx para servir a SPA. Esse arquivo é injetado no Nginx via Dockerfile.</li>
+</ul>
+<h3 id="testes">Testes<a aria-label="Link para esta seção" class="anchor" href="#testes">#</a></h3>
+<p>Não foram criados para atender as Restrições desse projeto. Porém, são imprescindíveis em um ambiente empresarial.</p>
+<h3 id="pipeline">Pipeline<a aria-label="Link para esta seção" class="anchor" href="#pipeline">#</a></h3>
+<p><a href="../assets/uploads/2021/05/dc-pipeline-spa-1.jpg"><img alt="" class="aligncenter wp-image-105 size-full" height="725" loading="lazy" src="../assets/uploads/2021/05/dc-pipeline-spa-1.jpg" width="1434"/></a></p>
+<p>Consulte o item Exclusão para saber o que ficou fora de escopo e, por isso, não se encontra na pipeline.</p>
+<h3 id="resultado-2">Resultado<a aria-label="Link para esta seção" class="anchor" href="#resultado-2">#</a></h3>
+<p>Ao acessar https://app.deltacare.xyz/ (ambiente de produção) ou https://dev.deltacare.xyz/ (ambiente de desenvolvimento), a SPA recebe tal requisição e, caso o usuário não logado, o keycloak, usado pela SPA, redireciona o mesmo para https://sso.deltacare.xyz/ para realizar a autenticação, conforme imagem abaixo.</p>
+<p><a href="../assets/uploads/2021/05/dc-login-keycloak.jpg"><img alt="" class="aligncenter wp-image-92 size-full" height="624" loading="lazy" src="../assets/uploads/2021/05/dc-login-keycloak.jpg" width="1009"/></a></p>
+<p>Após o usuário realizar autenticação no keycloak, o mesmo gera um <a href="https://jwt.io/" rel="noopener" target="_blank">Json Web Token</a>, redireciona para https://app.deltacare.xyz e exibe o painel, conforme imagem abaixo.</p>
+<p><a href="../assets/uploads/2021/05/dc-painel.jpg"><img alt="" class="aligncenter wp-image-93 size-full" height="652" loading="lazy" src="../assets/uploads/2021/05/dc-painel.jpg" width="1351"/></a></p>
+<p>Para carregar os dados do painel, a SPA solicita os dados à API Painel com o JWT gerado pelo Keycloak. Esse é o mesmo comportamento para as demais telas que acessam as outras APIs.</p>
+<p><a href="../assets/uploads/2021/05/dc-painel-jwt-1.jpg"><img alt="" class="aligncenter wp-image-95 size-full" height="651" loading="lazy" src="../assets/uploads/2021/05/dc-painel-jwt-1.jpg" width="1363"/></a></p>
+<p>As demais telas serão apresentadas abaixo no item do seu respectivo microserviço.</p>
+<h2 id="api-painel">API Painel<a aria-label="Link para esta seção" class="anchor" href="#api-painel">#</a></h2>
+<p><a href="../assets/uploads/2021/05/dc-api-painel-src-1.jpg"><img alt="" class="aligncenter wp-image-103 size-full" height="411" loading="lazy" src="../assets/uploads/2021/05/dc-api-painel-src-1.jpg" width="859"/></a></p>
+<h3 id="objetivo">Objetivo<a aria-label="Link para esta seção" class="anchor" href="#objetivo">#</a></h3>
+<p>O objetivo da API Painel é obter dados transacionais da Deltacare, armazená-los e fornecê-los.</p>
+<h3 id="decis-es">Decisões<a aria-label="Link para esta seção" class="anchor" href="#decis-es">#</a></h3>
+<p>Para obtenção dos dados decidi utilizar o Kafka por se tratar de um sistema assíncrono de comunicação e a necessidade de obter dados de diferentes fontes. Sendo assim, a API é programada para escutar <em><a href="https://kafka.apache.org/documentation/" rel="noopener" target="_blank">tópicos</a> </em>e processar os dados recebidos.</p>
+<p>Para armazenamento de dados decidi utilizar o MongoDB por se tratar de um banco de dados orientado à documento atendendo a necessidade de fornecer diferentes tipos de objeto em uma requisição exigido por um painel.</p>
+<p>Embora essa PoC não possua requisitos não-funcionais, decidi incluir armazenamento de dados em cache para verificar o comportamento.</p>
+<p>Para fornecimento de dados, decidi utilizar REST. Atualmente, muito comum e foi o mesmo adotado nas outras APIs.</p>
+<p>Para escrita de código, a procura constante do uso de SOLID e Design Patterns, quando necessário.</p>
+<h3 id="artefatos-2">Artefatos<a aria-label="Link para esta seção" class="anchor" href="#artefatos-2">#</a></h3>
+<p>À seguir, uma breve descrição dos artefatos da <a href="https://github.com/delta-care/api-painel" rel="noopener" target="_blank">API Painel armazenados no Github</a>.</p>
+<ul>
+<li>/helm: Contém os componentes Kubernetes e Istio necessários para instalar a API Painel;
+<ul>
+<li>**/ConfigMap.yaml: Definição externa das propriedades dos perfis dev e prd. Em um ambiente empresarial, as senhas não devem ser armazenadas neste arquivo, conforme foi feito.</li>
+</ul>
+</li>
+<li>/src: Contém o código-fonte da API Painel;
+<ul>
+<li>**/painel/configuration: Configuração de CORS.</li>
+<li>**/painel/controller: Definição das portas de entradas da API. No caso, REST e Kafka.</li>
+<li>**/painel/domain: Definição das classes de domínio da API.</li>
+<li>**/painel/dto: Definição das classes de transferências de dados da API.</li>
+<li>**/painel/mapper: Definição da interface para traduzir objeto DTO para objeto domain e ao contrário.</li>
+<li>**/painel/repository: Definição da porta de saída da API. No caso, MongoDB.</li>
+<li> **/painel/service: Definição da interface e implementação dos casos de uso da API.</li>
+<li>**/resources/application-test.yml: Definição do perfil de teste.</li>
+<li>**/resources/bootstrap.yml: Definição comum aos perfis de usuário da API.</li>
+</ul>
+</li>
+<li>Dockerfile: Definição da imagem usando openjdk 11;</li>
+<li>Jenkinsfile: Definição do pipeline com teste unitário, análise de código com quality gate configurado SonarCloud, envio de release candidate para o Dockerhub, entrega em ambiente de desenvolvimento, timeout para saber se envia release final para o Dockerhub e entrega em ambiente de produção;</li>
+<li>pom.xml:
+<ul>
+<li>Spring Boot Starter Web;</li>
+<li>Spring Boot Starter Actuator;</li>
+<li>Spring Boot Starter Validation;</li>
+<li>Spring Boot Starter Cache;</li>
+<li>Spring Boot Starter Data Redis;</li>
+<li>Spring Boot Starter Data MongoDB;</li>
+<li>Spring Boot Starter Test;</li>
+<li>Spring Boot Cloud Kubernetes;</li>
+<li>Spring Kafka;</li>
+<li>H2 Database;</li>
+<li>MapStruct;</li>
+<li>Lombok;</li>
+<li>Swagger UI.</li>
+</ul>
+</li>
+</ul>
+<h3 id="testes-2">Testes<a aria-label="Link para esta seção" class="anchor" href="#testes-2">#</a></h3>
+<p>Não foram criados para atender as Restrições desse projeto. Porém, são imprescindíveis em um ambiente empresarial.</p>
+<h3 id="pipeline-2">Pipeline<a aria-label="Link para esta seção" class="anchor" href="#pipeline-2">#</a></h3>
+<p><a href="../assets/uploads/2021/05/dc-pipeline-api-painel.jpg"><img alt="" class="aligncenter wp-image-111 size-full" height="569" loading="lazy" src="../assets/uploads/2021/05/dc-pipeline-api-painel.jpg" width="1748"/></a></p>
+<p>Consulte o item Exclusão para saber o que ficou fora de escopo e, por isso, não se encontra na pipeline.</p>
+<h3 id="resultado-3">Resultado<a aria-label="Link para esta seção" class="anchor" href="#resultado-3">#</a></h3>
+<p>Dados armazenados no MongoDB.</p>
+<p><a href="../assets/uploads/2021/05/dc-painel-mongodb.jpg"><img alt="" class="aligncenter wp-image-109 size-full" height="854" loading="lazy" src="../assets/uploads/2021/05/dc-painel-mongodb.jpg" width="1214"/></a></p>
+<p>Dados exibidos na SPA.</p>
+<p><a href="../assets/uploads/2021/05/dc-painel-1.jpg"><img alt="" class="aligncenter wp-image-110 size-full" height="986" loading="lazy" src="../assets/uploads/2021/05/dc-painel-1.jpg" width="1916"/></a></p>
+<h2 id="api-produto">API Produto<a aria-label="Link para esta seção" class="anchor" href="#api-produto">#</a></h2>
+<p><a href="../assets/uploads/2021/05/dc-api-produto.jpg"><img alt="" class="aligncenter wp-image-113 size-full" height="410" loading="lazy" src="../assets/uploads/2021/05/dc-api-produto.jpg" width="674"/></a></p>
+<h3 id="objetivo-2">Objetivo<a aria-label="Link para esta seção" class="anchor" href="#objetivo-2">#</a></h3>
+<p>O objetivo dessa API é gerenciar dados de produto. Isso inclui nome do plano, nome do subplano, valor, início de vigência e fim de vigência</p>
+<p>Por se tratar de uma PoC, não possui algo (regra de negócio etc) além disso resumindo-se a um CRUD.</p>
+<h3 id="decis-es-2">Decisões<a aria-label="Link para esta seção" class="anchor" href="#decis-es-2">#</a></h3>
+<p>Para armazenamento de dados decidi utilizar MySQL provido pelo serviço RDS da AWS.</p>
+<p>Embora essa PoC não possua requisitos não-funcionais, decidi incluir armazenamento de dados em cache para verificar o comportamento.</p>
+<p>Para fornecimento de dados, decidi utilizar REST. Atualmente, muito comum e foi o mesmo adotado nas outras APIs.</p>
+<p>Para escrita de código, a procura constante do uso de SOLID e Design Patterns, quando necessário.</p>
+<h3 id="artefatos-3">Artefatos<a aria-label="Link para esta seção" class="anchor" href="#artefatos-3">#</a></h3>
+<p>À seguir, uma breve descrição dos artefatos da <a href="https://github.com/delta-care/api-produto" rel="noopener" target="_blank">API Produto armazenados no Github</a>.</p>
+<ul>
+<li>/helm: Contém os componentes Kubernetes e Istio necessários para instalar a API Produto;
+<ul>
+<li>**/ConfigMap.yaml: Definição externa das propriedades dos perfis dev e prd. Em um ambiente empresarial, as senhas não devem ser armazenadas neste arquivo, conforme foi feito.</li>
+</ul>
+</li>
+<li>/src: Contém o código-fonte da API Produto;
+<ul>
+<li>**/produto/configuration: Configuração de CORS e Swagger.</li>
+<li>**/produto/controller: Definição das portas de entradas da API. No caso, REST.</li>
+<li>**/produto/domain: Definição das classes de domínio da API.</li>
+<li>**/produto/dto: Definição das classes de transferências de dados da API.</li>
+<li>**/produto/exception: Definição de exceções para tratamento de erros.</li>
+<li>**/produto/mapper: Definição da interface para traduzir objeto DTO para objeto domain e ao contrário.</li>
+<li>**/produto/repository: Definição da porta de saída da API. No caso, MySQL.</li>
+<li> **/produto/service: Definição da interface e implementação dos casos de uso da API.</li>
+<li>**/resources/application-test.yml: Definição do perfil de teste.</li>
+<li>**/resources/bootstrap.yml: Definição comum aos perfis de usuário da API.</li>
+<li>**/resources/db/migration: Migrações do banco de dados executadas pelo Flyway.</li>
+<li>test/**/builder: Definição do objeto e dados para execução dos testes.</li>
+<li>test/**/controller: Definição dos testes do controller.</li>
+<li>test/**/exception: Definição dos testes do exception handler.</li>
+<li>test/**/service: Definição dos testes do service.</li>
+</ul>
+</li>
+<li>Dockerfile: Definição da imagem usando openjdk 11;</li>
+<li>Jenkinsfile: Definição do pipeline com teste unitário, análise de código com quality gate configurado SonarCloud, envio de release candidate para o Dockerhub, entrega em ambiente de desenvolvimento, timeout para saber se envia release final para o Dockerhub e entrega em ambiente de produção;</li>
+<li>pom.xml:
+<ul>
+<li>Spring Boot Starter Web;</li>
+<li>Spring Boot Starter Actuator;</li>
+<li>Spring Boot Starter Validation;</li>
+<li>Spring Boot Starter Cache;</li>
+<li>Spring Boot Starter Data Redis;</li>
+<li>Spring Boot Starter Data JPA;</li>
+<li>Spring Boot Starter Test;</li>
+<li>Spring Boot Cloud Kubernetes;</li>
+<li>MySQL Connector Java;</li>
+<li>Flyway Core;</li>
+<li>H2 Database;</li>
+<li>MapStruct;</li>
+<li>Lombok;</li>
+<li>Swagger UI.</li>
+</ul>
+</li>
+</ul>
+<h3 id="testes-3">Testes<a aria-label="Link para esta seção" class="anchor" href="#testes-3">#</a></h3>
+<p><a href="../assets/uploads/2021/05/api-produto-testes.jpg"><img alt="" class="aligncenter wp-image-232 size-full" height="307" loading="lazy" src="../assets/uploads/2021/05/api-produto-testes.jpg" width="570"/></a></p>
+<h3 id="pipeline-3">Pipeline<a aria-label="Link para esta seção" class="anchor" href="#pipeline-3">#</a></h3>
+<h3 id="secao-3"><a href="../assets/uploads/2021/05/dc-pipeline-api-produto.jpg"><img alt="" class="aligncenter wp-image-114 size-full" height="569" loading="lazy" src="../assets/uploads/2021/05/dc-pipeline-api-produto.jpg" width="1753"/></a><a aria-label="Link para esta seção" class="anchor" href="#secao-3">#</a></h3>
+<p>Consulte o item Exclusão para saber o que ficou fora de escopo e, por isso, não se encontra na pipeline.</p>
+<h3 id="resultado-4">Resultado<a aria-label="Link para esta seção" class="anchor" href="#resultado-4">#</a></h3>
+<p>Dados exibidos na SPA e passíveis de alteração ou inclusão de novos.</p>
+<p><a href="../assets/uploads/2021/05/dc-produto.jpg"><img alt="" class="aligncenter wp-image-115 size-full" height="978" loading="lazy" src="../assets/uploads/2021/05/dc-produto.jpg" width="1916"/></a></p>
+<h2 id="api-fatura">API Fatura<a aria-label="Link para esta seção" class="anchor" href="#api-fatura">#</a></h2>
+<p><a href="../assets/uploads/2021/05/dc-api-fatura-1.jpg"><img alt="" class="aligncenter wp-image-119 size-full" height="464" loading="lazy" src="../assets/uploads/2021/05/dc-api-fatura-1.jpg" width="664"/></a></p>
+<h3 id="objetivo-3">Objetivo<a aria-label="Link para esta seção" class="anchor" href="#objetivo-3">#</a></h3>
+<p>O objetivo dessa API é criar as faturas das empresas e gerenciar dados de faturas.</p>
+<h3 id="decis-es-3">Decisões<a aria-label="Link para esta seção" class="anchor" href="#decis-es-3">#</a></h3>
+<p>Para armazenamento de dados decidi utilizar MySQL provido pelo serviço RDS da AWS.</p>
+<p>Para armazenamento das faturas decidi utilizar o serviço <a href="https://aws.amazon.com/pt/s3/" rel="noopener" target="_blank">S3</a> da AWS.</p>
+<p>Embora essa PoC não possua requisitos não-funcionais, decidi incluir armazenamento de dados em cache para verificar o comportamento.</p>
+<p>Para fornecimento de dados, decidi utilizar REST. Atualmente, muito comum e foi o mesmo adotado nas outras APIs.</p>
+<p>Para escrita de código, a procura constante do uso de SOLID e Design Patterns, quando necessário.</p>
+<h3 id="artefatos-4">Artefatos<a aria-label="Link para esta seção" class="anchor" href="#artefatos-4">#</a></h3>
+<p>À seguir, uma breve descrição dos artefatos da <a href="https://github.com/delta-care/api-fatura" rel="noopener" target="_blank">API Fatura armazenados no Github</a>.</p>
+<ul>
+<li>/helm: Contém os componentes Kubernetes e Istio necessários para instalar a API Fatura;
+<ul>
+<li>**/ConfigMap.yaml: Definição externa das propriedades dos perfis dev e prd. Em um ambiente empresarial, as senhas não devem ser armazenadas neste arquivo, conforme foi feito.</li>
+</ul>
+</li>
+<li>/src: Contém o código-fonte da API Fatura;
+<ul>
+<li>**/fatura/configuration: Configuração de CORS e Swagger.</li>
+<li>**/fatura/controller: Definição das portas de entradas da API. No caso, REST e Crontab.</li>
+<li>**/fatura/domain: Definição das classes de domínio da API.</li>
+<li>**/fatura/dto: Definição das classes de transferências de dados da API.</li>
+<li>**/fatura/exception: Definição de exceções para tratamento de erros.</li>
+<li>**/fatura/mapper: Definição da interface para traduzir objeto DTO para objeto domain e ao contrário.</li>
+<li>**/fatura/repository: Definição da porta de saída da API. No caso, MySQL.</li>
+<li> **/fatura/service: Definição da interface e implementação dos casos de uso da API.</li>
+<li>**/resources/application-test.yml: Definição do perfil de teste.</li>
+<li>**/resources/bootstrap.yml: Definição comum aos perfis de usuário da API.</li>
+<li>**/resources/db/migration: Migrações do banco de dados executadas pelo Flyway.</li>
+</ul>
+</li>
+<li>Dockerfile: Definição da imagem usando openjdk 11;</li>
+<li>Jenkinsfile: Definição do pipeline com teste unitário, análise de código com quality gate configurado SonarCloud, envio de release candidate para o Dockerhub, entrega em ambiente de desenvolvimento, timeout para saber se envia release final para o Dockerhub e entrega em ambiente de produção;</li>
+<li>pom.xml:
+<ul>
+<li>Spring Boot Starter Web;</li>
+<li>Spring Boot Starter Actuator;</li>
+<li>Spring Boot Starter Validation;</li>
+<li>Spring Boot Starter Cache;</li>
+<li>Spring Boot Starter Data Redis;</li>
+<li>Spring Boot Starter Data JPA;</li>
+<li>Spring Boot Starter Test;</li>
+<li>Spring Boot Cloud Kubernetes;</li>
+<li>MySQL Connector Java;</li>
+<li>Flyway Core;</li>
+<li>H2 Database;</li>
+<li>MapStruct;</li>
+<li>Lombok;</li>
+<li>Swagger UI;</li>
+<li>Caelum Stella Core;</li>
+<li>AWS Java SDK.</li>
+</ul>
+</li>
+</ul>
+<h3 id="testes-4">Testes<a aria-label="Link para esta seção" class="anchor" href="#testes-4">#</a></h3>
+<p>Não foram criados para atender as Restrições desse projeto. Porém, são imprescindíveis em um ambiente empresarial.</p>
+<h3 id="pipeline-4">Pipeline<a aria-label="Link para esta seção" class="anchor" href="#pipeline-4">#</a></h3>
+<p><a href="../assets/uploads/2021/05/dc-pipeline-api-fatura.jpg"><img alt="" class="aligncenter wp-image-123 size-full" height="565" loading="lazy" src="../assets/uploads/2021/05/dc-pipeline-api-fatura.jpg" width="1748"/></a></p>
+<p>Consulte o item Exclusão para saber o que ficou fora de escopo e, por isso, não se encontra na pipeline.</p>
+<h3 id="resultado-5">Resultado<a aria-label="Link para esta seção" class="anchor" href="#resultado-5">#</a></h3>
+<p>Dados exibidos na SPA e passíveis de alteração ou inclusão de novos. Note a URL do documento da fatura criado e obtido no S3 da AWS.</p>
+<p><a href="../assets/uploads/2021/05/dc-fatura.jpg"><img alt="" class="aligncenter wp-image-120 size-full" height="981" loading="lazy" src="../assets/uploads/2021/05/dc-fatura.jpg" width="1919"/></a></p>
+<p>Dados do documento da fatura definidos pela API Fatura. O valor da fatura, bem como os dados da empresa, foram fornecidos pela API Empresa e API Produto.</p>
+<p><a href="../assets/uploads/2021/05/dc-fatura-doc.jpg"><img alt="" class="aligncenter wp-image-121 size-full" height="984" loading="lazy" src="../assets/uploads/2021/05/dc-fatura-doc.jpg" width="1450"/></a></p>
+<h2 id="api-empresa">API Empresa<a aria-label="Link para esta seção" class="anchor" href="#api-empresa">#</a></h2>
+<p><a href="../assets/uploads/2021/05/dc-api-empresa.jpg"><img alt="" class="aligncenter wp-image-124 size-full" height="416" loading="lazy" src="../assets/uploads/2021/05/dc-api-empresa.jpg" width="854"/></a></p>
+<h3 id="objetivo-4">Objetivo<a aria-label="Link para esta seção" class="anchor" href="#objetivo-4">#</a></h3>
+<p>O objetivo dessa API é gerenciar dados de empresa. Isso inclui os dados básicos (nome, endereço etc), bem como produtos e beneficiários da empresa.</p>
+<p>Ao adicicionar um beneficiário, a API Empresa envia os dados do mesmo para um tópico no Kafka no qual a API Painel obterá para atualizar o painel.</p>
+<h3 id="decis-es-4">Decisões<a aria-label="Link para esta seção" class="anchor" href="#decis-es-4">#</a></h3>
+<p>Para armazenamento de dados decidi utilizar MySQL provido pelo serviço RDS da AWS.</p>
+<p>Embora essa PoC não possua requisitos não-funcionais, decidi incluir armazenamento de dados em cache para verificar o comportamento.</p>
+<p>Para fornecimento de dados, decidi utilizar REST. Atualmente, muito comum e foi o mesmo adotado nas outras APIs.</p>
+<p>Para escrita de código, a procura constante do uso de SOLID e Design Patterns, quando necessário.</p>
+<h3 id="artefatos-5">Artefatos<a aria-label="Link para esta seção" class="anchor" href="#artefatos-5">#</a></h3>
+<p>À seguir, uma breve descrição dos artefatos da <a href="https://github.com/delta-care/api-empresa" rel="noopener" target="_blank">API Empresa armazenados no Github</a>.</p>
+<ul>
+<li>/helm: Contém os componentes Kubernetes e Istio necessários para instalar a API Empresa;
+<ul>
+<li>**/ConfigMap.yaml: Definição externa das propriedades dos perfis dev e prd. Em um ambiente empresarial, as senhas não devem ser armazenadas neste arquivo, conforme foi feito.</li>
+</ul>
+</li>
+<li>/src: Contém o código-fonte da API Empresa;
+<ul>
+<li>**/empresa/configuration: Configuração de Auditoria, CORS e Swagger.</li>
+<li>**/empresa/controller: Definição das portas de entradas da API. No caso, REST.</li>
+<li>**/empresa/domain: Definição das classes de domínio da API.</li>
+<li>**/empresa/dto: Definição das classes de transferências de dados da API.</li>
+<li>**/empresa/event: Definição da porta de saída da API. No caso, Kafka.</li>
+<li>**/empresa/exception: Definição de exceções para tratamento de erros.</li>
+<li>**/empresa/mapper: Definição da interface para traduzir objeto DTO para objeto domain e ao contrário.</li>
+<li>**/empresa/repository: Definição da porta de saída da API. No caso, MySQL.</li>
+<li> **/empresa/service: Definição da interface e implementação dos casos de uso da API.</li>
+<li>**/resources/application-test.yml: Definição do perfil de teste.</li>
+<li>**/resources/bootstrap.yml: Definição comum aos perfis de usuário da API.</li>
+<li>**/resources/db/migration: Migrações do banco de dados executadas pelo Flyway.</li>
+<li>test/**/builder: Definição do objeto e dados para execução dos testes.</li>
+<li>test/**/controller: Definição dos testes do controller.</li>
+<li>test/**/exception: Definição dos testes do exception handler.</li>
+<li>test/**/repository: Definição dos testes de repository.</li>
+<li>test/**/service: Definição dos testes do service.</li>
+</ul>
+</li>
+<li>Dockerfile: Definição da imagem usando openjdk 11;</li>
+<li>Jenkinsfile: Definição do pipeline com teste unitário, análise de código com quality gate configurado SonarCloud, envio de release candidate para o Dockerhub, entrega em ambiente de desenvolvimento, timeout para saber se envia release final para o Dockerhub e entrega em ambiente de produção;</li>
+<li>pom.xml:
+<ul>
+<li>Spring Boot Starter Web;</li>
+<li>Spring Boot Starter Actuator;</li>
+<li>Spring Boot Starter Validation;</li>
+<li>Spring Boot Starter Cache;</li>
+<li>Spring Boot Starter Data Redis;</li>
+<li>Spring Boot Starter Data JPA;</li>
+<li>Spring Boot Starter Test;</li>
+<li>Spring Boot Cloud Kubernetes;</li>
+<li>Spring Kafka;</li>
+<li>MySQL Connector Java;</li>
+<li>Flyway Core;</li>
+<li>H2 Database;</li>
+<li>MapStruct;</li>
+<li>Lombok;</li>
+<li>Swagger UI.</li>
+</ul>
+</li>
+</ul>
+<h3 id="testes-5">Testes<a aria-label="Link para esta seção" class="anchor" href="#testes-5">#</a></h3>
+<p><a href="../assets/uploads/2021/05/api-empresa-testes.jpg"><img alt="" class="aligncenter wp-image-233 size-full" height="497" loading="lazy" src="../assets/uploads/2021/05/api-empresa-testes.jpg" width="586"/></a></p>
+<h3 id="pipeline-5">Pipeline<a aria-label="Link para esta seção" class="anchor" href="#pipeline-5">#</a></h3>
+<p><a href="../assets/uploads/2021/05/dc-pipeline-api-empresa.jpg"><img alt="" class="aligncenter wp-image-127 size-full" height="570" loading="lazy" src="../assets/uploads/2021/05/dc-pipeline-api-empresa.jpg" width="1747"/></a></p>
+<p>Consulte o item Exclusão para saber o que ficou fora de escopo e, por isso, não se encontra na pipeline.</p>
+<h3 id="resultado-6">Resultado<a aria-label="Link para esta seção" class="anchor" href="#resultado-6">#</a></h3>
+<p>Dados exibidos na SPA e passíveis de alteração ou inclusão de novos.</p>
+<p><a href="../assets/uploads/2021/05/dc-empresa.jpg"><img alt="" class="aligncenter wp-image-125 size-full" height="985" loading="lazy" src="../assets/uploads/2021/05/dc-empresa.jpg" width="1919"/></a></p>
+<h2 id="observabilidade">Observabilidade<a aria-label="Link para esta seção" class="anchor" href="#observabilidade">#</a></h2>
+<h3 id="kiali">Kiali<a aria-label="Link para esta seção" class="anchor" href="#kiali">#</a></h3>
+<p><a href="../assets/uploads/2021/05/kiali-1.jpg"><img alt="" class="aligncenter wp-image-136 size-full" height="981" loading="lazy" src="../assets/uploads/2021/05/kiali-1.jpg" width="1919"/></a></p>
+<h3 id="jaeger">Jaeger<a aria-label="Link para esta seção" class="anchor" href="#jaeger">#</a></h3>
+<p><a href="../assets/uploads/2021/05/jaeger-1.jpg"><img alt="" class="aligncenter wp-image-137 size-full" height="816" loading="lazy" src="../assets/uploads/2021/05/jaeger-1.jpg" width="1919"/></a></p>
+<h3 id="grafana">Grafana<a aria-label="Link para esta seção" class="anchor" href="#grafana">#</a></h3>
+<p><a href="../assets/uploads/2021/05/grafana1-1.jpg"><img alt="" class="aligncenter wp-image-138 size-full" height="986" loading="lazy" src="../assets/uploads/2021/05/grafana1-1.jpg" width="1918"/></a></p>
+<h3 id="secao-4"><a href="../assets/uploads/2021/05/grafana2-1.jpg"><img alt="" class="aligncenter wp-image-139 size-full" height="986" loading="lazy" src="../assets/uploads/2021/05/grafana2-1.jpg" width="1919"/></a><a aria-label="Link para esta seção" class="anchor" href="#secao-4">#</a></h3>
+<h3 id="prometheus">Prometheus<a aria-label="Link para esta seção" class="anchor" href="#prometheus">#</a></h3>
+<p><a href="../assets/uploads/2021/05/prometheus-1.jpg"><img alt="" class="aligncenter wp-image-140 size-full" height="985" loading="lazy" src="../assets/uploads/2021/05/prometheus-1.jpg" width="1919"/></a></p></div></article></main>
+<footer class="site-footer"><p class="ornament">❦</p><p>© 2026 J David S Carvalho</p></footer>
+</div>
+<script>(function(){
+var root=document.querySelector('.entry-content');if(!root)return;
+var imgs=[].slice.call(root.querySelectorAll('img'));if(!imgs.length)return;
+var imgRe=/\.(jpe?g|png|gif|webp|svg)(\?.*)?$/i;
+var items=imgs.map(function(im){var a=im.closest('a[href]');var full=(a&&imgRe.test(a.getAttribute('href')))?a.href:im.currentSrc||im.src;
+ var fig=im.closest('figure,.wp-caption');var fc=fig&&fig.querySelector('figcaption,.wp-caption-text');
+ im.classList.add('zoomable');if(a&&imgRe.test(a.getAttribute('href')))a.classList.add('zoomable');
+ return {el:im,src:full,cap:(fc&&fc.textContent.trim())||im.getAttribute('alt')||''};});
+var ov,imgEl,capEl,cntEl,bClose,bPrev,bNext,cur=-1,opener=null;
+function build(){ov=document.createElement('div');ov.className='lb';ov.hidden=true;ov.setAttribute('role','dialog');ov.setAttribute('aria-modal','true');ov.setAttribute('aria-label','Imagem ampliada');
+ ov.innerHTML='<button type="button" class="lb-close" aria-label="Fechar">\u2715</button><button type="button" class="lb-nav lb-prev" aria-label="Anterior">\u2190</button><figure class="lb-fig"><img class="lb-img" alt=""><figcaption class="lb-cap"></figcaption></figure><button type="button" class="lb-nav lb-next" aria-label="Pr\u00f3xima">\u2192</button><div class="lb-count" aria-live="polite"></div>';
+ document.body.appendChild(ov);imgEl=ov.querySelector('.lb-img');capEl=ov.querySelector('.lb-cap');cntEl=ov.querySelector('.lb-count');
+ bClose=ov.querySelector('.lb-close');bPrev=ov.querySelector('.lb-prev');bNext=ov.querySelector('.lb-next');
+ ov.addEventListener('click',function(e){if(e.target===ov||e.target.classList.contains('lb-fig'))closeUI();});
+ bClose.addEventListener('click',closeUI);bPrev.addEventListener('click',function(){go(-1);});bNext.addEventListener('click',function(){go(1);});
+ if(items.length<2){bPrev.hidden=bNext.hidden=cntEl.hidden=true;}}
+function show(i){cur=(i+items.length)%items.length;var it=items[cur];imgEl.src=it.src;imgEl.alt=it.cap;capEl.textContent=it.cap;capEl.hidden=!it.cap;cntEl.textContent=(cur+1)+' / '+items.length;}
+function go(d){if(items.length>1)show(cur+d);}
+function open(i){if(!ov)build();opener=document.activeElement;show(i);ov.hidden=false;document.body.classList.add('lb-open');
+ try{history.pushState({lb:1},'');}catch(e){}bClose.focus();}
+function hide(){if(!ov||ov.hidden)return;ov.hidden=true;document.body.classList.remove('lb-open');imgEl.removeAttribute('src');if(opener&&opener.focus)opener.focus();}
+function closeUI(){if(!ov||ov.hidden)return;if(history.state&&history.state.lb){history.back();}else hide();}
+window.addEventListener('popstate',function(){hide();});
+document.addEventListener('click',function(e){if(e.button||e.metaKey||e.ctrlKey||e.shiftKey)return;var t=e.target.closest&&e.target.closest('.entry-content img');if(!t)return;
+ var i=imgs.indexOf(t);if(i<0)return;e.preventDefault();open(i);});
+document.addEventListener('keydown',function(e){if(!ov||ov.hidden)return;
+ if(e.key==='Escape'){e.preventDefault();closeUI();}else if(e.key==='ArrowLeft'){go(-1);}else if(e.key==='ArrowRight'){go(1);}
+ else if(e.key==='Tab'){var f=[bClose,bPrev,bNext].filter(function(b){return !b.hidden;});var k=f.indexOf(document.activeElement);e.preventDefault();k=(k+(e.shiftKey?-1:1)+f.length)%f.length;f[k].focus();}});
+var sx=null;document.addEventListener('touchstart',function(e){if(ov&&!ov.hidden)sx=e.touches[0].clientX;},{passive:true});
+document.addEventListener('touchend',function(e){if(sx===null)return;var dx=e.changedTouches[0].clientX-sx;sx=null;if(Math.abs(dx)>60)go(dx<0?1:-1);},{passive:true});
+})();
+</script>
+</body>
+</html>

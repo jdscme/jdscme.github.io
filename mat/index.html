@@ -1,0 +1,278 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Arquitetura e Engenharia para identificar e melhorar a maturidade da TI - J David S Carvalho</title>
+<script>(function(){try{var t=localStorage.getItem('jdsc-theme');document.documentElement.setAttribute('data-theme',(t==='light'||t==='dark')?t:'dark');}catch(e){}})();</script>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,700;1,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../style.css">
+<meta name="description" content="Em 2021, fui chamado para fazer avaliações em empresas para sugerir melhorias em arquitetura e engenharia na área de tecnologia.">
+<link rel="canonical" href="https://jdsc.me/mat/">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='12' fill='%230d0c0a'/%3E%3Ctext x='32' y='47' font-family='Georgia,serif' font-size='42' font-weight='700' text-anchor='middle' fill='%23f0b04a'%3EJ%3C/text%3E%3C/svg%3E">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="J David S Carvalho">
+<meta property="og:locale" content="pt_BR">
+<meta property="og:title" content="Arquitetura e Engenharia para identificar e melhorar a maturidade da TI">
+<meta property="og:description" content="Em 2021, fui chamado para fazer avaliações em empresas para sugerir melhorias em arquitetura e engenharia na área de tecnologia.">
+<meta property="og:url" content="https://jdsc.me/mat/">
+<meta name="twitter:card" content="summary">
+</head>
+<body class="kind-post">
+<div class="page">
+<header class="site-header">
+  <div class="toggle-slot"><button class="theme-toggle" id="theme-toggle" type="button" aria-label="Alternar modo claro/escuro" title="Alternar claro/escuro"><span aria-hidden="true">☾</span></button>
+<script>(function(){var b=document.getElementById('theme-toggle'),r=document.documentElement;
+function cur(){var t=r.getAttribute('data-theme');if(t)return t;return 'dark';}
+function paint(){b.firstChild.textContent=cur()==='dark'?'\u2600':'\u263E';}
+b.addEventListener('click',function(){var n=cur()==='dark'?'light':'dark';r.setAttribute('data-theme',n);try{localStorage.setItem('jdsc-theme',n);}catch(e){}paint();});
+paint();})();</script></div>
+  <p class="ornament">❧</p>
+  <p class="brand"><a href="../">J David S Carvalho</a></p>
+  <p class="tagline">Aprendizado contínuo</p>
+  <nav><a href="../">Início</a><a href="../cv.pdf">Currículo</a><a href="../livros/">Livros</a></nav>
+  <p class="rule">⁂</p>
+</header>
+<main class="content"><article class="post"><header class="entry-header"><h1 class="entry-title">Arquitetura e Engenharia para identificar e melhorar a maturidade da TI</h1><p class="meta"><time datetime="2023-01-15">15 de janeiro de 2023</time> <span class="sep">·</span> <span class="cats"><a href="../category/arquitetura/">Arquitetura</a>, <a href="../category/engenharia/">Engenharia</a></span></p></header><div class="entry-content"><p>Em 2021, fui chamado para fazer avaliações em empresas para sugerir melhorias em arquitetura e engenharia na área de tecnologia.</p>
+<p>Tal como uma caixa de ferramentas que é pouco utilizada em uma casa construída recentemente, mas amplamente utilizada em uma casa construída há décadas, considero importante conhecer o máximo de ferramentas possível porque não saberei em qual casa estarei.</p>
+<p>Diante disso, todas as técnicas (ou ferramentas) de arquitetura, que vão além de tecnologia, por exemplo <a href="https://www.opengroup.org/togaf" rel="noopener" target="_blank">TOGAF</a>, e engenharia, por exemplo <a href="https://www.computer.org/education/bodies-of-knowledge/software-engineering" rel="noopener" target="_blank">SWEBOK</a> e, um ótimo resumo recente, <a href="https://engsoftmoderna.info/" rel="noopener" target="_blank">ESM</a>, <span>não são necessárias para todas empresas</span> e <span>não são necessárias para todos os projetos</span> (principalmente, em função de prazo e restrições). Mas considero importante conhecê-las para você criar a sua própria caixa de ferramentas. Isso ajudará se você quer estruturar melhor (Arquiteto[a]) ou se você quer construir melhor (Engenheiro[a]).</p>
+<p>Portanto, o motivo desse post é descrever, de forma resumida, a minha caixa de ferramentas para realizar essas avaliações. Com certeza, não é igual de outra pessoa e isso não é um problema. Como mudar é necessário para evoluir, ela está em constante mudança.</p>
+<p>Antes, gostaria de alinhar que, para mim, arquitetura responde a pergunta “Qual é a estrutura?” e engenharia responde a pergunta “Como construir a estrutura?”.</p>
+<p>Então, qualquer técnica para estruturação de empresa ou software entendo que é arquitetura e qualquer técnica para construção da estrutura entendo que é engenharia. Observe que, nesse raciocínio, engenharia <span>utiliza a estrutura definida</span> para realizar qualquer construção.</p>
+<p>Existem técnicas que podem estar nas duas categorias, mas prefiro  simplificar e fugir de discussões que não agregram ao negócio.</p>
+<h2 id="1-empresa">1. Empresa<a aria-label="Link para esta seção" class="anchor" href="#1-empresa">#</a></h2>
+<p>Ao citar negócio, é inevitável não escrever sobre a importância de conhecer o funcionamento genérico de empresa e como a falta desse conhecimento pode afetar negativamente quem está na área de tecnologia.</p>
+<p>Diariamente, pessoas trocam dinheiro por produto ou serviço porque consideram o valor percebido naquilo que querem maior do que o valor cobrado. Essa troca cria um fluxo e quem é da área de tecnologia está mais próxima dele porque, atualmente, esse fluxo ocorre na internet estruturado por tecnologia.</p>
+<p>Atualmente, pessoas entram no Google em busca de um produto ou serviço e dispostas a pagar por eles. Você, comparada a quem não é da área de tecnologia, tem mais facilidade para criar uma página e inserí-la no topo do resultado da pesquisa no Google para participar dessa troca.</p>
+<p>Parece simples, mas é longe disso. Infelizmente, os cursos de tecnologia que conheço, inclusive universitários, preparam as pessoas <a href="https://www.youtube.com/watch?v=uGdvi7CNhFo" rel="noopener" target="_blank">somente para exercerem papel operacional</a> e esquecem conhecimento sobre finanças, marketing, oratória e, principalmente, <a href="https://pt.wikipedia.org/wiki/Intelig%C3%AAncia_emocional" rel="noopener" target="_blank">inteligência emocional</a> que geram <a href="https://blog.pragmaticengineer.com/the-product-minded-engineer/" rel="noopener" target="_blank">atitudes além da operação da área de tecnologia</a>.</p>
+<p>Importante dizer que ninguém é obrigado a ter esses outros conhecimentos. Estar na área de tecnologia, atualmente e financeiramente, é um privilégio, ainda mais se estiver trabalhando remoto do Brasil recebendo em dólar. Porém, para os quais não gostam de fazer somente o mínimo, é possível, se entenderem que fracassos estão entre você e o seu objetivo.</p>
+<p>Eu crio negócios na internet desde 2014. O conhecimento em tecnologia foi, e continua sendo, muito útil e esse é o lastro das palavras acima. Além desses, conhecimento financeiro para controlar o fluxo de caixa, marketing para fazer melhores campanhas e um pouco de contabilidade são conhecimentos fundamentais.</p>
+<p>Aliás, você como pessoa física também possui o seu fluxo de caixa. Para isso, nada melhor do que, na minha opinião, o meu livro da série Pai Rico, Pai Pobre, o <a href="https://www.amazon.com.br/rico-independ%C3%AAncia-financeira-Robert-Kiyosaki/dp/8550801089/" rel="noopener" target="_blank">livro Independência Financeira</a> que traz, de forma prática, esse conhecimento para pessoa física.</p>
+<p>Outro ponto importante: Ninguém é obrigado(a) a <a href="https://www.amazon.com.br/Mito-do-Empreendedor-Michael-Gerber/dp/8576765594/" rel="noopener" target="_blank">conhecer essas outras áreas para criar negócios</a>. Se você deseja, junte-se à outra(s) pessoa(s). Por isso, estar relacionado com o maior número de pessoas, fundamentado em honestidade e altruísmo, é importante. Um ditado que é fato, dito mais ou menos assim: “Você é a média das pessoas que mais convive”.</p>
+<p>Sobre a estrutura genérica de uma empresa, eu gosto de pensar tal como um sistema que recebe input, realiza processamento e gera output para atender um beneficiário que possui uma expectativa. Portanto, eu consigo pensar em um “sistema de criação de dinheiro” e um “sistema de criação de valor” (<a href="https://www.amazon.com.br/Manual-BPM-Gest%C3%A3o-Processos-Neg%C3%B3cio/dp/8582600658/" rel="noopener" target="_blank">termo</a>), conforme abaixo.</p>
+<figure class="wp-caption aligncenter" id="attachment_406"><a href="../assets/uploads/2023/01/empresa-2.jpg"><img alt="" class="wp-image-406 size-full" height="680" loading="lazy" src="../assets/uploads/2023/01/empresa-2.jpg" width="925"/></a><figcaption class="wp-caption-text" id="caption-attachment-406">Clique na imagem para expandir</figcaption></figure>
+<p>Com a internet é possível criar uma empresa (ou sistema) que gere renda (passiva ou quase) estruturada com, por exemplo, blogs, vlogs, mobile apps ou <a href="https://www.freecodecamp.org/news/the-boring-technology-behind-a-one-person-internet-company/" rel="noopener" target="_blank">web apps</a>. Desde que você agregue valor honestamente e, se possível, crie uma marca, está valendo. Esse <a href="https://www.amazon.com.br/Trabalhe-4-Horas-por-Semana/dp/8542211561/" rel="noopener" target="_blank">livro</a> traz algumas reflexões sobre isso.</p>
+<p>E não adianta criar seus recursos (ou ativos) na internet e não saber como divulgá-los. Por isso, usar, por exemplo, o <a href="https://ads.google.com/intl/pt-BR_br/home/" rel="noopener" target="_blank">Google Ads</a>, <a href="https://www.facebook.com/business" rel="noopener" target="_blank">Facebook Ads</a> ou <a href="https://developers.google.com/search/docs/fundamentals/seo-starter-guide?hl=pt-br" rel="noopener" target="_blank">SEO</a> (se não tiver pressa) é fundamental, ambos guiados por um processo que gera resultado. Pode-se comprar <a href="https://blog.hootsuite.com/influencer-marketing/" rel="noopener" target="_blank">ads em influencers</a> ou, quem sabe, ele(ela) promova seu produto ou serviço de graça por precisar de pauta ou considerar ótimo (melhor cenário).</p>
+<p>A principal dificuldade é conseguir gerar fluxo de caixa positivo, seja investindo dinheiro em ads ou investindo tempo (e, às vezes, dinheiro) em SEO, ambos para gerar tráfego para os seus recursos. Técnicas como funil de vendas, upselling e derivados, CRM, etc, são úteis para otimizar e aumentar a chance de gerar fluxo de caixa positivo.</p>
+<p>Por outro lado, o benefício de ser difícil é que as oportunidades não desaparecem e os quais estão surfando poderão continuar. As pessoas que já vi divulgarem oportunidades ao público geral o fazem porque fazem muito mais dinheiro em comissões de curso que ensinam a fazer dinheiro com elas. Logo, o prazo de validade das mesmas diminuem bastante e o “<a href="https://www.amazon.com.br/mensageiro-milion%C3%A1rio-Brendon-Burchard-ebook/dp/B00A3D1GKC/" rel="noopener" target="_blank">mensageiro milionário</a>” termina como mais beneficiado. Não há santo.</p>
+<p>Logo, conhecer de empresa contribui para:</p>
+<ul>
+<li>se você é empregado, (1) gerar atitudes além da operação da área de tecnologia para ajudar a empresa onde trabalha tornando a área de tecnologia precursora de geração de novos negócios (e, quem sabe, ser remunerado a mais por isso) e,</li>
+<li>se você é ou quer ser empreendedor, (2) aumentar a chance de criar seus negócios que gere renda (passiva ou quase) e valor para a sociedade.</li>
+</ul>
+<p>Dito isso, vamos entrar em uma empresa e observar as técnicas (ou ferramentas).</p>
+<h2 id="2-arquitetura">2. Arquitetura<a aria-label="Link para esta seção" class="anchor" href="#2-arquitetura">#</a></h2>
+<p>Entre as técnicas que respondem a questão “Qual é a estrutura?”, olhando do mais alto nível, eu vejo primeiro o <a href="https://www.opengroup.org/togaf" rel="noopener" target="_blank">TOGAF</a> que divide empresa nos três andares abaixo. Existem vários outros frameworks de arquitetura empresarial, mas prefiro esse. Clique na imagem para expandir.</p>
+<figure class="wp-caption aligncenter" id="attachment_405"><a href="../assets/uploads/2023/01/arquitetura-corporativa-1.jpg"><img alt="" class="wp-image-405 size-full" height="616" loading="lazy" src="../assets/uploads/2023/01/arquitetura-corporativa-1.jpg" width="1622"/></a><figcaption class="wp-caption-text" id="caption-attachment-405">Clique na imagem para expandir</figcaption></figure>
+<p>Seguindo essa técnica (ou ferramenta, ou framework) pode-se notar que há uma estrutura definida para cada andar e relações entre eles. Essa estrutura é composta por entidades e dada o nome de <a href="https://pubs.opengroup.org/togaf-standard/architecture-content/chap02.html#tag_02_03" rel="noopener" target="_blank">metamodelo</a>.</p>
+<p>Uma alternativa para trazer essa estrutura para a vida real de uma empresa é utilizar o <a href="https://publications.opengroup.org/guides/archimate/g228" rel="noopener" target="_blank">Archimate</a> por meio do <a href="https://www.archimatetool.com/" rel="noopener" target="_blank">Archi</a> ou <a href="https://app.diagrams.net/" rel="noopener" target="_blank">draw.io</a>, conforme sugerido <a href="https://pubs.opengroup.org/togaf-standard/business-architecture/information-mapping.html#_Toc532716183" rel="noopener" target="_blank">aqui</a> com essas <a href="https://publications.opengroup.org/guides/archimate/g21ebp" rel="noopener" target="_blank">instruções</a>.</p>
+<p>Observe que existem dezenas de entidades. Acredito que essa estrutura foi definida para tentar cobrir o máximo de tipos de empresa. Então, caso decida utilizar, procure utilizar as entidades que realmente são necessárias para o seu caso de uso ou adapte o desenho (<em>viewpoint</em>) em função do perfil de quem verá. Por exemplo, <a href="https://www.linkedin.com/pulse/8-tips-when-you-need-make-c-level-presentation-rafael-maga%C3%B1a/" rel="noopener" target="_blank">se for C-level</a>, procure exibir somente o que ele precisa saber. Como eles, normalmente, são os patrocinadores das ferramentas, não fazer isso pode gerar uma percepção errada da ferramenta e ela cair em desuso. Eu já vi isso acontecer e não foi bom.</p>
+<p>Por outro lado, existem técnicas mais simples de estrutura tais como <a href="https://c4model.com/" rel="noopener" target="_blank">C4 Model</a>, <a href="https://pt.wikipedia.org/wiki/UML" rel="noopener" target="_blank">UML</a> ou uma estrutura própria. No final, o objetivo sempre será ter um diagrama que por si só comunique a estrutura para transferir conhecimento e sirva para identificar impactos em projetos que alteram a estrutura. Assim como os desenhos da estrutura de uma casa transferem conhecimento para o novo dono e servem para identificar impacto na obra em um banheiro, por exemplo.</p>
+<p>Com o metamodelo da Arquitetura Corporativa definido e armazenado em algum software que faz a gestão do mesmo, um processo de Arquitetura Corporativa está minimamente habilitado para ser executado. A imagem abaixo (<a href="https://www.visual-paradigm.com/guide/enterprise-architecture/step-by-step-enterprise-architecture-tutorial-with-togaf-adm/" rel="noopener" target="_blank">fonte</a>) ilustra o processo sugerido pelo TOGAF. Clique na imagem para expandir.</p>
+<p>Importante considerar que todas as empresas e projetos não precisam utilizar esse processo. Em função das características e contexto da empresa e projeto os critérios são definidos.</p>
+<p>Eu acredito que, ao menos, esses devem ser considerados: complexidade organizacional, alinhamento estratégico, reutilização de ativos, tamanho/escala, integração de tecnologia, necessidade de governança e ciclo de vida prolongado.</p>
+<h3 id="2-1-arquitetura-de-neg-cio">2.1. Arquitetura de Negócio<a aria-label="Link para esta seção" class="anchor" href="#2-1-arquitetura-de-neg-cio">#</a></h3>
+<p>Sobre <span>arquitetura de negócio</span>, as entidades do Archimate me parecem úteis para definir a estrutura. Se tratando da entidade “processo”, a ferramenta <a href="https://www.bpmn.org/" rel="noopener" target="_blank">BPMN</a> é a notação para estruturá-los. No <a href="https://www.bpmn.org/" rel="noopener" target="_blank">site oficial</a> é possível baixar a especificação. Entre as ferramentas para isso, prefiro o bom e velho <a href="https://app.diagrams.net/" rel="noopener" target="_blank">draw.io</a>.</p>
+<p>De modo que tecnologia é útil para automatizar processos de negócio, conhecê-los fez parte da minha experência. Não tenho muito conhecimento para escrever e não é meu foco. Para referência, eu prefiro consultar o <a href="https://www.abpmp-br.org/educacao/bpm-cbok/" rel="noopener" target="_blank">CBOK</a>.</p>
+<p>Nele, é possível conhecer o conceito de modelo de referência que é um modelo normalizado que fornece uma visão integrada de alto nível de uma organização. Usa-se para acelerar a criação de uma arquitetura de negócio a fim de definir a operação de uma empresa. Exemplos:</p>
+<ul>
+<li>Genérico para organizações (<a href="https://www.apqc.org/process-frameworks" rel="noopener" target="_blank">APQC PCF</a> etc)</li>
+<li>Específico para uma indústria (<a href="https://scor.ascm.org/" rel="noopener" target="_blank">SCOR</a>, <a href="https://www.acord.org/standards-architecture/reference-architecture" rel="noopener" target="_blank">ACORD</a>, <a href="https://en.wikipedia.org/wiki/Business_Process_Framework_(eTOM)" rel="noopener" target="_blank">eTOM</a>, <a href="https://bian.org/" rel="noopener" target="_blank">BIAN</a> etc)</li>
+<li>Específico para um domínio de conhecimento (<a href="https://pt.wikipedia.org/wiki/Information_Technology_Infrastructure_Library" rel="noopener" target="_blank">ITIL</a>, <a href="https://www.isaca.org/resources/cobit" rel="noopener" target="_blank">COBIT</a> etc)</li>
+<li>Específico para uma tecnologia (<a href="https://groups.community.sap.com/t5/enterprise-architecture-blog/sap-reference-architecture-content-an-overview/ba-p/11055" rel="noopener" target="_blank">SAP</a>, <a href="https://www.pega.com/industries" rel="noopener" target="_blank">Pega</a>, <a href="https://www.ibm.com/industries" rel="noopener" target="_blank">IBM</a> etc)</li>
+</ul>
+<h3 id="2-2-arquitetura-de-sistema">2.2. Arquitetura de Sistema<a aria-label="Link para esta seção" class="anchor" href="#2-2-arquitetura-de-sistema">#</a></h3>
+<p>Sobre <span>arquitetura de sistema</span>, considero úteis as entidades do Archimate. Mas quais componentes de software são necessários para definir a estrutura em um determinado contexto? Para isso, entrando nesse andar, vejo a ferramenta DDD responder essa pergunta. A aplicação dessa ferramenta vai além de software, o que a torna mais valiosa. Para referência, embora exista o <a href="https://www.amazon.com.br/Domain-Driven-Design-Eric-Evans/dp/8550800651/" rel="noopener" target="_blank">livro do criador</a> e <a href="https://www.amazon.com.br/Vaughn-Vernon/e/B0096T71SA/" rel="noopener" target="_blank">esses</a>, o livro que mais gostei sobre DDD é <a href="https://www.amazon.com.br/Patterns-Principles-Practices-Domain-Driven-Design/dp/1118714709/" rel="noopener" target="_blank">esse</a>. Obs.: Essa ferramenta não é necessária em todos os projetos.</p>
+<p>Entender as características do projeto (escopo, prazo, orçamento, restrições, riscos, premissas e recursos humanos) e, em especial, os requisitos não-funcionais (<a href="https://en.wikipedia.org/wiki/List_of_system_quality_attributes" rel="noopener" target="_blank">atributos de qualidade</a>), é dever de quem está responsável por definir a estrutura porque esses dados direcionam a estrutura.</p>
+<h3 id="2-3-arquitetura-de-tecnologia">2.3. Arquitetura de Tecnologia<a aria-label="Link para esta seção" class="anchor" href="#2-3-arquitetura-de-tecnologia">#</a></h3>
+<p>Sobre <span>arquitetura de tecnologia</span>, é possível utilizar as entidades sugeridas pelo Archimate compondo-as com as tecnologias do cloud provider ou especialistas.</p>
+<p>Para referência, a documentação das tecnologias normalmente são suficientes, seja cloud provider ou especialista. Esse <a href="https://comparecloud.in/" rel="noopener" target="_blank">link</a> costuma ser útil quando preciso comparar os serviços da AWS, GCP e Azure.</p>
+<p>Dado que as características do projeto são conhecidas, é possível criar a estrutura de forma mais segura. Para isso, existem alguns <a href="https://www.developertoarchitect.com/downloads/architecture-styles-worksheet.pdf" rel="noopener" target="_blank">estilos documentados</a> (<a href="https://www.amazon.com/Fundamentals-Software-Architecture-Engineering-Approach-ebook/dp/B0849MPK73" rel="noopener" target="_blank">fonte</a>). De todo modo, a maioria das estruturas possuirão:</p>
+<ul>
+<li><span>Serviços de computação</span>: Máquina física proprietária, VM, orquestrador de containers, load balancer, controle de fluxo/repetição e/ou serviço serverless com toda a responsabilidade da infraestrutura terceirizada para o cloud provider, tal como GCP Cloud Run ou AWS App Runner. Esse <a href="https://www.youtube.com/watch?v=MZBbhqt6bQs" rel="noopener" target="_blank">vídeo</a> apresenta uma parte dessas opções.</li>
+<li><span>Serviços de dados</span>:  Eventos (Pub/Sub, Kinesis, SQS, SNS, Kafka, RabbitMQ etc), processamento (Hadoop, Spark etc), integração (Beam, Airflow etc) e visualização (Looker, QuickSight, Power BI etc).</li>
+<li><span>Serviços de armazenamento</span>: Bucket, BD relacional, BD NoSQL (colunar, chave-valor, documento etc) e NFS.</li>
+<li><span>Serviços de segurança</span>: Gerenciamento de identidade (acesso e autorização), gerenciamento de certificados, gerenciamento de variáveis, Firewall, API Gateway, CDN, DNS, VPN e VPC.</li>
+<li><span>Serviços de CI/CD</span>: Build e release (Azure DevOps, Jenkins etc).</li>
+<li><span>Serviços de observabilidade</span>: Métricas, Logging e Tracing (Dynatrace, Datadog, New Relic etc).</li>
+</ul>
+<p>Independente da estrutura definida, é importante todas as decisões buscarem atender aos <span>requisitos básicos</span>: Rápido, Seguro, Confiável e Fácil de Manter. Se uma <a href="https://docs.aws.amazon.com/prescriptive-guidance/latest/architectural-decision-records/adr-process.html" rel="noopener" target="_blank">decisão de arquitetura</a> quebrar um desses pontos é um sinal de alerta.</p>
+<p>Notas:</p>
+<ul>
+<li>Em alguns casos, escrever somente a arquitetura de tecnologia será suficiente.</li>
+<li>Assim como não é recomendado usar cola de madeira em ferro, cada ferramenta de tecnologia foi criada para resolver um problema. E, sim, qualquer uma pode ficar defasada com o tempo porque pode ter sido criada para resolver um problema que atualmente não existe mais. O responsável pela definição da estrutura precisa ter esse discernimento.</li>
+<li><a href="https://en.wikipedia.org/wiki/Overengineering" rel="noopener" target="_blank">Overengineering</a> é sintoma de falta de experiência e acredito acontecer com todos(as) alguma vez. Então, procure sempre caminhar em direção da simplicidade sempre que possível. Considere que pode ser melhor contratar uma ferramenta pronta ao invés de construir.</li>
+<li>Acredito que complexidade é sinal de falta de entendimento. Se considera complexo, a estrutura ainda não está pronta para encarar a responsabilidade de ser construída por um time de Engenheiros(as).</li>
+<li>Considero o documento <a href="https://certification.opengroup.org/docs/OpenCA_Conformance_Requirements.pdf" rel="noopener" target="_blank">Conformance Requirements for the Architect Profession (Open CA)</a> uma referência sobre papéis e responsabilidades de um(a) Arquiteto(a). Vale a pena conferir.</li>
+</ul>
+<h2 id="3-engenharia">3. Engenharia<a aria-label="Link para esta seção" class="anchor" href="#3-engenharia">#</a></h2>
+<p>Dado que a estrutura encontra-se definida, vamos à construção. Para isso, eu vejo conforme abaixo. Eu gosto de definí-lo como “cadeia de valor de TI” (<a href="https://pt.wikipedia.org/wiki/Ciclo_de_vida_de_desenvolvimento_de_sistemas" rel="noopener" target="_blank">SDLC</a>). Clique na imagem para expandir.</p>
+<p><span>Goal</span> é a meta e estímulo para execução do processo. Pode ser resultante das ferramentas <a href="https://www.pmi.org/learning/library/project-portfolio-management-limited-resources-6948" rel="noopener" target="_blank">PPM</a>, <a href="https://www.scaledagileframework.com/" rel="noopener" target="_blank">SAFe</a>, <a href="https://less.works/" rel="noopener" target="_blank">LeSS</a>, <a href="https://www.scrum.org/resources/nexus-guide" rel="noopener" target="_blank">Nexus</a> e/ou específico da empresa.</p>
+<p><span>Plan</span> é o planejamento e <span>Code</span> é a codificação, normalmente, operados por Scrum e <a href="https://pt.wikipedia.org/wiki/Programa%C3%A7%C3%A3o_extrema" rel="noopener" target="_blank">XP</a>. Code contém:</p>
+<ul>
+<li><span>Behavior Code</span> é o código gerado pelo QA, se o time executa <a href="https://www.amazon.com.br/BDD-Action-Behavior-Driven-Development-Lifecycle/dp/161729165X" rel="noopener" target="_blank">BDD</a>.</li>
+<li><span>Test Code</span> é o código gerado pelo QA (para teste de UI/e2e/Sistema) e gerado pelo DEV (para teste de integração e unidade [TDD]).</li>
+<li><span>App Code</span> é o código gerado pelo DEV (usa-se SOLID, Clean Code, Clean Arch, DDD [modelagem tática], <a href="https://alistair.cockburn.us/hexagonal-architecture/" rel="noopener" target="_blank">Hexagonal</a>, <a href="https://refactoring.guru/design-patterns/book" rel="noopener" target="_blank">Design Patterns</a>, <a href="https://pt.wikipedia.org/wiki/Don%27t_repeat_yourself" rel="noopener" target="_blank">DRY</a>, <a href="https://pt.wikipedia.org/wiki/YAGNI" rel="noopener" target="_blank">YAGNI</a>, <a href="https://pt.wikipedia.org/wiki/Princ%C3%ADpio_KISS" rel="noopener" target="_blank">KISS</a>, <a href="https://www.youtube.com/watch?v=TCMGU7-Ir_k" rel="noopener" target="_blank">Acoplamento vs Coesão</a> etc).</li>
+</ul>
+<p>Abaixo, uma proposta de trabalho para execução de BDD. Inspirada nesse <a href="https://www.amazon.com.br/Action-Second-John-Ferguson-Smart/dp/1617297534/" rel="noopener" target="_blank">livro</a>.</p>
+<figure class="wp-caption aligncenter" id="attachment_468"><a href="../assets/uploads/2023/01/bdd.jpg"><img alt="" class="size-full wp-image-468" height="843" loading="lazy" src="../assets/uploads/2023/01/bdd.jpg" width="1626"/></a><figcaption class="wp-caption-text" id="caption-attachment-468">Clique na imagem para expandir</figcaption></figure>
+<p><span>Build</span> é a compilação do “App Code”, se necessário, e <span>Test</span> é uma pilha de testes para garantir a qualidade do “App Code”, ambos executados automaticamente por meio de Azure DevOps, Jenkins etc. Test contém:</p>
+<ul>
+<li><span>Unit Test</span> é o teste de unidade do DEV.</li>
+<li><span>Code Test</span> é o teste sintático (<a href="https://www.sonarsource.com/products/sonarqube/" rel="noopener" target="_blank">SonarQube</a> etc).</li>
+<li><span>Integration Test</span> é o teste de integração criado pelo DEV ou QA.</li>
+<li><span>UI Test</span> é o teste de UI/e2e/Sistema criado pelo QA.</li>
+<li><span>Stress Test</span> é o teste para simular comportamento de produção.</li>
+<li><span>Security Test</span> é o teste de segurança para vulnerabilidades (<a href="https://cve.mitre.org/" rel="noopener" target="_blank">CVE</a>).</li>
+<li><span>Contract Test</span> é o teste se há dependência entre APIs (<a href="https://pact.io/" rel="noopener" target="_blank">Pact</a>).</li>
+</ul>
+<p><span>Deploy</span> é o empacotamento, do container por exemplo, upload em um servidor de artefatos e, de fato, deploy em um ambiente. <span>Release</span> é quando a versão resultante do deploy é disponível aos usuários. Release contém (<a href="https://belowthemalt.com/2021/11/19/a-b-testing-vs-canary-release-vs-blue-green-deployment/" rel="noopener" target="_blank">mais infos</a>):</p>
+<ul>
+<li><span>Canary</span> usado para validar uma nova versão do produto disponibilizando-a para uma pequena porcentagem dos usuários.</li>
+<li><span>Blue/Green</span> usado para disponibilizar uma nova versão do produto (green) após verificar que encontra-se sem erro. Caso há erro, não disponibiliza e continua com a versão atual (blue).</li>
+<li><span>A/B</span> usado para comparar duas versões do produto e verificar qual atende determinados critérios.</li>
+</ul>
+<p><span>Observer</span> (também acho um nome ruim) é o fato de aplicar observabilidade no software a fim de possuir atitude ativa mediante problemas. Ele possui:</p>
+<ul>
+<li><span>Log</span> é a capacidade de gerar registros que auxiliam em análises de caso ou performance do software. Importante aplicar <a href="https://sematext.com/blog/logging-levels/" rel="noopener" target="_blank">níveis</a>.</li>
+<li><span>Metrics</span> são as métricas do software definidas para auxiliar em análises de caso ou performance do software e acionar alertas.</li>
+<li><span>Traces</span> é a capacidade de gerar gráficos representando a comunicação entre serviços e monitoramento de performance de aplicação (APM) para análises em linhas de código, memória etc.</li>
+</ul>
+<p>Embora uso a ilustração acima para análise de empresas, existe a ilustração “<a href="https://www.appdynamics.com/blog/engineering/devops-scares-me-part-2/" rel="noopener" target="_blank">DevOps infinity loop</a>” publicada por Dustin Whittle em 2013 e exemplicada pela imagem abaixo associando com ferramentas.</p>
+<figure class="wp-caption aligncenter" id="attachment_505"><a href="https://sdtimes.com/wp-content/uploads/2017/06/DevOps-Marketplace-Infinity-Loop.png"><img alt="" class="wp-image-505 size-full" height="764" loading="lazy" src="../assets/uploads/2023/01/DevOps-Marketplace-Infinity-Loop.png" width="1360"/></a><figcaption class="wp-caption-text" id="caption-attachment-505">Clique na imagem para expandir</figcaption></figure>
+<p>Eu, em particular, gosto da <a href="https://www.atlassian.com/devops" rel="noopener" target="_blank">stack tecnológica da Atlassian</a>, conforme imagem abaixo, apesar outras empresas produzem boas ferramentas.</p>
+<figure class="wp-caption aligncenter" id="attachment_507"><a href="https://wac-cdn.atlassian.com/dam/jcr:1f9893d0-a300-4afd-95b3-3ddb79403d62/ADO-DevOps-Tool_1200x675@2x.png?cdnVersion=1012"><img alt="" class="wp-image-507 size-full" height="1350" loading="lazy" src="../assets/uploads/2023/01/ADO-DevOps-Tool_1200x675@2x.png" width="2400"/></a><figcaption class="wp-caption-text" id="caption-attachment-507">Clique na imagem para expandir</figcaption></figure>
+<p>É importante conhecer as soluções padrões para problemas recorrentes em tecnologia. Abaixo, agrupadas por tipo.</p>
+<ul>
+<li>Arquitetura
+<ul>
+<li>Livro <a href="https://www.amazon.com/Fundamentals-Software-Architecture-Engineering-Approach/dp/B08X8H15BW" rel="noopener" target="_blank">Fundamentals of Software Architecture</a></li>
+<li>Livro <a href="https://www.amazon.com/Software-Architect-Elevator-Redefining-Architects/dp/1492077542/" rel="noopener" target="_blank">The Software Architect Elevator</a></li>
+<li>Livro <a href="https://www.amazon.com/Solutions-Architects-Handbook-Kick-start-architecture/dp/1838645640/" rel="noopener" target="_blank">Solutions Architect’s Handbook</a></li>
+<li>Livro <a href="https://www.amazon.com/Software-Architecture-Practice-SEI-Engineering-ebook/dp/B094CPJ96B/" rel="noopener" target="_blank">Software Architecture in Practice</a></li>
+<li>Livro <a href="https://www.amazon.com.br/Patterns-Enterprise-Application-Architecture-Addison-Wesley-ebook/dp/B008OHVDFM/" rel="noopener" target="_blank">Enterprise Integration Patterns</a></li>
+<li>Livro <a href="https://www.amazon.com.br/Designing-Distributed-Systems-Patterns-Paradigms-ebook/dp/B079YTM4FC/" rel="noopener" target="_blank">Designing Distributed Systems</a></li>
+<li>Livro <a href="https://www.amazon.com.br/Domain-Driven-Design-Eric-Evans/dp/8550800651/" rel="noopener" target="_blank">Domain-Driven Design</a></li>
+<li>Livro <a href="https://www.amazon.com.br/Domain-Driven-Design-Distilled-Vaughn-Vernon/dp/0134434420/" rel="noopener" target="_blank">Domain-Driven Design Distilled</a></li>
+<li>Livro <a href="https://www.amazon.com.br/Learning-Domain-Driven-Design-English-Khononov-ebook/dp/B09J2CMJZY/" rel="noopener" target="_blank">Learning Domain-Driven Design</a></li>
+<li>Livro <a href="https://www.amazon.com.br/Implementando-Domain-Driven-design-Vernon/dp/8576089521/">Implementando Domain-Driven Design</a></li>
+<li>Livro <a href="https://www.amazon.com.br/Patterns-Principles-Practices-Domain-Driven-Design/dp/1118714709/" rel="noopener" target="_blank">Patterns, Principles, and Practices of DDD</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li>Aplicação
+<ul>
+<li>Livro <a href="https://www.amazon.com.br/Code-Complete-Developer-Practices-English-ebook/dp/B00JDMPOSY/" rel="noopener" target="_blank">Code Complete</a></li>
+<li>Livro <a href="https://www.amazon.com/Pragmatic-Programmer-journey-mastery-Anniversary/dp/0135957052" rel="noopener" target="_blank">The Pragmatic Programmer</a></li>
+<li>Livro <a href="https://www.amazon.com.br/Extreme-Programming-Explained-Embrace-English-ebook/dp/B00N1ZN6C0/" rel="noopener" target="_blank">Extreme Programming Explained</a></li>
+<li>Livro <a href="https://www.amazon.com.br/Test-Driven-Development-Kent-Beck/dp/0321146530/" rel="noopener" target="_blank">Test Driven Development: By Example</a></li>
+<li>Livro <a href="https://www.amazon.com.br/C%C3%B3digo-limpo-Robert-C-Martin/dp/8576082675" rel="noopener" target="_blank">Código Limpo</a></li>
+<li>Livro <a href="https://www.amazon.com.br/Entrega-Cont%C3%ADnua-Entregar-Software-Confi%C3%A1vel/dp/8582601034/" rel="noopener" target="_blank">Entrega Contínua</a></li>
+<li>Livro <a href="https://www.amazon.com.br/Dependency-Injection-NET-Second-Seemann/dp/161729473X/" rel="noopener" target="_blank">Dependency Injection Principles</a></li>
+<li>Livro <a href="https://www.amazon.com.br/Xunit-Test-Patterns-Refactoring-Code/dp/0131495054/" rel="noopener" target="_blank">Xunit Test Patterns</a></li>
+<li>Livro <a href="https://www.amazon.com.br/Padr%C3%B5es-Projetos-Solu%C3%A7%C3%B5es-Reutiliz%C3%A1veis-Orientados/dp/8573076100/" rel="noopener" target="_blank">Padrões de Projetos</a></li>
+<li>Livro <a href="https://refactoring.guru/pt-br/design-patterns/book" rel="noopener" target="_blank">Dive Into Design Patterns</a></li>
+<li>Livro <a href="https://www.amazon.com.br/Padr%C3%B5es-Arquitetura-Aplica%C3%A7%C3%B5es-Corporativas-Martin-ebook/dp/B07FCPZ2R2" rel="noopener" target="_blank">Padrões de Arquitetura de Aplicações Corporativas</a></li>
+<li>Livro <a href="https://www.amazon.com.br/Arquitetura-Limpa-Artes%C3%A3o-Estrutura-Software/dp/8550804606/" rel="noopener" target="_blank">Arquitetura Limpa</a></li>
+<li>Link <a href="https://alistair.cockburn.us/hexagonal-architecture/" rel="noopener" target="_blank">Ports and Adapters</a></li>
+<li>Livro <a href="https://www.amazon.com.br/Refatora%C3%A7%C3%A3o-Aperfei%C3%A7oando-design-c%C3%B3digos-existentes-ebook/dp/B087N8LKYB/" rel="noopener" target="_blank">Refatoração</a></li>
+<li>Livro <a href="https://www.amazon.com.br/Microservices-Patterns-examples-Java-English-ebook/dp/B09782192F" rel="noopener" target="_blank">Microservices Patterns</a></li>
+<li>Livro <a href="https://www.amazon.com/Monolith-Microservices-Evolutionary-Patterns-Transform/dp/1492047848" rel="noopener" target="_blank">Building Microservices</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li>Migração
+<ul>
+<li>Livro <a href="https://www.amazon.com.br/Working-Effectively-Legacy-Code-English-ebook/dp/B005OYHF0A/" rel="noopener" target="_blank">Working Effectively with Legacy Code</a></li>
+<li>Livro <a href="https://www.amazon.com/Monolith-Microservices-Evolutionary-Patterns-Transform/dp/1492047848" rel="noopener" target="_blank">Monolith to Microservices</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li>Dados
+<ul>
+<li>Livro <a href="https://www.amazon.com.br/Designing-Data-Intensive-Applications-Reliable-Maintainable-ebook/dp/B06XPJML5D/" rel="noopener" target="_blank">Designing Data-Intensive Applications</a></li>
+<li>Livro <a href="https://www.amazon.com.br/NOSQL-Essencial-Pramod-J-Sadalage/dp/8575223380" rel="noopener" target="_blank">NoSQL Essencial</a></li>
+<li>Link <a href="https://weidongzhou.wordpress.com/2017/06/10/google-cloud-sql-vs-cloud-datastore-vs-bigtable-vs-bigquery-vs-spanner/" rel="noopener" target="_blank">SQL vs DataStore vs BigTable vs BigQuery vs Spanner</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li>Processo
+<ul>
+<li>Link <a href="https://www.atlassian.com/br/software-development" rel="noopener" target="_blank">SDLC</a></li>
+<li>Livro <a href="https://www.amazon.com.br/Continuous-Delivery-Reliable-Deployment-Automation/dp/0321601912/" rel="noopener" target="_blank">Continuous Delivery</a></li>
+<li>Livro <a href="https://www.amazon.com.br/Essential-Scrum-Practical-Popular-Process/dp/0137043295/" rel="noopener" target="_blank">Essential Scrum</a></li>
+<li>Livro <a href="https://www.amazon.com.br/BDD-Action-Behavior-Driven-Development-Lifecycle/dp/161729165X/" rel="noopener" target="_blank">BDD in Action</a></li>
+<li>Livro <a href="https://www.amazon.com.br/Patterns-Principles-Practices-Domain-Driven-Design/dp/1118714709" rel="noopener" target="_blank">Domain-Driven Design</a></li>
+<li>Livro <a href="https://www.amazon.com.br/gp/product/B07B9F83WM/" rel="noopener" target="_blank">Accelerate</a></li>
+<li>Livro <a href="https://www.amazon.com.br/Clean-Agile-Robert-C-Martin/dp/0135781868/" rel="noopener" target="_blank">Clean Agile</a></li>
+<li>Link <a href="https://engsoftmoderna.info/" rel="noopener" target="_blank">ESM</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li>Fundamento
+<ul>
+<li>Livro <a href="https://www.amazon.com.br/Sistemas-operacionais-modernos-Andrew-Tanenbaum/dp/8543005671/" rel="noopener" target="_blank">Sistemas Operacionais Modernos</a></li>
+<li>Livro <a href="https://www.amazon.com.br/Redes-Computadores-coedi%C3%A7%C3%A3o-Bookman-Pearson-ebook/dp/B09K4GKZ27/" rel="noopener" target="_blank">Redes de Computadores</a></li>
+<li>Livro <a href="https://www.amazon.com.br/Compiladores-princ%C3%ADpios-ferramentas-Alfred-Aho/dp/8588639246/" rel="noopener" target="_blank">Compiladores</a></li>
+<li>Livro <a href="https://www.amazon.com.br/Sistemas-Banco-Dados-Ramez-Elmasri/dp/8543025001/">Sistemas de Banco de Dados</a></li>
+<li>Livro <a href="https://www.amazon.com.br/Algoritmos-Desenvolvimento-Programa%C3%A7%C3%A3o-Computadores-Atualizada/dp/8536531452" rel="noopener" target="_blank">Algoritmos</a></li>
+</ul>
+</li>
+</ul>
+<p>Outros:</p>
+<ul>
+<li>Conhecer as ferramentas acima é importante para prevenir a criação de uma <a href="https://joeyoder.com/PDFs/mud.pdf" rel="noopener" target="_blank">big ball of mud</a>.</li>
+<li>Conhecer <a href="https://martinfowler.com/articles/richardsonMaturityModel.html" rel="noopener" target="_blank">Richardson Maturity Model</a> é importante para padronizar web API.</li>
+<li>Conhecer <a href="https://rovitpm.com/5-git-workflows-to-improve-development/" rel="noopener" target="_blank">estratégias de branching</a>, inclusive <a href="https://trunkbaseddevelopment.com/" rel="noopener" target="_blank">trunk-based</a>,  é importante para, não somente isso, facilitar a manutenção do software.</li>
+<li>Conhecer padrões de mensagem para commit é importante para facilitar a manutenção do software. Possível com <a href="https://www.conventionalcommits.org/" rel="noopener" target="_blank">conventional commits</a> etc.</li>
+<li>Conhecer soluções para fazer rastreabilidade do <em>Goal</em> até o PR ou commit é importante para facilitar a manutenção do software. Possível com Jira, Azure Boards etc.</li>
+<li>Conhecer <a href="https://martinfowler.com/articles/feature-toggles.html" rel="noopener" target="_blank">feature toogle</a> é importante para aplicar flexibilidade em funcionalidade por vários motivos (<a href="https://engsoftmoderna.info/cap10.html#feature-flags" rel="noopener" target="_blank">mais infos</a>).</li>
+<li>Conhecer <a href="https://www.redhat.com/pt-br/topics/microservices/what-is-a-service-mesh" rel="noopener" target="_blank">service mesh</a> é importante se existirem muitas integrações entre serviços localizados em processos ou VMs diferentes.</li>
+<li>Conhecer <a href="https://dzone.com/articles/flyway-vs-liquibase" rel="noopener" target="_blank">migradores de banco de dados</a> é importante para evitar problema de dependência entre aplicação e banco de dados.</li>
+<li>Conhecer <a href="https://www.terraform.io/" rel="noopener" target="_blank">Terraform</a> e <a href="https://www.ansible.com/" rel="noopener" target="_blank">Ansible</a> é importante para evitar problema em atualização de ambiente.</li>
+<li>Conhecer os <a href="https://12factor.net/" rel="noopener" target="_blank">12 fatores</a> é importante para evitar problemas clássicos e trazer benefícios importantes de aplicações.</li>
+</ul>
+<h2 id="conclus-o">Conclusão<a aria-label="Link para esta seção" class="anchor" href="#conclus-o">#</a></h2>
+<p>Essa é a caixa de ferramentas que utilizo quando preciso ajudar uma empresa para identificar e melhorar a maturidade da área da TI. Conforme escrevi no decorrer do post, nem todas as ferramentas são necessárias para todas as empresas e projetos. Cabe ao(à) Arquiteto(a) e ao(à) Engenheiro(a) entender o problema e selecionar a ferramenta mais adequada.</p></div></article></main>
+<footer class="site-footer"><p class="ornament">❦</p><p>© 2026 J David S Carvalho</p></footer>
+</div>
+<script>(function(){
+var root=document.querySelector('.entry-content');if(!root)return;
+var imgs=[].slice.call(root.querySelectorAll('img'));if(!imgs.length)return;
+var imgRe=/\.(jpe?g|png|gif|webp|svg)(\?.*)?$/i;
+var items=imgs.map(function(im){var a=im.closest('a[href]');var full=(a&&imgRe.test(a.getAttribute('href')))?a.href:im.currentSrc||im.src;
+ var fig=im.closest('figure,.wp-caption');var fc=fig&&fig.querySelector('figcaption,.wp-caption-text');
+ im.classList.add('zoomable');if(a&&imgRe.test(a.getAttribute('href')))a.classList.add('zoomable');
+ return {el:im,src:full,cap:(fc&&fc.textContent.trim())||im.getAttribute('alt')||''};});
+var ov,imgEl,capEl,cntEl,bClose,bPrev,bNext,cur=-1,opener=null;
+function build(){ov=document.createElement('div');ov.className='lb';ov.hidden=true;ov.setAttribute('role','dialog');ov.setAttribute('aria-modal','true');ov.setAttribute('aria-label','Imagem ampliada');
+ ov.innerHTML='<button type="button" class="lb-close" aria-label="Fechar">\u2715</button><button type="button" class="lb-nav lb-prev" aria-label="Anterior">\u2190</button><figure class="lb-fig"><img class="lb-img" alt=""><figcaption class="lb-cap"></figcaption></figure><button type="button" class="lb-nav lb-next" aria-label="Pr\u00f3xima">\u2192</button><div class="lb-count" aria-live="polite"></div>';
+ document.body.appendChild(ov);imgEl=ov.querySelector('.lb-img');capEl=ov.querySelector('.lb-cap');cntEl=ov.querySelector('.lb-count');
+ bClose=ov.querySelector('.lb-close');bPrev=ov.querySelector('.lb-prev');bNext=ov.querySelector('.lb-next');
+ ov.addEventListener('click',function(e){if(e.target===ov||e.target.classList.contains('lb-fig'))closeUI();});
+ bClose.addEventListener('click',closeUI);bPrev.addEventListener('click',function(){go(-1);});bNext.addEventListener('click',function(){go(1);});
+ if(items.length<2){bPrev.hidden=bNext.hidden=cntEl.hidden=true;}}
+function show(i){cur=(i+items.length)%items.length;var it=items[cur];imgEl.src=it.src;imgEl.alt=it.cap;capEl.textContent=it.cap;capEl.hidden=!it.cap;cntEl.textContent=(cur+1)+' / '+items.length;}
+function go(d){if(items.length>1)show(cur+d);}
+function open(i){if(!ov)build();opener=document.activeElement;show(i);ov.hidden=false;document.body.classList.add('lb-open');
+ try{history.pushState({lb:1},'');}catch(e){}bClose.focus();}
+function hide(){if(!ov||ov.hidden)return;ov.hidden=true;document.body.classList.remove('lb-open');imgEl.removeAttribute('src');if(opener&&opener.focus)opener.focus();}
+function closeUI(){if(!ov||ov.hidden)return;if(history.state&&history.state.lb){history.back();}else hide();}
+window.addEventListener('popstate',function(){hide();});
+document.addEventListener('click',function(e){if(e.button||e.metaKey||e.ctrlKey||e.shiftKey)return;var t=e.target.closest&&e.target.closest('.entry-content img');if(!t)return;
+ var i=imgs.indexOf(t);if(i<0)return;e.preventDefault();open(i);});
+document.addEventListener('keydown',function(e){if(!ov||ov.hidden)return;
+ if(e.key==='Escape'){e.preventDefault();closeUI();}else if(e.key==='ArrowLeft'){go(-1);}else if(e.key==='ArrowRight'){go(1);}
+ else if(e.key==='Tab'){var f=[bClose,bPrev,bNext].filter(function(b){return !b.hidden;});var k=f.indexOf(document.activeElement);e.preventDefault();k=(k+(e.shiftKey?-1:1)+f.length)%f.length;f[k].focus();}});
+var sx=null;document.addEventListener('touchstart',function(e){if(ov&&!ov.hidden)sx=e.touches[0].clientX;},{passive:true});
+document.addEventListener('touchend',function(e){if(sx===null)return;var dx=e.changedTouches[0].clientX-sx;sx=null;if(Math.abs(dx)>60)go(dx<0?1:-1);},{passive:true});
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,148 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>8 observações de uma grande solução de dados na GCP - J David S Carvalho</title>
+<script>(function(){try{var t=localStorage.getItem('jdsc-theme');document.documentElement.setAttribute('data-theme',(t==='light'||t==='dark')?t:'dark');}catch(e){}})();</script>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,700;1,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../style.css">
+<meta name="description" content="Em 2022, fui chamado para participar de um projeto cujo os indicadores não estavam bons. Eu precisei atuar em vários papéis, inclusive não-técnico, para…">
+<link rel="canonical" href="https://jdsc.me/8-gcp/">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='12' fill='%230d0c0a'/%3E%3Ctext x='32' y='47' font-family='Georgia,serif' font-size='42' font-weight='700' text-anchor='middle' fill='%23f0b04a'%3EJ%3C/text%3E%3C/svg%3E">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="J David S Carvalho">
+<meta property="og:locale" content="pt_BR">
+<meta property="og:title" content="8 observações de uma grande solução de dados na GCP">
+<meta property="og:description" content="Em 2022, fui chamado para participar de um projeto cujo os indicadores não estavam bons. Eu precisei atuar em vários papéis, inclusive não-técnico, para…">
+<meta property="og:url" content="https://jdsc.me/8-gcp/">
+<meta name="twitter:card" content="summary">
+</head>
+<body class="kind-post">
+<div class="page">
+<header class="site-header">
+  <div class="toggle-slot"><button class="theme-toggle" id="theme-toggle" type="button" aria-label="Alternar modo claro/escuro" title="Alternar claro/escuro"><span aria-hidden="true">☾</span></button>
+<script>(function(){var b=document.getElementById('theme-toggle'),r=document.documentElement;
+function cur(){var t=r.getAttribute('data-theme');if(t)return t;return 'dark';}
+function paint(){b.firstChild.textContent=cur()==='dark'?'\u2600':'\u263E';}
+b.addEventListener('click',function(){var n=cur()==='dark'?'light':'dark';r.setAttribute('data-theme',n);try{localStorage.setItem('jdsc-theme',n);}catch(e){}paint();});
+paint();})();</script></div>
+  <p class="ornament">❧</p>
+  <p class="brand"><a href="../">J David S Carvalho</a></p>
+  <p class="tagline">Aprendizado contínuo</p>
+  <nav><a href="../">Início</a><a href="../cv.pdf">Currículo</a><a href="../livros/">Livros</a></nav>
+  <p class="rule">⁂</p>
+</header>
+<main class="content"><article class="post"><header class="entry-header"><h1 class="entry-title">8 observações de uma grande solução de dados na GCP</h1><p class="meta"><time datetime="2023-01-15">15 de janeiro de 2023</time> <span class="sep">·</span> <span class="cats"><a href="../category/arquitetura/">Arquitetura</a></span></p></header><div class="entry-content"><p>Em 2022, fui chamado para participar de um projeto cujo os indicadores não estavam bons. Eu precisei atuar em vários papéis, inclusive não-técnico, para entregar a contribuição que o projeto precisava.</p>
+<p>Após meses de muito trabalho de várias pessoas competentes, o produto entrou em produção, a empresa obteve <span>90%+ de economia</span> em custo de infraestrutura tecnológica e obteve feedback positivo de seu principal cliente.</p>
+<p>Abaixo, a solução técnica em linguagem livre. Omiti algumas relações e componentes porque não são necessários para esse post. Clique na imagem para expandir.</p>
+<figure class="wp-caption aligncenter" id="attachment_151"><a href="../assets/uploads/2023/01/cerc.drawio.png"><img alt="" class="wp-image-151 size-large" height="711" loading="lazy" src="../assets/uploads/2023/01/cerc.drawio.png" width="1024"/></a><figcaption class="wp-caption-text" id="caption-attachment-151">Clique na imagem para expandir</figcaption></figure>
+<p>À seguir, as observações dessa solução.</p>
+<h2 id="1-cloud-run-um-servi-o-excelente-para-os-seus-caso">1. Cloud Run é um serviço excelente para os seus casos de uso previstos<a aria-label="Link para esta seção" class="anchor" href="#1-cloud-run-um-servi-o-excelente-para-os-seus-caso">#</a></h2>
+<p>Cloud Run é um serviço que proporciona produtividade porque a única exigência dele é o endereço do contêiner no qual possui o código-fonte. Para uma aplicação empresarial, claro, é fundamental definir outras importantes configurações.</p>
+<p>Após o deploy, o serviço codificado encontra-se exposto por uma URL gerada pela GCP, com HTTPS, com auto-scaling e com load balacing. De fato, impressionante e curioso para um <em>old like me</em>.</p>
+<p>Em busca de entender como esse serviço funciona, é possível observar que o YAML gerado pelo deploy possui um apiVersion do <a href="https://www.redhat.com/pt-br/topics/microservices/what-is-knative" rel="noopener" target="_blank">Knative</a>. Sendo assim, tornou-se claro que o auto-scaling e load balacing são fornecidos pela parceria Knative e Kubernetes.</p>
+<p>É importante atentar aos limites do serviço que pretende utilizar, em especial em uma prova de conceito. Cloud Run, nesse momento, entre seus <a href="https://cloud.google.com/run/quotas?hl=pt-br" rel="noopener" target="_blank">limites</a> existem máximo de vCPU em 8, máximo de memória em 32 GB e tempo máximo de execução em 1 hora.</p>
+<p>O <a href="https://aws.amazon.com/pt/apprunner/" rel="noopener" target="_blank">App Runner</a>, que é o serviço similar na AWS, entre os <a href="https://docs.aws.amazon.com/apprunner/latest/api/API_InstanceConfiguration.html" rel="noopener" target="_blank">limites</a> existem máximo de vCPU em 2, máximo de memória em 4 GB e tempo máximo de execução não encontrado. Nota-se que é disponível na AWS menos recursos. No entanto, acredito que para a maioria dos casos de usos são recursos suficientes.</p>
+<p>Importante notar que a funcionalidade <a href="https://knative.dev/docs/serving/autoscaling/scale-to-zero/" rel="noopener" target="_blank">scale-to-zero</a> existe no Cloud Run, mas não existe no App Runner. Há uma <a href="https://github.com/aws/apprunner-roadmap/issues/9" rel="noopener" target="_blank">issue</a>, nesse momento aberta, para esclarescer isso. Em outras palavras, não é possível fazer um deploy com App Runner informando que pode haver zero instância disponível. É possível no Cloud Run.</p>
+<p>A solução apresentada nesse post que escrevo possui 20+ Cloud Run. A maioria pode possuir zero instância disponível porque o tempo de cold start não é um problema para eles. Isso gera uma enorme economia financeira de infraestrutura.</p>
+<p>Infelizmente, nesse momento, não é possível obter o mesmo na AWS. De qualquer forma, o <a href="https://aws.amazon.com/pt/apprunner/pricing/" rel="noopener" target="_blank">custo para manter uma instância disponível todos os dias</a> não deverá ser um problema para a maioria das empresas.</p>
+<p>Outra desvantagem do App Runner é que, nesse momento, não é possível hospedar a aplicação no Brasil. Se baixa latência é um requisito não-funcional do projeto e os usuários estão no Brasil, atente-se para isso.</p>
+<p>Voltando ao Cloud Run, o seu limite de memória e tempo exigiram que fizéssemos mudanças na solução. Isso é descrito no tópico à seguir.</p>
+<h2 id="2-solu-es-para-os-limites-do-cloud-run">2. Soluções para os limites do Cloud Run<a aria-label="Link para esta seção" class="anchor" href="#2-solu-es-para-os-limites-do-cloud-run">#</a></h2>
+<p>Infelizmente, não houve tempo para verificar o uso do Dataproc ou Dataflow para a principal funcionalidade da solução – injestão de dados. Por isso, para essa funcionalidade, Cloud Run foi usado.</p>
+<p>Ao ter conhecimento sobre o tamanho máximo de um arquivo a ser importado, foi observado que o limite máximo para processamento, definido em 1 hora, não é suficiente.</p>
+<p>A solução para contornar esse limite foi alterar um componente para dividir o arquivo em pedaços com tamanho previamente definido e fazer a pipeline processar os pedaços em vez do arquivo principal.</p>
+<p>Ao ter conhecimento sobre o tamanho máximo de um arquivo a ser exportado, foi observado que o limite máximo de memória, definido em 32 GB, não é suficiente. Isso foi identificado porque o <a href="https://cloud.google.com/run/docs/container-contract?hl=pt-br#filesystem" rel="noopener" target="_blank">sistema de arquivo do Cloud Run é na memória</a>. Portanto, gravar nele usa a memória da instância do contêiner.</p>
+<p>A solução para contornar esse limite foi usar o serviço <a href="https://cloud.google.com/filestore/docs?hl=pt-br" rel="noopener" target="_blank">Filestore</a> que é um <a href="https://pt.wikipedia.org/wiki/Network_File_System" rel="noopener" target="_blank">NFS</a>. Cria-se a instância Filestore e associa-se no Cloud Run, conforme <a href="https://cloud.google.com/run/docs/tutorials/network-filesystems-filestore?hl=pt-br" rel="noopener" target="_blank">esses passos</a>. Com isso, altera-se o código-fonte da exportação para passar a utilizar esse novo disco que pode possuir <a href="https://cloud.google.com/filestore/docs/limits" rel="noopener" target="_blank">até 100 terabytes</a>.</p>
+<p>Se diminuir custo é uma prioridade e a aplicação pode executar por mais alguns minutos, é possível <a href="https://cloud.google.com/filestore/docs/reference/rest/v1/projects.locations.instances/create" rel="noopener" target="_blank">criar</a> e <a href="https://cloud.google.com/filestore/docs/reference/rest/v1/projects.locations.instances/delete" rel="noopener" target="_blank">destruir</a> a instância Filestore em tempo de execução e paga-se somente pelo uso.</p>
+<h2 id="3-pub-sub-um-bom-servi-o-mas-n-o-evidente-em-falha">3. Pub/Sub é um bom serviço, mas não evidente em falha<a aria-label="Link para esta seção" class="anchor" href="#3-pub-sub-um-bom-servi-o-mas-n-o-evidente-em-falha">#</a></h2>
+<p>O serviço Pub/Sub foi adotado na solução para criar um controle de repetição e desacoplar componentes. Como para esse último uso não era de fato necessário, mas imposto infelizmente, vou descrever sobre o primeiro uso.</p>
+<p>A criação de um <a href="https://cloud.google.com/pubsub/docs/handling-failures?hl=pt-br" rel="noopener" target="_blank">controle de repetição</a> foi necessário porque o Cloud Run poderia não processar alguma requisição com sucesso por, principalmente, atingir o máximo de instância configurada em execução.</p>
+<p>Esse sistema foi configurado para realizar até X tentativas com uma determinada espera exponencial e, caso o número de tentativas for atingido, enviar para uma DLQ para tratamento manual.</p>
+<p>A criação de um <a href="https://cloud.google.com/pubsub/docs/flow-control?hl=pt-br" rel="noopener" target="_blank">controle de fluxo</a>, nesse momento, foi implementado por uma solução <em>in house</em>. No entanto, pode-se adotar o Pub/Sub, conforme link acima.</p>
+<p>Independente do serviço ou solução adotada(o), é fundamental ter esses dois controles se o requisito não-funcional informa pico de requisições e o auto-scaling da infraestrutura não poderá atender, por qualquer motivo (economia de custo com infraestrutura, limitação de conexões ou gerencimento de conexões com banco de dados, limitação de rede, entre outros).</p>
+<p>Além disso, também é importante realizar testes de performance em ambiente não-produtivo para simular os cenários de produção e calibrar as configurações desses controles.</p>
+<p>Havia uma versão da solução que usada o Pub/Sub em um ponto que gerava falha em um cenário específico. O Pub/Sub não informa se enviou a mensagem e o Cloud Run, remetente, não informa que recebeu. A mensagem simplesmente se perdia.</p>
+<p>Infelizmente, a solução foi substituir o Pub/Sub nesse ponto por uma chamada http com repetição codificada. Caso atinja o limite de repetição, envia-se para uma DLQ para tratamento manual.</p>
+<h2 id="4-bigquery-um-excelente-servi-o-se-baixa-lat-ncia-">4. BigQuery é um excelente serviço se baixa latência para consulta não é requisito<a aria-label="Link para esta seção" class="anchor" href="#4-bigquery-um-excelente-servi-o-se-baixa-lat-ncia-">#</a></h2>
+<p>O <a href="https://cloud.google.com/bigquery?hl=pt-br" rel="noopener" target="_blank">BigQuery</a> foi adotado na solução porque</p>
+<ul>
+<li>os casos de uso de processamento são OLAP,</li>
+<li>quantidade estimada de dados armazenados é alta,</li>
+<li>o tempo para inserção de dados é satisfatória,</li>
+<li>não existirão centenas de consultas em segundos que exigem resposta em milissegundos,</li>
+<li>custo baixo para armazenamento e</li>
+<li>o <a href="https://www.youtube.com/watch?v=DAPiUo3sAFA" rel="noopener" target="_blank">tempo de consulta em alto volume de dados</a> é assustadoramente eficiente.</li>
+</ul>
+<p>Sobre esse serviço, ocorreram dois problemas: <a href="https://cloud.google.com/bigquery/quotas#queued_mutating_dml_per_table" rel="noopener" target="_blank">Exceder o máximo de DML em fila</a> e obter tempo inesperado em UPDATE.</p>
+<p>O primeiro problema foi resolvido diminuindo o máximo de instâncias em paralelo dos Cloud Run que utilizam BigQuery.</p>
+<p>O segundo problema foi resolvido alterando o conjunto de UPDATEs por uma única instrução UPDATE [FROM] e UNION ALL.</p>
+<p>Por se tratar de um projeto de dados e uso de <a href="https://cloud.google.com/bigquery/docs/nested-repeated" rel="noopener" target="_blank">colunas aninhadas e repetidas</a>, a escrita de SQL foi intensiva. <a href="https://cloud.google.com/bigquery/docs/reference/standard-sql/query-syntax" rel="noopener" target="_blank">Clásulas</a> e <a href="https://cloud.google.com/bigquery/docs/reference/standard-sql/functions-and-operators" rel="noopener" target="_blank">funções</a> tais como WITH, ARRAY_AGG, STRUCT, UNNEST, SELECT AS STRUCT, <a href="https://cloud.google.com/bigquery/docs/reference/standard-sql/dml-syntax#from_keyword" rel="noopener" target="_blank">UPDATE [FROM]</a>, <a href="https://cloud.google.com/bigquery/docs/reference/standard-sql/other-statements#export_data_statement" rel="noopener" target="_blank">EXPORT DATA</a>, e resolver cenários complexos por meio de SQL para deixar a carga de trabalho para o BigQuery fez parte da rotina de trabalho.</p>
+<p>Para diminuir ao máximo a carga de trabalho em consultas, as tabelas possuem <a href="https://cloud.google.com/bigquery/docs/partitioned-tables" rel="noopener" target="_blank">partições</a> e <a href="https://cloud.google.com/bigquery/docs/clustered-tables" rel="noopener" target="_blank">clusters</a>.</p>
+<p>A utilização do BigQuery, que passou a substiuir o sobrecarregado, e por isso caro, Postgres em uma versão antiga da solução, também foi causa da enorme economia de custo em infraestrutura.</p>
+<h2 id="5-workflow-simples-e-entrega-o-que-necess-rio">5. Workflow é simples e entrega o que é necessário<a aria-label="Link para esta seção" class="anchor" href="#5-workflow-simples-e-entrega-o-que-necess-rio">#</a></h2>
+<p>Foi necessário utilizar o serviço Workflow porque o Dataflow precisava realizar duas execuções em sequência.</p>
+<p>Para isso, o Workflow foi configurado para chamar o Dataflow duas vezes em sequência repassando o conteúdo das variáveis definido no Scheduler.</p>
+<p>A configuração foi realizada com a <a href="https://cloud.google.com/workflows/docs/reference/syntax" rel="noopener" target="_blank">sintaxe via YAML</a> e não tive grandes dificuldades.</p>
+<h2 id="6-dataflow-bom-mas-possui-duas-personalidades">6. Dataflow é bom, mas possui duas personalidades<a aria-label="Link para esta seção" class="anchor" href="#6-dataflow-bom-mas-possui-duas-personalidades">#</a></h2>
+<p>Após ler a documentação do Dataflow e Apache Beam, entendi que o Dataflow é o carro e o Beam o motor. Sendo assim, se funcionou na minha máquina, o mesmo código funcionará no Dataflow. Infelizmente, não foi assim.</p>
+<p>Foram necessárias várias mudanças no código para que o mesmo passasse a executar via Dataflow. Após isso, os problemas não haviam terminado.</p>
+<p>A pipeline codificada era parametrizada e para os valores serem reconhecidos em tempo de execução foi necessário alterar do <a href="https://cloud.google.com/dataflow/docs/guides/templates/creating-templates" rel="noopener" target="_blank">modelo clássico</a> para o <a href="https://cloud.google.com/dataflow/docs/guides/templates/using-flex-templates" rel="noopener" target="_blank">modelo flexível</a>.</p>
+<p>A curva de aprendizado parecia inofensiva, mas foi longe disso. Mas, no final, o esforço foi compensado.</p>
+<p>Os recursos de auto-scaling <a href="https://cloud.google.com/dataflow/docs/horizontal-autoscaling" rel="noopener" target="_blank">horizontal</a> e <a href="https://cloud.google.com/dataflow/docs/vertical-autoscaling" rel="noopener" target="_blank">vertical</a> são interessantes e devem ser configurados após simular cenários reais de produção em ambiente não-produtivo.</p>
+<p>A imagem abaixo contém algumas métricas de um job do Dataflow usado para migrar dados do BigQuery para Datastore. Nele, é possível observar o uso de 1 worker e throughput próximo de 200 registros por segundo. Mais abaixo, é possível saber CPU e memória utilizados.</p>
+<figure class="wp-caption aligncenter" id="attachment_476"><a href="../assets/uploads/2023/01/dataflow.jpg"><img alt="" class="wp-image-476 size-full" height="711" loading="lazy" src="../assets/uploads/2023/01/dataflow.jpg" width="1209"/></a><figcaption class="wp-caption-text" id="caption-attachment-476">Clique na imagem para expandir</figcaption></figure>
+<h2 id="7-datastore-foi-o-servi-o-utilizado-para-baixa-lat">7. Datastore foi o serviço utilizado para baixa latência em consulta<a aria-label="Link para esta seção" class="anchor" href="#7-datastore-foi-o-servi-o-utilizado-para-baixa-lat">#</a></h2>
+<p>O uso do Scheduler, Workflow e Dataflow foi para copiar dados do BigQuery para Datastore no formato adequado para as consultas que exigem respostas em milissegundos em alto volume de requisições.</p>
+<p>Desde que os dados para serem armazenados no Datastore estejam no formato esperado e o(s) index(es) previamente estudado(s) e criado(s), bastou armazená-los e encontravam-se prontos para consulta.</p>
+<p>Foi utilizada uma chave única para cada entidade inserida no Datastore. Sendo assim, por meio da API do Apache Beam para Datastore, foi possível utilizar <a href="https://cloud.google.com/datastore/docs/samples/datastore-upsert" rel="noopener" target="_blank">upsert</a>.</p>
+<p>Foi necessário desabilitar o flag <a href="https://beam.apache.org/releases/pydoc/2.34.0/apache_beam.io.gcp.datastore.v1new.datastoreio.html" rel="noopener" target="_blank">throttle_rampup</a> para que a escrita de dados no Datastore por meio da API do Apache Beam fosse satisfatória dada a volumetria de produção e tempo esperado para execução da pipeline.</p>
+<p>O Datastore foi escolhido, ao invés do Firestore, porque <a href="https://cloud.google.com/datastore/docs/firestore-or-datastore#choosing_a_database_mode" rel="noopener" target="_blank">o throughput de gravação do Datastore é maior</a> se adequando mais ao caso de uso do projeto.</p>
+<h2 id="8-k6-uma-boa-ferramenta-mas-n-o-implementa-um-caso">8. K6 é uma boa ferramenta, mas não implementa um caso de uso<a aria-label="Link para esta seção" class="anchor" href="#8-k6-uma-boa-ferramenta-mas-n-o-implementa-um-caso">#</a></h2>
+<p>O <a href="https://k6.io/" rel="noopener" target="_blank">K6</a> foi utilizado para realizar testes de performance na solução. O uso foi bom e o resultado foi obtido conforme o esperado.</p>
+<p>Para facilitar a visualização dos resultados foi adotado o <a href="https://github.com/benc-uk/k6-reporter" rel="noopener" target="_blank">K6 reporter</a>.</p>
+<p>O recurso não encontrado no K6 foi determinar uma janela para execução do cenário. Por exemplo: Execute 3000 requisições com 100 usuários em 1 minuto.</p>
+<p>“Em 1 minuto” foi uma configuração não encontrada na ferramenta. Com isso, precisamos calibrar o número de requisições e usuários para caber o tempo necessário.</p>
+<h2 id="conclus-o">Conclusão<a aria-label="Link para esta seção" class="anchor" href="#conclus-o">#</a></h2>
+<p>Ter uma solução com serviços operados em <a href="https://www.redhat.com/pt-br/topics/cloud-native-apps/what-is-serverless" rel="noopener" target="_blank">serverless</a> e cobrança pay-as-you-go (pague apenas o que usar) torna a solução menos complexa e mais barata de criar e operar.</p>
+<p>É um avanço, eu entendo, tal como Python, JavaScript e GO é para Java e C#, por entregarem as mesmas funcionalidades sendo mais simples e, por consequência, mais produtivas.</p>
+<h2 id="nota">Nota<a aria-label="Link para esta seção" class="anchor" href="#nota">#</a></h2>
+<p>A imagem da solução apresentada nesse post possui o serviço <a href="https://aws.amazon.com/pt/network-firewall/" rel="noopener" target="_blank">Firewall da AWS</a>, mas eu não tenho certeza se a empresa utiliza esse serviço, embora utilize Firewall e o serviço de <a href="https://aws.amazon.com/pt/route53/" rel="noopener" target="_blank">DNS da AWS</a>.</p></div></article></main>
+<footer class="site-footer"><p class="ornament">❦</p><p>© 2026 J David S Carvalho</p></footer>
+</div>
+<script>(function(){
+var root=document.querySelector('.entry-content');if(!root)return;
+var imgs=[].slice.call(root.querySelectorAll('img'));if(!imgs.length)return;
+var imgRe=/\.(jpe?g|png|gif|webp|svg)(\?.*)?$/i;
+var items=imgs.map(function(im){var a=im.closest('a[href]');var full=(a&&imgRe.test(a.getAttribute('href')))?a.href:im.currentSrc||im.src;
+ var fig=im.closest('figure,.wp-caption');var fc=fig&&fig.querySelector('figcaption,.wp-caption-text');
+ im.classList.add('zoomable');if(a&&imgRe.test(a.getAttribute('href')))a.classList.add('zoomable');
+ return {el:im,src:full,cap:(fc&&fc.textContent.trim())||im.getAttribute('alt')||''};});
+var ov,imgEl,capEl,cntEl,bClose,bPrev,bNext,cur=-1,opener=null;
+function build(){ov=document.createElement('div');ov.className='lb';ov.hidden=true;ov.setAttribute('role','dialog');ov.setAttribute('aria-modal','true');ov.setAttribute('aria-label','Imagem ampliada');
+ ov.innerHTML='<button type="button" class="lb-close" aria-label="Fechar">\u2715</button><button type="button" class="lb-nav lb-prev" aria-label="Anterior">\u2190</button><figure class="lb-fig"><img class="lb-img" alt=""><figcaption class="lb-cap"></figcaption></figure><button type="button" class="lb-nav lb-next" aria-label="Pr\u00f3xima">\u2192</button><div class="lb-count" aria-live="polite"></div>';
+ document.body.appendChild(ov);imgEl=ov.querySelector('.lb-img');capEl=ov.querySelector('.lb-cap');cntEl=ov.querySelector('.lb-count');
+ bClose=ov.querySelector('.lb-close');bPrev=ov.querySelector('.lb-prev');bNext=ov.querySelector('.lb-next');
+ ov.addEventListener('click',function(e){if(e.target===ov||e.target.classList.contains('lb-fig'))closeUI();});
+ bClose.addEventListener('click',closeUI);bPrev.addEventListener('click',function(){go(-1);});bNext.addEventListener('click',function(){go(1);});
+ if(items.length<2){bPrev.hidden=bNext.hidden=cntEl.hidden=true;}}
+function show(i){cur=(i+items.length)%items.length;var it=items[cur];imgEl.src=it.src;imgEl.alt=it.cap;capEl.textContent=it.cap;capEl.hidden=!it.cap;cntEl.textContent=(cur+1)+' / '+items.length;}
+function go(d){if(items.length>1)show(cur+d);}
+function open(i){if(!ov)build();opener=document.activeElement;show(i);ov.hidden=false;document.body.classList.add('lb-open');
+ try{history.pushState({lb:1},'');}catch(e){}bClose.focus();}
+function hide(){if(!ov||ov.hidden)return;ov.hidden=true;document.body.classList.remove('lb-open');imgEl.removeAttribute('src');if(opener&&opener.focus)opener.focus();}
+function closeUI(){if(!ov||ov.hidden)return;if(history.state&&history.state.lb){history.back();}else hide();}
+window.addEventListener('popstate',function(){hide();});
+document.addEventListener('click',function(e){if(e.button||e.metaKey||e.ctrlKey||e.shiftKey)return;var t=e.target.closest&&e.target.closest('.entry-content img');if(!t)return;
+ var i=imgs.indexOf(t);if(i<0)return;e.preventDefault();open(i);});
+document.addEventListener('keydown',function(e){if(!ov||ov.hidden)return;
+ if(e.key==='Escape'){e.preventDefault();closeUI();}else if(e.key==='ArrowLeft'){go(-1);}else if(e.key==='ArrowRight'){go(1);}
+ else if(e.key==='Tab'){var f=[bClose,bPrev,bNext].filter(function(b){return !b.hidden;});var k=f.indexOf(document.activeElement);e.preventDefault();k=(k+(e.shiftKey?-1:1)+f.length)%f.length;f[k].focus();}});
+var sx=null;document.addEventListener('touchstart',function(e){if(ov&&!ov.hidden)sx=e.touches[0].clientX;},{passive:true});
+document.addEventListener('touchend',function(e){if(sx===null)return;var dx=e.changedTouches[0].clientX-sx;sx=null;if(Math.abs(dx)>60)go(dx<0?1:-1);},{passive:true});
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,113 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>141 milhões de usuários impactados por esse software - J David S Carvalho</title>
+<script>(function(){try{var t=localStorage.getItem('jdsc-theme');document.documentElement.setAttribute('data-theme',(t==='light'||t==='dark')?t:'dark');}catch(e){}})();</script>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,700;1,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../style.css">
+<meta name="description" content="Em 2018, criei um software que impactou 141 milhões de usuários com pico de quase 3 milhões em 24 horas, conforme o Google Analyics abaixo. Clique na imagem…">
+<link rel="canonical" href="https://jdsc.me/141m/">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='12' fill='%230d0c0a'/%3E%3Ctext x='32' y='47' font-family='Georgia,serif' font-size='42' font-weight='700' text-anchor='middle' fill='%23f0b04a'%3EJ%3C/text%3E%3C/svg%3E">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="J David S Carvalho">
+<meta property="og:locale" content="pt_BR">
+<meta property="og:title" content="141 milhões de usuários impactados por esse software">
+<meta property="og:description" content="Em 2018, criei um software que impactou 141 milhões de usuários com pico de quase 3 milhões em 24 horas, conforme o Google Analyics abaixo. Clique na imagem…">
+<meta property="og:url" content="https://jdsc.me/141m/">
+<meta name="twitter:card" content="summary">
+</head>
+<body class="kind-post">
+<div class="page">
+<header class="site-header">
+  <div class="toggle-slot"><button class="theme-toggle" id="theme-toggle" type="button" aria-label="Alternar modo claro/escuro" title="Alternar claro/escuro"><span aria-hidden="true">☾</span></button>
+<script>(function(){var b=document.getElementById('theme-toggle'),r=document.documentElement;
+function cur(){var t=r.getAttribute('data-theme');if(t)return t;return 'dark';}
+function paint(){b.firstChild.textContent=cur()==='dark'?'\u2600':'\u263E';}
+b.addEventListener('click',function(){var n=cur()==='dark'?'light':'dark';r.setAttribute('data-theme',n);try{localStorage.setItem('jdsc-theme',n);}catch(e){}paint();});
+paint();})();</script></div>
+  <p class="ornament">❧</p>
+  <p class="brand"><a href="../">J David S Carvalho</a></p>
+  <p class="tagline">Aprendizado contínuo</p>
+  <nav><a href="../">Início</a><a href="../cv.pdf">Currículo</a><a href="../livros/">Livros</a></nav>
+  <p class="rule">⁂</p>
+</header>
+<main class="content"><article class="post"><header class="entry-header"><h1 class="entry-title">141 milhões de usuários impactados por esse software</h1><p class="meta"><time datetime="2021-02-22">22 de fevereiro de 2021</time> <span class="sep">·</span> <span class="cats"><a href="../category/arquitetura/">Arquitetura</a></span></p></header><div class="entry-content"><p>Em 2018, criei um software que impactou 141 milhões de usuários com pico de quase 3 milhões em 24 horas, conforme o Google Analyics abaixo. Clique na imagem para expandi-la.</p>
+<p><a href="../assets/uploads/2021/05/ga-141m.jpg"><img alt="" class="aligncenter wp-image-144 size-full" height="814" loading="lazy" src="../assets/uploads/2021/05/ga-141m.jpg" width="1580"/></a></p>
+<h2 id="1-o-problema">1. O problema<a aria-label="Link para esta seção" class="anchor" href="#1-o-problema">#</a></h2>
+<p>Esse negócio era composto por redatores, sites de conteúdo, usuários dos sites, um software para gestão do negócio e usuários do software.</p>
+<p>Os redatores criavam matérias nos sites de conteúdo. Os usuários do software criavam uma conta no software e geravam URLs de qualquer matéria de um dos sites de conteúdo para divulgarem em suas redes sociais. A partir disso, acessavam o software para saber quantas pessoas haviam clicados em suas URLs. Essa era a principal funcionalidade do software.</p>
+<p>Com o aumento do número de usuários do software, o número de usuários dos sites (pessoas que clicavam nas URLs) aumentou e a solução que eu havia criado passou a não funcionar corretamente. Clique na imagem do Google Analytics acima para expandí-la e observe esse aumento rápido no início de Setembro de 2018.</p>
+<p>Dado ao alto volume de requisições, cujo o pico de usuários simultâneos passou de 1 mil para 5-10 mil, todas as requisições passaram a não ser mais reconhecidas pelo software.</p>
+<p>A solução foi <strong>incluir um servidor somente para dados</strong> e o <strong>uso de dados temporários em memória</strong>. Isso é descrito no item à seguir.</p>
+<h2 id="2-a-solu-o">2. A solução<a aria-label="Link para esta seção" class="anchor" href="#2-a-solu-o">#</a></h2>
+<p>A arquitetura da solução está na imagem abaixo. Usei uma formatação livre.</p>
+<p><a href="../assets/uploads/2021/05/landspace-141m.jpg"><img alt="" class="aligncenter wp-image-145 size-full" height="872" loading="lazy" src="../assets/uploads/2021/05/landspace-141m.jpg" width="1216"/></a></p>
+<p>À seguir, a descrição de cada numeração da imagem.</p>
+<h3 id="1-usu-rio-do-site-acesso-o-conte-do">1. Usuário do site acesso o conteúdo<a aria-label="Link para esta seção" class="anchor" href="#1-usu-rio-do-site-acesso-o-conte-do">#</a></h3>
+<p>Uma pessoa estava navegando pelo Facebook, por exemplo, vê um post sobre um conteúdo e clica no link desse post.</p>
+<p>O Facebook redireciona essa pessoa para um site de conteúdo e ela torna-se usuário do site.</p>
+<h3 id="2-site-envia-dados-ao-google-analytics">2. Site envia dados ao Google Analytics<a aria-label="Link para esta seção" class="anchor" href="#2-site-envia-dados-ao-google-analytics">#</a></h3>
+<p>Em todo carregamento de página de um site (pageview), o site notifica o Google Analytics sobre tal pageview.</p>
+<h3 id="3-site-envia-dados-ao-servidor-de-dados">3. Site envia dados ao servidor de dados<a aria-label="Link para esta seção" class="anchor" href="#3-site-envia-dados-ao-servidor-de-dados">#</a></h3>
+<p>Em todo carregamento de página de um site (pageview), o site notifica o servidor de dados sobre tal pageview.</p>
+<h3 id="4-servidor-de-dados-armazena-dados-em-mem-ria">4. Servidor de dados armazena dados em memória<a aria-label="Link para esta seção" class="anchor" href="#4-servidor-de-dados-armazena-dados-em-mem-ria">#</a></h3>
+<p>Toda notificação, o servidor de dados armazena os dados da requisição em memória usando <a href="https://redis.io/" rel="noopener" target="_blank">Redis</a>.</p>
+<h3 id="5-servidor-de-dados-armazena-dados-em-disco">5. Servidor de dados armazena dados em disco<a aria-label="Link para esta seção" class="anchor" href="#5-servidor-de-dados-armazena-dados-em-disco">#</a></h3>
+<p>A cada 30 segundos, os dados em memória armazenados no Redis era obtido e armazenado em disco no <a href="https://www.mysql.com/" rel="noopener" target="_blank">MySQL</a> e os dados em memória apagados.</p>
+<h3 id="6-servidor-de-dados-envia-dados-para-o-servidor-do">6. Servidor de dados envia dados para o servidor do software<a aria-label="Link para esta seção" class="anchor" href="#6-servidor-de-dados-envia-dados-para-o-servidor-do">#</a></h3>
+<p>A cada 1 minuto, os dados em disco no servidor de dados eram enviados para o servidor do software.</p>
+<h3 id="7-servidor-da-software-armazena-dados-em-disco">7. Servidor da software armazena dados em disco<a aria-label="Link para esta seção" class="anchor" href="#7-servidor-da-software-armazena-dados-em-disco">#</a></h3>
+<p>Com os dados recebidos, o software armazenava os dados em disco.</p>
+<h3 id="8-servidor-do-software-obt-m-dados-do-google-analy">8. Servidor do software obtém dados do Google Analytics<a aria-label="Link para esta seção" class="anchor" href="#8-servidor-do-software-obt-m-dados-do-google-analy">#</a></h3>
+<p>O software obtinha dados complementares no Google Analytics.</p>
+<h3 id="9-usu-rio-do-software-obt-m-dados-do-servidor-do-s">9. Usuário do software obtém dados do servidor do software<a aria-label="Link para esta seção" class="anchor" href="#9-usu-rio-do-software-obt-m-dados-do-servidor-do-s">#</a></h3>
+<p>Os usuários do software acessavam o software para visualizar quantos cliques existiam em seus links.</p>
+<p>Com a solução funcionando com o servidor de dados usando dados em memória, o software conseguia atualizar os dados consistentes a cada 1 minuto, algo que não acontecia na solução anterior (sem o servidor dados e sem dados em memória).</p>
+<h2 id="3-a-conclus-o">3. A conclusão<a aria-label="Link para esta seção" class="anchor" href="#3-a-conclus-o">#</a></h2>
+<p>Negócios que possuem aquisição de usuários pela internet estão sujeitos a uma escala inesperada de novos usuários.</p>
+<p>A primeira solução que eu criei não estava preparada para tal escala. A adição do servidor de dados em memória resolveu o problema.</p>
+<p>Como cada usuário de um site pode realizar mais de um pageview, ao final, o servidor de dados com dados em memória recebeu 366 milhões de requisições, conforme imagem abaixo.</p>
+<p><a href="../assets/uploads/2021/05/ga-pvs.jpg"><img alt="" class="aligncenter wp-image-154 size-full" height="569" loading="lazy" src="../assets/uploads/2021/05/ga-pvs.jpg" width="1098"/></a></p>
+<p>O pico de acesso em 24 horas foi mais de 7 milhões. Simultâneos foi por volta de 25 mil usuários, embora eu não tenha essa imagem para mostrar aqui.</p>
+<p>Em todos esses dias, o servidor de dados conseguiu receber, armazenar e fornecer de forma consistente os dados de todas as pageviews.</p>
+<p>A decisão ruim que tomei na nova solução foi instalar o Apache no servidor de dados, ao invés do Nginx. O Apache consome muito mais memória RAM do que o Nginx e o custo do servidor foi mais caro.</p>
+<p>De todo o modo, o Apache tratou com sucesso todas as requisições, os dados ficaram consistentes e o problema foi resolvido.</p></div></article></main>
+<footer class="site-footer"><p class="ornament">❦</p><p>© 2026 J David S Carvalho</p></footer>
+</div>
+<script>(function(){
+var root=document.querySelector('.entry-content');if(!root)return;
+var imgs=[].slice.call(root.querySelectorAll('img'));if(!imgs.length)return;
+var imgRe=/\.(jpe?g|png|gif|webp|svg)(\?.*)?$/i;
+var items=imgs.map(function(im){var a=im.closest('a[href]');var full=(a&&imgRe.test(a.getAttribute('href')))?a.href:im.currentSrc||im.src;
+ var fig=im.closest('figure,.wp-caption');var fc=fig&&fig.querySelector('figcaption,.wp-caption-text');
+ im.classList.add('zoomable');if(a&&imgRe.test(a.getAttribute('href')))a.classList.add('zoomable');
+ return {el:im,src:full,cap:(fc&&fc.textContent.trim())||im.getAttribute('alt')||''};});
+var ov,imgEl,capEl,cntEl,bClose,bPrev,bNext,cur=-1,opener=null;
+function build(){ov=document.createElement('div');ov.className='lb';ov.hidden=true;ov.setAttribute('role','dialog');ov.setAttribute('aria-modal','true');ov.setAttribute('aria-label','Imagem ampliada');
+ ov.innerHTML='<button type="button" class="lb-close" aria-label="Fechar">\u2715</button><button type="button" class="lb-nav lb-prev" aria-label="Anterior">\u2190</button><figure class="lb-fig"><img class="lb-img" alt=""><figcaption class="lb-cap"></figcaption></figure><button type="button" class="lb-nav lb-next" aria-label="Pr\u00f3xima">\u2192</button><div class="lb-count" aria-live="polite"></div>';
+ document.body.appendChild(ov);imgEl=ov.querySelector('.lb-img');capEl=ov.querySelector('.lb-cap');cntEl=ov.querySelector('.lb-count');
+ bClose=ov.querySelector('.lb-close');bPrev=ov.querySelector('.lb-prev');bNext=ov.querySelector('.lb-next');
+ ov.addEventListener('click',function(e){if(e.target===ov||e.target.classList.contains('lb-fig'))closeUI();});
+ bClose.addEventListener('click',closeUI);bPrev.addEventListener('click',function(){go(-1);});bNext.addEventListener('click',function(){go(1);});
+ if(items.length<2){bPrev.hidden=bNext.hidden=cntEl.hidden=true;}}
+function show(i){cur=(i+items.length)%items.length;var it=items[cur];imgEl.src=it.src;imgEl.alt=it.cap;capEl.textContent=it.cap;capEl.hidden=!it.cap;cntEl.textContent=(cur+1)+' / '+items.length;}
+function go(d){if(items.length>1)show(cur+d);}
+function open(i){if(!ov)build();opener=document.activeElement;show(i);ov.hidden=false;document.body.classList.add('lb-open');
+ try{history.pushState({lb:1},'');}catch(e){}bClose.focus();}
+function hide(){if(!ov||ov.hidden)return;ov.hidden=true;document.body.classList.remove('lb-open');imgEl.removeAttribute('src');if(opener&&opener.focus)opener.focus();}
+function closeUI(){if(!ov||ov.hidden)return;if(history.state&&history.state.lb){history.back();}else hide();}
+window.addEventListener('popstate',function(){hide();});
+document.addEventListener('click',function(e){if(e.button||e.metaKey||e.ctrlKey||e.shiftKey)return;var t=e.target.closest&&e.target.closest('.entry-content img');if(!t)return;
+ var i=imgs.indexOf(t);if(i<0)return;e.preventDefault();open(i);});
+document.addEventListener('keydown',function(e){if(!ov||ov.hidden)return;
+ if(e.key==='Escape'){e.preventDefault();closeUI();}else if(e.key==='ArrowLeft'){go(-1);}else if(e.key==='ArrowRight'){go(1);}
+ else if(e.key==='Tab'){var f=[bClose,bPrev,bNext].filter(function(b){return !b.hidden;});var k=f.indexOf(document.activeElement);e.preventDefault();k=(k+(e.shiftKey?-1:1)+f.length)%f.length;f[k].focus();}});
+var sx=null;document.addEventListener('touchstart',function(e){if(ov&&!ov.hidden)sx=e.touches[0].clientX;},{passive:true});
+document.addEventListener('touchend',function(e){if(sx===null)return;var dx=e.changedTouches[0].clientX-sx;sx=null;if(Math.abs(dx)>60)go(dx<0?1:-1);},{passive:true});
+})();
+</script>
+</body>
+</html>

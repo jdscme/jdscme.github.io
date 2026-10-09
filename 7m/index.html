@@ -1,0 +1,113 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>7 milhões de usuários impactados por esse software - J David S Carvalho</title>
+<script>(function(){try{var t=localStorage.getItem('jdsc-theme');document.documentElement.setAttribute('data-theme',(t==='light'||t==='dark')?t:'dark');}catch(e){}})();</script>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,700;1,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../style.css">
+<meta name="description" content="Em 2019, criei um software que impactou 7 milhões de usuários com pico de quase 100 mil em 24 horas, conforme o Google Analyics abaixo. Clique na imagem…">
+<link rel="canonical" href="https://jdsc.me/7m/">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='12' fill='%230d0c0a'/%3E%3Ctext x='32' y='47' font-family='Georgia,serif' font-size='42' font-weight='700' text-anchor='middle' fill='%23f0b04a'%3EJ%3C/text%3E%3C/svg%3E">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="J David S Carvalho">
+<meta property="og:locale" content="pt_BR">
+<meta property="og:title" content="7 milhões de usuários impactados por esse software">
+<meta property="og:description" content="Em 2019, criei um software que impactou 7 milhões de usuários com pico de quase 100 mil em 24 horas, conforme o Google Analyics abaixo. Clique na imagem…">
+<meta property="og:url" content="https://jdsc.me/7m/">
+<meta name="twitter:card" content="summary">
+</head>
+<body class="kind-post">
+<div class="page">
+<header class="site-header">
+  <div class="toggle-slot"><button class="theme-toggle" id="theme-toggle" type="button" aria-label="Alternar modo claro/escuro" title="Alternar claro/escuro"><span aria-hidden="true">☾</span></button>
+<script>(function(){var b=document.getElementById('theme-toggle'),r=document.documentElement;
+function cur(){var t=r.getAttribute('data-theme');if(t)return t;return 'dark';}
+function paint(){b.firstChild.textContent=cur()==='dark'?'\u2600':'\u263E';}
+b.addEventListener('click',function(){var n=cur()==='dark'?'light':'dark';r.setAttribute('data-theme',n);try{localStorage.setItem('jdsc-theme',n);}catch(e){}paint();});
+paint();})();</script></div>
+  <p class="ornament">❧</p>
+  <p class="brand"><a href="../">J David S Carvalho</a></p>
+  <p class="tagline">Aprendizado contínuo</p>
+  <nav><a href="../">Início</a><a href="../cv.pdf">Currículo</a><a href="../livros/">Livros</a></nav>
+  <p class="rule">⁂</p>
+</header>
+<main class="content"><article class="post"><header class="entry-header"><h1 class="entry-title">7 milhões de usuários impactados por esse software</h1><p class="meta"><time datetime="2021-02-22">22 de fevereiro de 2021</time> <span class="sep">·</span> <span class="cats"><a href="../category/arquitetura/">Arquitetura</a></span></p></header><div class="entry-content"><p>Em 2019, criei um software que impactou 7 milhões de usuários com pico de quase 100 mil em 24 horas, conforme o Google Analyics abaixo. Clique na imagem para expandi-la.</p>
+<p><a href="../assets/uploads/2021/05/7m.jpg"><img alt="" class="aligncenter wp-image-181 size-full" height="732" loading="lazy" src="../assets/uploads/2021/05/7m.jpg" width="1579"/></a></p>
+<h2 id="1-o-problema">1. O problema<a aria-label="Link para esta seção" class="anchor" href="#1-o-problema">#</a></h2>
+<p>Esse negócio é composto por sites de conteúdo e um software que aplica arbitragem de tráfego.</p>
+<p>Para contextualizar, arbitragem de tráfego possui o mesmo comportamento de arbitragem no mercado financeiro, no qual monta-se uma operação de compra e outra de venda de ativos correlacionados para lucrar com a diferença.</p>
+<p>Na arbitragem de tráfego, compra-se tráfego (visitas de pessoas) para um site de conteúdo, que possui anúncios gerando dinheiro, para lucrar com a diferença entre a receita gerada pelos anúncios menos a despesa gasta para comprar o tráfego.</p>
+<p>Como essa compra de tráfego funciona em <a href="https://en.wikipedia.org/wiki/Real-time_bidding" rel="noopener" target="_blank"><em>real time bidding</em></a>, definir o preço de compra uma vez por dia é ineficiente quando comparado a definição de preço de compra em tempo real (a cada 20 mins, por exemplo) em função do resultado financeiro (receita operacional menos despesa operacional) calculado em tempo real. Esse é o problema a ser resolvido.</p>
+<h2 id="2-a-solu-o">2. A solução<a aria-label="Link para esta seção" class="anchor" href="#2-a-solu-o">#</a></h2>
+<p>A arquitetura da solução está na imagem abaixo. Usei uma formatação livre.</p>
+<p><a href="../assets/uploads/2021/05/7m-arq.jpg"><img alt="" class="aligncenter wp-image-190 size-full" height="863" loading="lazy" src="../assets/uploads/2021/05/7m-arq.jpg" width="980"/></a></p>
+<p>À seguir, a descrição de cada numeração da imagem.</p>
+<h3 id="1-usu-rio-do-site-acesso-o-conte-do">1. Usuário do site acesso o conteúdo<a aria-label="Link para esta seção" class="anchor" href="#1-usu-rio-do-site-acesso-o-conte-do">#</a></h3>
+<p>Uma pessoa está lendo um conteúdo na ISTOÉ, por exemplo, e clica em uma matéria de um site de conteúdo gerenciado pelo software que criei.</p>
+<p>O <a href="https://www.taboola.com/" rel="noopener" target="_blank">Taboola</a> redireciona a pessoa para o site de conteúdo e torna-se usuário do site.</p>
+<h3 id="2-site-envia-dados-ao-redis">2. Site envia dados ao Redis<a aria-label="Link para esta seção" class="anchor" href="#2-site-envia-dados-ao-redis">#</a></h3>
+<p>O site de conteúdo envia dados da visita (<em>pageview</em>) para o Redis no qual armazena esses dados em memória.</p>
+<h3 id="3-crontab-aciona-a-cadeia-de-processos-batches">3. Crontab aciona a cadeia de processos batches<a aria-label="Link para esta seção" class="anchor" href="#3-crontab-aciona-a-cadeia-de-processos-batches">#</a></h3>
+<p>O crontab executa o início da cadeia de processos batches. Ele encontra-se configurado para executar a cada 20 minutos.</p>
+<h3 id="4-execu-o-do-processo-batch-para-c-lculo-de-visita">4. Execução do processo batch para cálculo de visitas<a aria-label="Link para esta seção" class="anchor" href="#4-execu-o-do-processo-batch-para-c-lculo-de-visita">#</a></h3>
+<p>O processo batch para cálculo de visitas dos sites de conteúdo obtém do Redis os dados das visitas que nele constam e armazena-os em disco no MySQL.</p>
+<p>Ao final do processamento de inserção desses dados, o processo apaga do Redis esses dados que foram inseridos em disco.</p>
+<h3 id="5-execu-o-do-processo-batch-para-c-lculo-de-despes">5. Execução do processo batch para cálculo de despesa<a aria-label="Link para esta seção" class="anchor" href="#5-execu-o-do-processo-batch-para-c-lculo-de-despes">#</a></h3>
+<p>O processo batch para cálculo de despesa acessa o Taboola para obter o <a href="https://rockcontent.com/br/blog/o-que-e-cpm-cpc-e-cpa/" rel="noopener" target="_blank">CPC</a> de cada campanha que encontra-se rodando.</p>
+<p>Com esses dados obtidos e os dados das visitas, o processo atualiza a despesa de cada campanha no MySQL.</p>
+<h3 id="6-execu-o-do-processo-batch-para-c-lculo-de-receit">6. Execução do processo batch para cálculo de receita<a aria-label="Link para esta seção" class="anchor" href="#6-execu-o-do-processo-batch-para-c-lculo-de-receit">#</a></h3>
+<p>O processo batch para cálculo de receita acessa o <a href="https://admanager.google.com/intl/pt-BR_br/home/" rel="noopener" target="_blank">Google Ad Manager</a> para obter a receita de cada campanha rodando.</p>
+<p>O Ad Manager é usado para gerenciar o inventário dos sites de conteúdo. A receita é originada e obtida pelo Ad Manager no <a href="https://www.google.com/intl/pt-BR_br/adsense/start/" rel="noopener" target="_blank">Google AdSense</a> e <a href="https://static.googleusercontent.com/media/www.google.com/pt-BR//adexchange/AdExchangeOverview.pdf" rel="noopener" target="_blank">DoubleClick Ad Exchange</a>.</p>
+<h3 id="7-execu-o-do-processo-batch-para-c-lculo-de-oferta">7. Execução do processo batch para cálculo de oferta<a aria-label="Link para esta seção" class="anchor" href="#7-execu-o-do-processo-batch-para-c-lculo-de-oferta">#</a></h3>
+<p>O processo batch para cálculo de oferta acessa o Taboola para obter as campanhas rodando, acessa o MySQL para obter a receita a despesa de cada campanha, calcula o novo CPC para atingir a porcentagem de lucro desejado e previamente configurado.</p>
+<p>Com isso, envia o novo CPC para cada campanha ao Taboola e armazena tal operação no MySQL.</p>
+<h3 id="8-execu-o-do-processo-batch-para-gera-o-de-relat-r">8. Execução do processo batch para geração de relatório<a aria-label="Link para esta seção" class="anchor" href="#8-execu-o-do-processo-batch-para-gera-o-de-relat-r">#</a></h3>
+<p>O processo batch para geração de relatório executa uma query no MySQL para “tirar uma foto” do estado atual dos dados que o seja possível gerar gráficos, conforme visto no próximo item abaixo.</p>
+<h3 id="9-usu-rio-do-software-acessa-o-relat-rio">9. Usuário do software acessa o relatório<a aria-label="Link para esta seção" class="anchor" href="#9-usu-rio-do-software-acessa-o-relat-rio">#</a></h3>
+<p>O usuário do software acessa o front-end do software para acessar os relatórios e gráficos a fim de acompanhar os dados e, se necessário, tomar uma ação. Abaixo, um exemplo para uma campanha rodando no site ISTOÉ.</p>
+<p><a href="../assets/uploads/2021/05/f-istoe.jpg"><img alt="" class="aligncenter wp-image-201 size-full" height="626" loading="lazy" src="../assets/uploads/2021/05/f-istoe.jpg" width="988"/></a></p>
+<h2 id="3-a-conclus-o">3. A conclusão<a aria-label="Link para esta seção" class="anchor" href="#3-a-conclus-o">#</a></h2>
+<p>O uso de dados em memória, assim como no <a href="../141m/">software de 141 milhões de usuários</a>, foi fundamental para que o banco de dados do software tivesse consistente armazenando os dados de todas as pageviews (imagem abaixo). Caso contrário, a despesa seria calculada errada e faria um efeito cascata negativo no software gerando prejuízo.</p>
+<p><a href="../assets/uploads/2021/05/7m-pvs.jpg"><img alt="" class="aligncenter wp-image-196 size-full" height="857" loading="lazy" src="../assets/uploads/2021/05/7m-pvs.jpg" width="1595"/></a></p>
+<p>Como os processos batches executavam muitos dados em tempo real, foi necessário minimizar o acesso ao disco fazendo com que carregassem os dados que seriam utilizados no processamento do disco para a memória no início do processamento.</p>
+<p>O efeito da pandemia trouxe problemas para esse negócio. É possível observar na imagem acima que o gráfico de pageviews foi à quase zero no início de Abril até o fim de Abril. Nessas semanas, eu precisei reescrever boa parte do software.</p>
+<p>Ser <a href="https://www.napratica.org.br/antifragil/" rel="noopener" target="_blank">antifrágil</a>, <a href="https://pt.wikipedia.org/wiki/Princ%C3%ADpio_KISS" rel="noopener" target="_blank">manter as coisas simples</a>, <a href="https://pt.wikipedia.org/wiki/YAGNI" rel="noopener" target="_blank">escrever somente código necessário</a> e <a href="https://pt.wikipedia.org/wiki/Don%27t_repeat_yourself" rel="noopener" target="_blank">escrever componentes com alta coesão e baixo acoplamento</a> foram fundamentais para que essa reescrita fosse bem-sucedida gerando a nova versão do software e nova versão de mim melhores do que antes.</p></div></article></main>
+<footer class="site-footer"><p class="ornament">❦</p><p>© 2026 J David S Carvalho</p></footer>
+</div>
+<script>(function(){
+var root=document.querySelector('.entry-content');if(!root)return;
+var imgs=[].slice.call(root.querySelectorAll('img'));if(!imgs.length)return;
+var imgRe=/\.(jpe?g|png|gif|webp|svg)(\?.*)?$/i;
+var items=imgs.map(function(im){var a=im.closest('a[href]');var full=(a&&imgRe.test(a.getAttribute('href')))?a.href:im.currentSrc||im.src;
+ var fig=im.closest('figure,.wp-caption');var fc=fig&&fig.querySelector('figcaption,.wp-caption-text');
+ im.classList.add('zoomable');if(a&&imgRe.test(a.getAttribute('href')))a.classList.add('zoomable');
+ return {el:im,src:full,cap:(fc&&fc.textContent.trim())||im.getAttribute('alt')||''};});
+var ov,imgEl,capEl,cntEl,bClose,bPrev,bNext,cur=-1,opener=null;
+function build(){ov=document.createElement('div');ov.className='lb';ov.hidden=true;ov.setAttribute('role','dialog');ov.setAttribute('aria-modal','true');ov.setAttribute('aria-label','Imagem ampliada');
+ ov.innerHTML='<button type="button" class="lb-close" aria-label="Fechar">\u2715</button><button type="button" class="lb-nav lb-prev" aria-label="Anterior">\u2190</button><figure class="lb-fig"><img class="lb-img" alt=""><figcaption class="lb-cap"></figcaption></figure><button type="button" class="lb-nav lb-next" aria-label="Pr\u00f3xima">\u2192</button><div class="lb-count" aria-live="polite"></div>';
+ document.body.appendChild(ov);imgEl=ov.querySelector('.lb-img');capEl=ov.querySelector('.lb-cap');cntEl=ov.querySelector('.lb-count');
+ bClose=ov.querySelector('.lb-close');bPrev=ov.querySelector('.lb-prev');bNext=ov.querySelector('.lb-next');
+ ov.addEventListener('click',function(e){if(e.target===ov||e.target.classList.contains('lb-fig'))closeUI();});
+ bClose.addEventListener('click',closeUI);bPrev.addEventListener('click',function(){go(-1);});bNext.addEventListener('click',function(){go(1);});
+ if(items.length<2){bPrev.hidden=bNext.hidden=cntEl.hidden=true;}}
+function show(i){cur=(i+items.length)%items.length;var it=items[cur];imgEl.src=it.src;imgEl.alt=it.cap;capEl.textContent=it.cap;capEl.hidden=!it.cap;cntEl.textContent=(cur+1)+' / '+items.length;}
+function go(d){if(items.length>1)show(cur+d);}
+function open(i){if(!ov)build();opener=document.activeElement;show(i);ov.hidden=false;document.body.classList.add('lb-open');
+ try{history.pushState({lb:1},'');}catch(e){}bClose.focus();}
+function hide(){if(!ov||ov.hidden)return;ov.hidden=true;document.body.classList.remove('lb-open');imgEl.removeAttribute('src');if(opener&&opener.focus)opener.focus();}
+function closeUI(){if(!ov||ov.hidden)return;if(history.state&&history.state.lb){history.back();}else hide();}
+window.addEventListener('popstate',function(){hide();});
+document.addEventListener('click',function(e){if(e.button||e.metaKey||e.ctrlKey||e.shiftKey)return;var t=e.target.closest&&e.target.closest('.entry-content img');if(!t)return;
+ var i=imgs.indexOf(t);if(i<0)return;e.preventDefault();open(i);});
+document.addEventListener('keydown',function(e){if(!ov||ov.hidden)return;
+ if(e.key==='Escape'){e.preventDefault();closeUI();}else if(e.key==='ArrowLeft'){go(-1);}else if(e.key==='ArrowRight'){go(1);}
+ else if(e.key==='Tab'){var f=[bClose,bPrev,bNext].filter(function(b){return !b.hidden;});var k=f.indexOf(document.activeElement);e.preventDefault();k=(k+(e.shiftKey?-1:1)+f.length)%f.length;f[k].focus();}});
+var sx=null;document.addEventListener('touchstart',function(e){if(ov&&!ov.hidden)sx=e.touches[0].clientX;},{passive:true});
+document.addEventListener('touchend',function(e){if(sx===null)return;var dx=e.changedTouches[0].clientX-sx;sx=null;if(Math.abs(dx)>60)go(dx<0?1:-1);},{passive:true});
+})();
+</script>
+</body>
+</html>
