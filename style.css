@@ -2,7 +2,7 @@
 /* Paletas: data-palette no <html>; escuro = padrão, claro com [data-theme=light]. */
 :root{--bg:#000000;--paper:#0d0c0a;--paper2:#161411;--text:#efe6d0;--muted:#b0a68e;--line:#35302a;--accent:#f0b04a;--gold:#e0a030;--code-bg:#060605;--code-text:#f3ead4;--shadow:rgba(0,0,0,.8)}
 :root[data-theme="light"]{--bg:#e8e4da;--paper:#fbf8ef;--paper2:#f1ece0;--text:#0b0b0b;--muted:#555555;--line:#d8d2c0;--accent:#8a4b00;--gold:#8a5d00;--code-bg:#efe9d8;--code-text:#0b0b0b;--shadow:rgba(0,0,0,.25)}
-html{font-size:125%;-webkit-text-size-adjust:100%}
+html{font-size:100%;-webkit-text-size-adjust:100%}
 *{box-sizing:border-box}
 body{margin:0;background:var(--bg);color:var(--text);font:400 1.3125rem/1.65 'EB Garamond','Cormorant Garamond',Georgia,serif;
   background-image:radial-gradient(ellipse at top,rgba(255,255,255,.08),transparent 60%),radial-gradient(ellipse at bottom,rgba(0,0,0,.18),transparent 60%);
