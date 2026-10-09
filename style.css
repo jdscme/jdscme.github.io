@@ -58,6 +58,9 @@ hr{border:0;text-align:center;margin:2em 0}hr::after{content:"❧";color:var(--g
 .entry-list .entry{margin:0 0 1.6em;text-align:center}
 .entry-list .entry::after{content:"❧";display:block;color:var(--gold);font-size:1.5rem;margin-top:1.2em}
 .entry-list .entry:last-child::after{content:"❦"}
+.entry-thumb{display:block;margin:0 auto 1em;max-width:36rem;border:1px solid var(--line);padding:.35rem;background:var(--paper2);box-shadow:0 .4rem 1.2rem var(--shadow)}
+.entry-thumb img{display:block;width:100%;aspect-ratio:1200/630;object-fit:cover;filter:sepia(.12)}
+.entry-thumb:hover{border-color:var(--gold)}
 .entry-list .entry-title{font-size:1.75rem}
 .excerpt{text-align:justify;margin:0 0 .4em}
 .more{margin:0}.more a{font-variant:small-caps;letter-spacing:.1em}
