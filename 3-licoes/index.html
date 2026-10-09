@@ -36,19 +36,51 @@ paint();})();</script></div>
   <p class="ornament">❧</p>
   <p class="brand"><a href="../">J David S Carvalho</a></p>
   <p class="tagline">Aprendizado contínuo</p>
-  <nav><a href="../">Início</a><a href="../cv.pdf">Currículo</a><a href="../livros/">Livros</a></nav>
+  <nav><a href="../">Início</a><a href="../cv.pdf">Currículo</a><a href="../42-livros/">Livros</a></nav>
   <p class="rule">⁂</p>
 </header>
-<main class="content"><article class="post"><header class="entry-header"><h1 class="entry-title">3 lições atuando como Arquiteto de Soluções, Corporativo e Líder Técnico</h1><p class="meta"><time datetime="2024-05-15">15 de maio de 2024</time> <span class="sep">·</span> <span class="cats"><a href="../category/arquitetura/">Arquitetura</a>, <a href="../category/engenharia/">Engenharia</a></span></p></header><div class="entry-content"><p>Em 2023, fui chamado para participar de projetos exercendo alguns papéis, tais como: Arquiteto de Soluções, Arquiteto Corporativo e Líder Técnico.</p>
+<main class="content"><article class="post"><header class="entry-header"><h1 class="entry-title">3 lições atuando como Arquiteto de Soluções, Corporativo e Líder Técnico</h1><p class="meta"><time datetime="2024-05-15">15 de maio de 2024</time> <span class="sep">·</span> <span class="cats"><a href="../category/arquitetura/">Arquitetura</a>, <a href="../category/engenharia/">Engenharia</a></span></p></header><div class="entry-content"><p></p>
+<p>Em 2023, fui chamado para participar de projetos exercendo alguns papéis, tais como: Arquiteto de Soluções, Arquiteto Corporativo e Líder Técnico.</p>
 <p>Projetos que geraram muito aprendizado e três lições que compartilho abaixo.</p>
-<p><em>Este post foi parcialmente recuperado; o texto completo será republicado em breve.</em></p>
 <h2 id="1-discernimento-com-frameworks">1. Discernimento com frameworks<a aria-label="Link para esta seção" class="anchor" href="#1-discernimento-com-frameworks">#</a></h2>
-<p>Em uma financeira de uma grande montadora, sem repositório de arquitetura nem metamodelo, usei apenas os tipos de elementos do ArchiMate suficientes para um serviço de 1 a 2 meses, em vez de aplicar o TOGAF completo.</p>
-<h2 id="2-limite-entre-especifica-o-funcional-e-t-cnica">2. Limite entre especificação funcional e técnica<a aria-label="Link para esta seção" class="anchor" href="#2-limite-entre-especifica-o-funcional-e-t-cnica">#</a></h2>
-<p>Em uma financeira de varejo, o produto para fornecedores não estava especificado no nível necessário para o time técnico, e assumi a liderança técnica.</p>
-<h2 id="3-clareza-na-comunica-o">3. Clareza na comunicação<a aria-label="Link para esta seção" class="anchor" href="#3-clareza-na-comunica-o">#</a></h2>
-<p>Em outra financeira de montadora, definimos o ArchiMate e a ferramenta Archi para estruturar o repositório do plano diretor de TI.</p>
-</div></article></main>
+<p>A financeira de uma grande montadora de veículos precisou aumentar a velocidade de lançamento de novas ofertas de seguros em seu sistema de financiamento de veículos.</p>
+<p>Para isso, contratou um serviço de TI para identificar o <em>as is</em> de suas aplicações e definir o <em>to be</em> para atender essa necessidade. Eu fui convidado.</p>
+<p>O time de arquitetura da empresa não possuía um <span>repositório de arquitetura</span> e, por consequência, não possuía uma <span>estrutura de dados</span> (metamodelo).</p>
+<p>Sem isso, é impossível executar o trabalho utilizando os três passos sugeridos pelo TOGAF na imagem abaixo. Clique na imagem para expandir.</p>
+<p>Como o objetivo não era definir esses itens faltantes para um setor de arquitetura, mas para um serviço de 1-2 meses, utilizei somente os tipos destacados abaixo do <a href="https://www.opengroup.org/archimate-forum/archimate-overview" rel="noopener" target="_blank">Archimate</a> (imagem com <span>estrutura simplificada</span>), os quais foram suficientes.</p>
+<p>O resultado desse trabalho, realizado junto com uma analista de negócio da empresa, foi a identificação <em>as is </em>na estrutura destacada acima, o <em>to be</em> da arquitetura de aplicações e o business case do projeto composto por escopo, esforço, time, premissas e fora de escopo.</p>
+<p>Uma lição aprendida tirada desse projeto foi: Se houver discernimento para usar somente o que é necessário de um framework, ele será útil em vários casos de uso.</p>
+<h2 id="2-fronteira-entre-funcional-e-t-cnica">2. Fronteira entre funcional e técnica<a aria-label="Link para esta seção" class="anchor" href="#2-fronteira-entre-funcional-e-t-cnica">#</a></h2>
+<p>A financeira de uma das maiores varejistas do Brasil precisou lançar um produto para seus fornecedores.</p>
+<p>Para isso, montou um time multidisciplinar e eu fui convidado à ser líder técnico e, parte do tempo, arquiteto de soluções.</p>
+<p>Inicialmente, o time de produtos não havia especificado o produto conforme um time de tecnologia necessita para iniciar o trabalho.</p>
+<p>Dessa forma, contribuí auxiliando no uso de BPMN e conceituando os limites entre especificação funcional e técnica.</p>
+<p>O avanço desse trabalho resultou na definição dos <span>atores</span>, <span>processos</span>, <span>dados</span> e <span>serviços de negócio</span> necessários para operar o novo produto. Em outras palavras, considerando o Archimate apresentado no tópico anterior, a <span><strong>camada de negócio</strong></span> estava sendo definida.</p>
+<p>Com isso, consegui começar a definir a <strong><span>camada de aplicação</span></strong> identificando as <span>aplicações existentes</span> que iriam atender os serviços de negócio, <span>novas aplicações</span> que seriam desenhadas, <span>aquisição de fornecedores</span> e <span>fronteiras com outros times</span>.</p>
+<p>O panorama do projeto ficou conforme abaixo, omitindo dados confidenciais do projeto.</p>
+<p>Essa imagem foi útil para alinhar serviços (requisitos) de negócio com os sistemas, para criação de histórias de usuário, para reunião com fornecedor, para reunião com outros times e para iniciar a solução em baixo nível.</p>
+<p>Como exemplo, abaixo, uma solução em baixo nível de uma funcionalidade para atender um conjunto de histórias de usuário, omitindo dados confidenciais do projeto.</p>
+<p>A empresa possui ADRs que precisaram ser atendidas, por exemplo uso obrigatório de componentes para resolverem necessidades que ainda não existem, tais como: Backend for frontend, exposição de lógica de negócio e retaguarda.</p>
+<p>O uso obrigatório, sem haver ainda a necessidade, criou uma complexidade conceitual, ao meu ver, desnecessária. Mas não houve como contornar.</p>
+<p>Houve a necessidade de alinhar os requisitos técnicos com as áreas de TI da empresa. Criei a tabela abaixo e direcionei tais requisitos às áreas.</p>
+<p>A lição aprendida nesse projeto foi: Alinhar o quanto antes a fronteira entre especificação funcional e técnica.</p>
+<p>Em geral, funcional especifica o que o usuário do sistema enxerga e técnica especifica o que o usuário do sistema não enxerga.</p>
+<h2 id="3-objetividade-na-comunica-o">3. Objetividade na comunicação<a aria-label="Link para esta seção" class="anchor" href="#3-objetividade-na-comunica-o">#</a></h2>
+<p>A financeira de outra grande montadora de veículos precisou criar um plano diretor de TI.</p>
+<p>Para isso, contratou um serviço de Arquitetura Corporativa para realizar tal tarefa. Eu fui convidado.</p>
+<p>Inicialmente, precisamos definir a estrutura de dados e repositório. Definimos <a href="https://www.opengroup.org/archimate-forum/archimate-overview" rel="noopener" target="_blank">Archimate</a> e <a href="https://www.archimatetool.com/" rel="noopener" target="_blank">Archi</a>.</p>
+<p>Após isso, definimos que coletaríamos dados dos tipos destacados na imagem simplificada abaixo.</p>
+<p>Infelizmente, não foi possível coletar dados da camada <span><strong>motivação</strong></span> e isso não tornou o resultado do trabalho tão bom quanto poderia, embora ficou ótimo.</p>
+<p>Deixo abaixo um exemplo interessante a partir de uma modelagem de uma empresa retirado de <a href="https://www.itarch.info/" rel="noopener" target="_blank">ITArch.info</a>.</p>
+<p>Após <span><strong>52 entrevistas</strong></span> com <span><strong>25 áreas</strong></span> de negócio e tecnologia, geramos duas versões do mapa de <span><strong>capacidades</strong></span> da empresa.</p>
+<p>A primeira versão representou uma análise quantitativa identificando o número de oportunidades de melhoria em cada capacidade, conforme imagem abaixo.</p>
+<p>A segunda versão representou uma análise qualitativa identificando a gravidade da ausência da realização da oportunidade de melhoria, em cada capacidade, conforme imagem abaixo.</p>
+<p>Os dados da camada de <span><strong>negócio</strong></span> e <span><strong>aplicação</strong></span>, dado o tempo curto do projeto, começou a ser manuseado no Excel, em vez do Archi. Nenhuma visão foi gerada para esses dados.</p>
+<p>Como observado nos mapas de capacidades acima, as áreas de TI <span>Dados</span>, <span>DevSecOps</span>, <span>Sistema</span>, <span>Infraestrutura</span>, <span>Qualidade</span>, <span>Segurança</span> e <span>Arquitetura</span> foram entrevistadas.</p>
+<p>Foi gerado um relatório para cada área de TI com perguntas e um painel com o resultado. Abaixo,  exemplo de Infraestrutura, omitindo dados confidenciais do projeto.</p>
+<p>Por fim, o roadmap em alto nível abaixo. No repositório de arquitetura é possível observar os projetos e dependências sugeridas. Isso compõe a camada <span><strong>migração</strong></span> (em vermelho) do Archimate exibido acima no início desse tópico.</p>
+<p>Após alguns meses do plano entregue, a empresa executou alguns projetos sugeridos e obteve melhorias operacionais e gerenciais.</p>
+<p>A lição aprendida nesse projeto foi: Se o patrocinador não está alinhado ao projeto, procure ser objetivo e utilizar palavras que lhe agradam.</p></div></article></main>
 <footer class="site-footer"><p class="ornament">❦</p><p>© 2026 J David S Carvalho</p></footer>
 </div>
 <script>(function(){
