@@ -29,7 +29,14 @@ function paint(){b.firstChild.textContent=cur()==='dark'?'\u2600':'\u263E';}
 b.addEventListener('click',function(){var n=cur()==='dark'?'light':'dark';r.setAttribute('data-theme',n);try{localStorage.setItem('jdsc-theme',n);}catch(e){}paint();});
 paint();})();</script></nav>
 </div></header>
-<div class="col intro"><p><strong>J David S Carvalho</strong> · Registros de engenharia de software: o contexto de cada projeto, o que foi decidido e o que aprendi.</p></div>
+<section class="col intro">
+  <div class="intro-text">
+    <h1 class="intro-name">J David S Carvalho</h1>
+    <p class="intro-role">Staff Software Engineer</p>
+    <p class="intro-lede">Registros de engenharia de software: o contexto de cada projeto, o que foi decidido e o que aprendi.</p>
+  </div>
+  <img class="intro-photo" src="/assets/eu.jpg" alt="Foto de J David S Carvalho" width="400" height="400">
+</section>
 <main class="col content">
   <nav class="toc" id="toc" hidden><p class="toc-title">Seções</p><ol></ol></nav>
   <article class="entry entry-page"><header class="entry-header"><h1 class="entry-title">Página não encontrada</h1></header><div class="entry-content"><p>Não encontrei o que você procurava. Talvez o endereço tenha mudado.</p><p><a href="/">← Voltar para a página inicial</a></p></div></article>

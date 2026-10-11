@@ -29,10 +29,15 @@ code,pre{font-family:var(--f-mono)}
 .site-header nav{display:flex;align-items:center;flex-wrap:wrap;gap:4px 18px;font-size:14px}
 .site-header nav a{color:var(--muted)}.site-header nav a:hover{color:var(--text);text-decoration:none}
 .theme-toggle{background:none;border:1px solid var(--line);color:var(--muted);border-radius:4px;cursor:pointer;font-size:14px;padding:2px 8px}
+/* apresentação (só na home): texto à esquerda, foto à direita */
 .intro{display:none}
-.kind-home .intro{display:block}
-.intro p{margin:28px 0 0;color:var(--muted);font-size:16px}
-.intro strong{color:var(--text);font-weight:600}
+.kind-home .intro{display:flex;align-items:center;gap:32px;padding-top:36px}
+.intro-text{flex:1;min-width:0;display:grid;gap:6px}
+.intro-name{margin:0;font-size:38px;line-height:1.1}
+.intro-role{margin:0;font-family:var(--f-label);text-transform:uppercase;letter-spacing:.08em;font-size:15px;color:var(--accent)}
+.intro-lede{margin:8px 0 0;color:var(--muted);font-size:17px;max-width:46ch}
+.intro-photo{flex:none;width:150px;height:150px;border-radius:50%;object-fit:cover;border:3px solid var(--card);box-shadow:0 0 0 1px var(--line),0 8px 24px -10px rgba(0,0,0,.45)}
+@media (max-width:560px){.kind-home .intro{gap:18px}.intro-name{font-size:28px}.intro-photo{width:96px;height:96px}}
 .content{padding-top:28px;padding-bottom:72px}
 
 /* identificador + status */
@@ -112,7 +117,9 @@ body.lb-open{overflow:hidden}
 .brand{font-size:calc(22px*var(--k));text-transform:uppercase;letter-spacing:.04em}.brand b{font-weight:500}
 .site-header nav{font-family:var(--f-label);text-transform:uppercase;letter-spacing:.06em;font-size:calc(15px*var(--k))}
 .theme-toggle{font-size:calc(16px*var(--k))}
-.intro p{font-size:calc(18px*var(--k))}
+.intro-name{font-size:calc(44px*var(--k))}.intro-role{font-size:calc(16px*var(--k))}.intro-lede{font-size:calc(18.5px*var(--k))}
+.intro-photo{width:calc(160px*var(--k));height:calc(160px*var(--k))}
+@media (max-width:560px){.intro-name{font-size:30px}.intro-photo{width:100px;height:100px}}
 .record,.meta{font-size:calc(15px*var(--k))}.record-status{font-size:calc(13.5px*var(--k))}
 .kicker,.toc-title{font-size:calc(14px*var(--k))}
 .archive-header .entry-title{font-size:calc(36px*var(--k))}
@@ -127,6 +134,7 @@ body.lb-open{overflow:hidden}
 figcaption,.wp-caption-text{font-size:calc(16px*var(--k))}
 table{font-size:calc(17px*var(--k))}pre{font-size:calc(16px*var(--k))}
 .site-footer{font-size:calc(15px*var(--k))}
+@media (max-width:560px){.excerpt{grid-template-columns:1fr}}
 
 /* C1 com texto de 21px */
 :root{--k:1.0769}
