@@ -4,9 +4,9 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Página não encontrada - J David S Carvalho</title>
-<script>(function(){try{var t=localStorage.getItem('jdsc-theme');document.documentElement.setAttribute('data-theme',(t==='light'||t==='dark')?t:'dark');}catch(e){}})();</script>
+<script>(function(){try{var t=localStorage.getItem('jdsc-theme');if(t==='light'||t==='dark')document.documentElement.setAttribute('data-theme',t);}catch(e){}})();</script>
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,700;1,400&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,700;1,400&family=Oswald:wght@400;500&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="/style.css">
 <meta name="description" content="Não encontrei o que você procurava. Talvez o endereço tenha mudado.">
 <meta name="robots" content="noindex">
@@ -20,23 +20,25 @@
 <meta name="twitter:card" content="summary">
 </head>
 <body class="kind-page">
-<div class="page">
-<header class="site-header">
-  <div class="toggle-slot"><button class="theme-toggle" id="theme-toggle" type="button" aria-label="Alternar modo claro/escuro" title="Alternar claro/escuro"><span aria-hidden="true">☾</span></button>
+<header class="site-header"><div class="col">
+  <a class="brand" href="/"><b>jdsc</b>/registros</a>
+  <nav><a href="/category/arquitetura/">arquitetura</a><a href="/category/engenharia/">engenharia</a><a href="/cv.pdf">Currículo</a><a href="/42-livros/">Livros</a><button class="theme-toggle" id="theme-toggle" type="button" aria-label="Alternar modo claro/escuro" title="Alternar claro/escuro"><span aria-hidden="true">☾</span></button>
 <script>(function(){var b=document.getElementById('theme-toggle'),r=document.documentElement;
-function cur(){var t=r.getAttribute('data-theme');if(t)return t;return 'dark';}
+function cur(){var t=r.getAttribute('data-theme');if(t)return t;return window.matchMedia&&matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light';}
 function paint(){b.firstChild.textContent=cur()==='dark'?'\u2600':'\u263E';}
 b.addEventListener('click',function(){var n=cur()==='dark'?'light':'dark';r.setAttribute('data-theme',n);try{localStorage.setItem('jdsc-theme',n);}catch(e){}paint();});
-paint();})();</script></div>
-  <p class="ornament">❧</p>
-  <p class="brand"><a href="/">J David S Carvalho</a></p>
-  <p class="tagline">Aprendizado contínuo</p>
-  <nav><a href="/">Início</a><a href="/cv.pdf">Currículo</a><a href="/42-livros/">Livros</a></nav>
-  <p class="rule">⁂</p>
-</header>
-<main class="content"><article class="entry entry-page"><header class="entry-header"><h1 class="entry-title">Página não encontrada</h1></header><div class="entry-content"><p>Não encontrei o que você procurava. Talvez o endereço tenha mudado.</p><p><a href="/">← Voltar para a página inicial</a></p></div></article></main>
-<footer class="site-footer"><p class="ornament">❦</p><p>© 2026 J David S Carvalho</p></footer>
-</div>
+paint();})();</script></nav>
+</div></header>
+<div class="col intro"><p><strong>J David S Carvalho</strong> · Registros de arquitetura e engenharia: o contexto de cada projeto, o que foi decidido e o que aprendi.</p></div>
+<main class="col content">
+  <nav class="toc" id="toc" hidden><p class="toc-title">Seções</p><ol></ol></nav>
+  <article class="entry entry-page"><header class="entry-header"><h1 class="entry-title">Página não encontrada</h1></header><div class="entry-content"><p>Não encontrei o que você procurava. Talvez o endereço tenha mudado.</p><p><a href="/">← Voltar para a página inicial</a></p></div></article>
+</main>
+<footer class="site-footer"><div class="col"><p>© 2026 J David S Carvalho · Aprendizado contínuo</p></div></footer>
+<script>(function(){var hs=document.querySelectorAll('.entry-content h2[id]'),t=document.getElementById('toc');if(hs.length<2)return;
+var ol=t.querySelector('ol');hs.forEach(function(h){var li=document.createElement('li'),a=document.createElement('a');a.href='#'+h.id;
+a.textContent=h.firstChild?h.firstChild.textContent.trim():h.textContent;li.appendChild(a);ol.appendChild(li);});
+var hd=document.querySelector('.entry-header');if(hd)hd.after(t);t.hidden=false;})();</script>
 <script>(function(){
 var root=document.querySelector('.entry-content');if(!root)return;
 var imgs=[].slice.call(root.querySelectorAll('img'));if(!imgs.length)return;
