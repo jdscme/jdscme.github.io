@@ -1,0 +1,99 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 400" width="1000" height="400" role="img">
+<title>Fluxo de valor com fases, portões DoR e DoD e papéis</title>
+<style>
+:root{--tx:#16191d;--ln:#8a929b;--bx:#ffffff;--bd:#c9ced4;--gp:#eef1f4;--ac:#0b6e69;--as:#d9efed;--wn:#b5562b}
+
+text{fill:var(--tx);font-family:"Segoe UI",Arial,sans-serif;font-size:13px}
+.h{font-family:Lora,Georgia,serif;font-size:17px;font-weight:700}
+.s{font-size:12px}.b{font-weight:700}.m{text-anchor:middle}.e{text-anchor:end}
+.box{fill:var(--bx);stroke:var(--bd);stroke-width:1.2}
+.grp{fill:var(--gp);stroke:var(--bd);stroke-width:1}
+.accb{fill:var(--as);stroke:var(--ac);stroke-width:1.6}
+.wnb{fill:none;stroke:var(--wn);stroke-width:1.5;stroke-dasharray:5 4}
+.ln{stroke:var(--ln);stroke-width:1.5;fill:none}
+.dash{stroke:var(--ac);stroke-width:1.2;stroke-dasharray:4 4}
+.dot{fill:var(--ac)}
+text.ta{fill:var(--ac)}text.tw{fill:var(--wn)}
+.mk{fill:var(--ln)}
+</style>
+<defs><marker id="ar" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" class="mk"/></marker></defs>
+<text x="500" y="26" class="h m"><tspan x="500" dy="0">Fluxo de valor: da demanda ao KT com sustentação</tspan></text>
+<rect x="84" y="40" width="334" height="84" rx="6" class="grp"/>
+<text x="251.0" y="58" class="m b"><tspan x="251.0" dy="0">Preparação</tspan></text>
+<rect x="89" y="70" width="78" height="40" rx="6" class="box"/>
+<text x="128.0" y="94" class="m s"><tspan x="128.0" dy="0">Demanda</tspan></text>
+<rect x="171" y="70" width="78" height="40" rx="6" class="box"/>
+<text x="210.0" y="94" class="m s"><tspan x="210.0" dy="0">Análise</tspan></text>
+<rect x="253" y="70" width="78" height="40" rx="6" class="box"/>
+<text x="292.0" y="94" class="m s"><tspan x="292.0" dy="0">Técnica</tspan></text>
+<rect x="335" y="70" width="78" height="40" rx="6" class="box"/>
+<text x="374.0" y="94" class="m s"><tspan x="374.0" dy="0">Decisão</tspan></text>
+<rect x="454" y="40" width="252" height="84" rx="6" class="grp"/>
+<text x="580.0" y="58" class="m b"><tspan x="580.0" dy="0">Construção</tspan></text>
+<rect x="459" y="70" width="78" height="40" rx="6" class="box"/>
+<text x="498.0" y="94" class="m s"><tspan x="498.0" dy="0">Construção</tspan></text>
+<rect x="541" y="70" width="78" height="40" rx="6" class="box"/>
+<text x="580.0" y="94" class="m s"><tspan x="580.0" dy="0">Teste</tspan></text>
+<rect x="623" y="70" width="78" height="40" rx="6" class="box"/>
+<text x="662.0" y="94" class="m s"><tspan x="662.0" dy="0">Homologação</tspan></text>
+<rect x="742" y="40" width="252" height="84" rx="6" class="grp"/>
+<text x="868.0" y="58" class="m b"><tspan x="868.0" dy="0">Transição</tspan></text>
+<rect x="747" y="70" width="78" height="40" rx="6" class="box"/>
+<text x="786.0" y="94" class="m s"><tspan x="786.0" dy="0">Entrega</tspan></text>
+<rect x="829" y="70" width="78" height="40" rx="6" class="box"/>
+<text x="868.0" y="94" class="m s"><tspan x="868.0" dy="0">Change</tspan></text>
+<rect x="911" y="70" width="78" height="40" rx="6" class="box"/>
+<text x="950.0" y="94" class="m s"><tspan x="950.0" dy="0">KT</tspan></text>
+<line x1="418" y1="90" x2="418.0" y2="90" class="ln"/>
+<line x1="454.0" y1="90" x2="454" y2="90" class="ln" marker-end="url(#ar)"/>
+<rect x="418.0" y="77" width="36" height="26" rx="13" class="accb"/>
+<text x="436.0" y="95" class="m b ta"><tspan x="436.0" dy="0">DoR</tspan></text>
+<line x1="436.0" y1="103" x2="436.0" y2="324" class="dash"/>
+<line x1="706" y1="90" x2="706.0" y2="90" class="ln"/>
+<line x1="742.0" y1="90" x2="742" y2="90" class="ln" marker-end="url(#ar)"/>
+<rect x="706.0" y="77" width="36" height="26" rx="13" class="accb"/>
+<text x="724.0" y="95" class="m b ta"><tspan x="724.0" dy="0">DoD</tspan></text>
+<line x1="724.0" y1="103" x2="724.0" y2="324" class="dash"/>
+<text x="950.0" y="138" class="m s tw"><tspan x="950.0" dy="0">com sustentação</tspan></text>
+<text x="76" y="144" class="e s"><tspan x="76" dy="0">Quem atua</tspan></text>
+<rect x="84" y="150" width="910" height="24" rx="0" class="grp"/>
+<text x="76" y="167" class="e"><tspan x="76" dy="0">Negócio</tspan></text>
+<circle cx="128.0" cy="162.0" r="6" class="dot"/>
+<circle cx="210.0" cy="162.0" r="6" class="dot"/>
+<circle cx="374.0" cy="162.0" r="6" class="dot"/>
+<circle cx="662.0" cy="162.0" r="6" class="dot"/>
+<text x="76" y="191" class="e"><tspan x="76" dy="0">PO</tspan></text>
+<circle cx="128.0" cy="186.0" r="6" class="dot"/>
+<circle cx="210.0" cy="186.0" r="6" class="dot"/>
+<circle cx="374.0" cy="186.0" r="6" class="dot"/>
+<circle cx="662.0" cy="186.0" r="6" class="dot"/>
+<rect x="84" y="198" width="910" height="24" rx="0" class="grp"/>
+<text x="76" y="215" class="e"><tspan x="76" dy="0">QA</tspan></text>
+<circle cx="580.0" cy="210.0" r="6" class="dot"/>
+<circle cx="662.0" cy="210.0" r="6" class="dot"/>
+<text x="76" y="239" class="e"><tspan x="76" dy="0">TL</tspan></text>
+<circle cx="210.0" cy="234.0" r="6" class="dot"/>
+<circle cx="292.0" cy="234.0" r="6" class="dot"/>
+<circle cx="374.0" cy="234.0" r="6" class="dot"/>
+<circle cx="498.0" cy="234.0" r="6" class="dot"/>
+<circle cx="786.0" cy="234.0" r="6" class="dot"/>
+<circle cx="868.0" cy="234.0" r="6" class="dot"/>
+<circle cx="950.0" cy="234.0" r="6" class="dot"/>
+<rect x="84" y="246" width="910" height="24" rx="0" class="grp"/>
+<text x="76" y="263" class="e"><tspan x="76" dy="0">DEV</tspan></text>
+<circle cx="292.0" cy="258.0" r="6" class="dot"/>
+<circle cx="498.0" cy="258.0" r="6" class="dot"/>
+<circle cx="580.0" cy="258.0" r="6" class="dot"/>
+<circle cx="786.0" cy="258.0" r="6" class="dot"/>
+<circle cx="868.0" cy="258.0" r="6" class="dot"/>
+<circle cx="950.0" cy="258.0" r="6" class="dot"/>
+<text x="76" y="287" class="e"><tspan x="76" dy="0">Arquiteto</tspan></text>
+<circle cx="292.0" cy="282.0" r="6" class="dot"/>
+<circle cx="374.0" cy="282.0" r="6" class="dot"/>
+<circle cx="662.0" cy="282.0" r="6" class="dot"/>
+<rect x="84" y="294" width="910" height="24" rx="0" class="grp"/>
+<text x="76" y="311" class="e"><tspan x="76" dy="0">Gestão</tspan></text>
+<circle cx="374.0" cy="306.0" r="6" class="dot"/>
+<rect x="560" y="334" width="420" height="50" rx="6" class="wnb"/>
+<text x="770" y="355" class="m tw"><tspan x="770" dy="0">Em aberto: qual o fluxo para sustentação</tspan><tspan x="770" dy="17">e time com mudanças de demanda constantes?</tspan></text>
+</svg>

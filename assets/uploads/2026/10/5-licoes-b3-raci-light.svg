@@ -1,0 +1,91 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 460" width="1000" height="460" role="img">
+<title>Matriz RACI simplificada para o fluxo de valor</title>
+<style>
+:root{--tx:#16191d;--ln:#8a929b;--bx:#ffffff;--bd:#c9ced4;--gp:#eef1f4;--ac:#0b6e69;--as:#d9efed;--wn:#b5562b}
+
+text{fill:var(--tx);font-family:"Segoe UI",Arial,sans-serif;font-size:13px}
+.h{font-family:Lora,Georgia,serif;font-size:17px;font-weight:700}
+.s{font-size:12px}.b{font-weight:700}.m{text-anchor:middle}.e{text-anchor:end}
+.box{fill:var(--bx);stroke:var(--bd);stroke-width:1.2}
+.grp{fill:var(--gp);stroke:var(--bd);stroke-width:1}
+.accb{fill:var(--as);stroke:var(--ac);stroke-width:1.6}
+.wnb{fill:none;stroke:var(--wn);stroke-width:1.5;stroke-dasharray:5 4}
+.ln{stroke:var(--ln);stroke-width:1.5;fill:none}
+.dash{stroke:var(--ac);stroke-width:1.2;stroke-dasharray:4 4}
+.dot{fill:var(--ac)}
+text.ta{fill:var(--ac)}text.tw{fill:var(--wn)}
+.mk{fill:var(--ln)}
+</style>
+<defs><marker id="ar" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" class="mk"/></marker></defs>
+<text x="500" y="26" class="h m"><tspan x="500" dy="0">Matriz RACI (ilustração simplificada)</tspan></text>
+<rect x="40" y="44" width="920" height="34" rx="6" class="grp"/>
+<text x="50" y="66" class="b"><tspan x="50" dy="0">Atividade</tspan></text>
+<text x="245.0" y="66" class="m b"><tspan x="245.0" dy="0">Negócio</tspan></text>
+<text x="355.0" y="66" class="m b"><tspan x="355.0" dy="0">PO</tspan></text>
+<text x="465.0" y="66" class="m b"><tspan x="465.0" dy="0">QA</tspan></text>
+<text x="575.0" y="66" class="m b"><tspan x="575.0" dy="0">TL</tspan></text>
+<text x="685.0" y="66" class="m b"><tspan x="685.0" dy="0">DEV</tspan></text>
+<text x="795.0" y="66" class="m b"><tspan x="795.0" dy="0">Arquiteto</tspan></text>
+<text x="905.0" y="66" class="m b"><tspan x="905.0" dy="0">Gestão</tspan></text>
+<rect x="40" y="78" width="920" height="32" rx="0" class="box"/>
+<text x="50" y="99" class=""><tspan x="50" dy="0">Demanda</tspan></text>
+<text x="245.0" y="99" class="m b ta"><tspan x="245.0" dy="0">R</tspan></text>
+<text x="355.0" y="99" class="m b ta"><tspan x="355.0" dy="0">A</tspan></text>
+<text x="575.0" y="99" class="m"><tspan x="575.0" dy="0">I</tspan></text>
+<text x="905.0" y="99" class="m"><tspan x="905.0" dy="0">I</tspan></text>
+<rect x="40" y="110" width="920" height="32" rx="0" class="box"/>
+<text x="50" y="131" class=""><tspan x="50" dy="0">Análise</tspan></text>
+<text x="245.0" y="131" class="m"><tspan x="245.0" dy="0">C</tspan></text>
+<text x="355.0" y="131" class="m b ta"><tspan x="355.0" dy="0">A/R</tspan></text>
+<text x="575.0" y="131" class="m"><tspan x="575.0" dy="0">C</tspan></text>
+<rect x="40" y="142" width="920" height="32" rx="0" class="box"/>
+<text x="50" y="163" class=""><tspan x="50" dy="0">Técnica</tspan></text>
+<text x="355.0" y="163" class="m"><tspan x="355.0" dy="0">I</tspan></text>
+<text x="575.0" y="163" class="m b ta"><tspan x="575.0" dy="0">A/R</tspan></text>
+<text x="685.0" y="163" class="m"><tspan x="685.0" dy="0">C</tspan></text>
+<text x="795.0" y="163" class="m b ta"><tspan x="795.0" dy="0">R</tspan></text>
+<rect x="40" y="174" width="920" height="32" rx="0" class="box"/>
+<text x="50" y="195" class=""><tspan x="50" dy="0">Decisão</tspan></text>
+<text x="245.0" y="195" class="m"><tspan x="245.0" dy="0">C</tspan></text>
+<text x="355.0" y="195" class="m b ta"><tspan x="355.0" dy="0">R</tspan></text>
+<text x="575.0" y="195" class="m"><tspan x="575.0" dy="0">C</tspan></text>
+<text x="795.0" y="195" class="m"><tspan x="795.0" dy="0">C</tspan></text>
+<text x="905.0" y="195" class="m b ta"><tspan x="905.0" dy="0">A</tspan></text>
+<rect x="40" y="206" width="920" height="32" rx="0" class="box"/>
+<text x="50" y="227" class=""><tspan x="50" dy="0">Construção</tspan></text>
+<text x="355.0" y="227" class="m"><tspan x="355.0" dy="0">I</tspan></text>
+<text x="575.0" y="227" class="m b ta"><tspan x="575.0" dy="0">A</tspan></text>
+<text x="685.0" y="227" class="m b ta"><tspan x="685.0" dy="0">R</tspan></text>
+<rect x="40" y="238" width="920" height="32" rx="0" class="box"/>
+<text x="50" y="259" class=""><tspan x="50" dy="0">Teste</tspan></text>
+<text x="465.0" y="259" class="m b ta"><tspan x="465.0" dy="0">A/R</tspan></text>
+<text x="575.0" y="259" class="m"><tspan x="575.0" dy="0">I</tspan></text>
+<text x="685.0" y="259" class="m"><tspan x="685.0" dy="0">C</tspan></text>
+<rect x="40" y="270" width="920" height="32" rx="0" class="box"/>
+<text x="50" y="291" class=""><tspan x="50" dy="0">Homologação</tspan></text>
+<text x="245.0" y="291" class="m"><tspan x="245.0" dy="0">C</tspan></text>
+<text x="355.0" y="291" class="m b ta"><tspan x="355.0" dy="0">A</tspan></text>
+<text x="465.0" y="291" class="m b ta"><tspan x="465.0" dy="0">R</tspan></text>
+<text x="575.0" y="291" class="m"><tspan x="575.0" dy="0">I</tspan></text>
+<text x="685.0" y="291" class="m"><tspan x="685.0" dy="0">I</tspan></text>
+<text x="795.0" y="291" class="m"><tspan x="795.0" dy="0">C</tspan></text>
+<rect x="40" y="302" width="920" height="32" rx="0" class="box"/>
+<text x="50" y="323" class=""><tspan x="50" dy="0">Entrega</tspan></text>
+<text x="355.0" y="323" class="m"><tspan x="355.0" dy="0">I</tspan></text>
+<text x="575.0" y="323" class="m b ta"><tspan x="575.0" dy="0">A</tspan></text>
+<text x="685.0" y="323" class="m b ta"><tspan x="685.0" dy="0">R</tspan></text>
+<text x="905.0" y="323" class="m"><tspan x="905.0" dy="0">I</tspan></text>
+<rect x="40" y="334" width="920" height="32" rx="0" class="box"/>
+<text x="50" y="355" class=""><tspan x="50" dy="0">Change</tspan></text>
+<text x="575.0" y="355" class="m b ta"><tspan x="575.0" dy="0">A</tspan></text>
+<text x="685.0" y="355" class="m b ta"><tspan x="685.0" dy="0">R</tspan></text>
+<text x="905.0" y="355" class="m"><tspan x="905.0" dy="0">I</tspan></text>
+<rect x="40" y="366" width="920" height="32" rx="0" class="box"/>
+<text x="50" y="387" class=""><tspan x="50" dy="0">KT</tspan></text>
+<text x="355.0" y="387" class="m"><tspan x="355.0" dy="0">I</tspan></text>
+<text x="575.0" y="387" class="m b ta"><tspan x="575.0" dy="0">A</tspan></text>
+<text x="685.0" y="387" class="m b ta"><tspan x="685.0" dy="0">R</tspan></text>
+<text x="905.0" y="387" class="m"><tspan x="905.0" dy="0">I</tspan></text>
+<text x="40" y="424" class=""><tspan x="40" dy="0">R Responsável   ·   A Aprovador   ·   C Consultado   ·   I Informado</tspan></text>
+<text x="40" y="444" class="s"><tspan x="40" dy="0">Ilustração simplificada, genérica e coerente com o fluxo; não é a matriz do projeto.</tspan></text>
+</svg>

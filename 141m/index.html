@@ -107,7 +107,7 @@ function build(){ov=document.createElement('div');ov.className='lb';ov.hidden=tr
  ov.addEventListener('click',function(e){if(e.target===ov||e.target.classList.contains('lb-fig'))closeUI();});
  bClose.addEventListener('click',closeUI);bPrev.addEventListener('click',function(){go(-1);});bNext.addEventListener('click',function(){go(1);});
  if(items.length<2){bPrev.hidden=bNext.hidden=cntEl.hidden=true;}}
-function show(i){cur=(i+items.length)%items.length;var it=items[cur];imgEl.src=it.src;imgEl.alt=it.cap;capEl.textContent=it.cap;capEl.hidden=!it.cap;cntEl.textContent=(cur+1)+' / '+items.length;}
+function show(i){cur=(i+items.length)%items.length;var it=items[cur];imgEl.src=(it.el.dataset&&it.el.dataset.dark)?it.el.src:it.src;imgEl.alt=it.cap;capEl.textContent=it.cap;capEl.hidden=!it.cap;cntEl.textContent=(cur+1)+' / '+items.length;}
 function go(d){if(items.length>1)show(cur+d);}
 function open(i){if(!ov)build();opener=document.activeElement;show(i);ov.hidden=false;document.body.classList.add('lb-open');
  try{history.pushState({lb:1},'');}catch(e){}bClose.focus();}

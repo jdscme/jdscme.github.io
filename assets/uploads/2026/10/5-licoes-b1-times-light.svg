@@ -1,0 +1,99 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="-40 0 1040 350" width="1040" height="350" role="img">
+<title>Mapa dos times por frente de negócio</title>
+<style>
+:root{--tx:#16191d;--ln:#8a929b;--bx:#ffffff;--bd:#c9ced4;--gp:#eef1f4;--ac:#0b6e69;--as:#d9efed;--wn:#b5562b}
+
+text{fill:var(--tx);font-family:"Segoe UI",Arial,sans-serif;font-size:13px}
+.h{font-family:Lora,Georgia,serif;font-size:17px;font-weight:700}
+.s{font-size:12px}.b{font-weight:700}.m{text-anchor:middle}.e{text-anchor:end}
+.box{fill:var(--bx);stroke:var(--bd);stroke-width:1.2}
+.grp{fill:var(--gp);stroke:var(--bd);stroke-width:1}
+.accb{fill:var(--as);stroke:var(--ac);stroke-width:1.6}
+.wnb{fill:none;stroke:var(--wn);stroke-width:1.5;stroke-dasharray:5 4}
+.ln{stroke:var(--ln);stroke-width:1.5;fill:none}
+.dash{stroke:var(--ac);stroke-width:1.2;stroke-dasharray:4 4}
+.dot{fill:var(--ac)}
+text.ta{fill:var(--ac)}text.tw{fill:var(--wn)}
+.mk{fill:var(--ln)}
+</style>
+<defs><marker id="ar" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" class="mk"/></marker></defs>
+<text x="500" y="26" class="h m"><tspan x="500" dy="0">Um time por frente de negócio</tspan></text>
+<text x="48" y="114.0" class="b e"><tspan x="48" dy="0">PO</tspan></text>
+<text x="48" y="154.0" class="b e"><tspan x="48" dy="0">TL</tspan></text>
+<text x="48" y="209.0" class="b e"><tspan x="48" dy="0">DEVs</tspan></text>
+<rect x="56" y="44" width="111" height="38" rx="6" class="grp"/>
+<text x="111.5" y="59" class="m b"><tspan x="111.5" dy="0">Corretora</tspan><tspan x="111.5" dy="15">de seguros</tspan></text>
+<rect x="56" y="92" width="111" height="34" rx="6" class="box"/>
+<text x="111.5" y="114" class="m"><tspan x="111.5" dy="0">1 PO</tspan></text>
+<rect x="56" y="132" width="111" height="34" rx="6" class="box"/>
+<text x="111.5" y="154" class="m"><tspan x="111.5" dy="0">1 TL</tspan></text>
+<rect x="56" y="172" width="111" height="64" rx="6" class="box"/>
+<text x="111.5" y="200" class="m"><tspan x="111.5" dy="0">2 a 5</tspan><tspan x="111.5" dy="16">DEVs</tspan></text>
+<text x="111.5" y="268" class="m s"><tspan x="111.5" dy="0">Verba de</tspan><tspan x="111.5" dy="15">incentivo</tspan><tspan x="111.5" dy="15">Portal de</tspan><tspan x="111.5" dy="15">relatórios</tspan></text>
+<rect x="173" y="44" width="111" height="38" rx="6" class="grp"/>
+<text x="228.5" y="68" class="m b"><tspan x="228.5" dy="0">Consórcio</tspan></text>
+<rect x="173" y="92" width="111" height="34" rx="6" class="box"/>
+<text x="228.5" y="114" class="m"><tspan x="228.5" dy="0">1 PO</tspan></text>
+<rect x="173" y="132" width="111" height="34" rx="6" class="box"/>
+<text x="228.5" y="154" class="m"><tspan x="228.5" dy="0">1 TL</tspan></text>
+<rect x="173" y="172" width="111" height="64" rx="6" class="box"/>
+<text x="228.5" y="200" class="m"><tspan x="228.5" dy="0">2 a 5</tspan><tspan x="228.5" dy="16">DEVs</tspan></text>
+<text x="228.5" y="268" class="m s"><tspan x="228.5" dy="0">Resolução</tspan><tspan x="228.5" dy="15">regulatória</tspan><tspan x="228.5" dy="15">Relatório</tspan></text>
+<rect x="290" y="44" width="111" height="38" rx="6" class="grp"/>
+<text x="345.5" y="59" class="m b"><tspan x="345.5" dy="0">Marketing</tspan><tspan x="345.5" dy="15">e produtos</tspan></text>
+<rect x="290" y="92" width="111" height="34" rx="6" class="box"/>
+<text x="345.5" y="114" class="m"><tspan x="345.5" dy="0">1 PO</tspan></text>
+<rect x="290" y="132" width="111" height="34" rx="6" class="box"/>
+<text x="345.5" y="154" class="m"><tspan x="345.5" dy="0">1 TL</tspan></text>
+<rect x="290" y="172" width="111" height="64" rx="6" class="box"/>
+<text x="345.5" y="200" class="m"><tspan x="345.5" dy="0">2 a 5</tspan><tspan x="345.5" dy="16">DEVs</tspan></text>
+<text x="345.5" y="268" class="m s"><tspan x="345.5" dy="0">Lead</tspan><tspan x="345.5" dy="15">management</tspan><tspan x="345.5" dy="15">Parcelas</tspan><tspan x="345.5" dy="15">intermediárias</tspan></text>
+<rect x="407" y="44" width="111" height="38" rx="6" class="grp"/>
+<text x="462.5" y="68" class="m b"><tspan x="462.5" dy="0">Controladoria</tspan></text>
+<rect x="407" y="92" width="111" height="34" rx="6" class="box"/>
+<text x="462.5" y="114" class="m"><tspan x="462.5" dy="0">1 PO</tspan></text>
+<rect x="407" y="132" width="111" height="34" rx="6" class="box"/>
+<text x="462.5" y="154" class="m"><tspan x="462.5" dy="0">1 TL</tspan></text>
+<rect x="407" y="172" width="111" height="64" rx="6" class="box"/>
+<text x="462.5" y="200" class="m"><tspan x="462.5" dy="0">2 a 5</tspan><tspan x="462.5" dy="16">DEVs</tspan></text>
+<text x="462.5" y="268" class="m s"><tspan x="462.5" dy="0">PDD</tspan><tspan x="462.5" dy="15">Campanha de</tspan><tspan x="462.5" dy="15">subsídio</tspan><tspan x="462.5" dy="15">Reinf</tspan></text>
+<rect x="524" y="44" width="111" height="38" rx="6" class="grp"/>
+<text x="579.5" y="68" class="m b"><tspan x="579.5" dy="0">Fast track</tspan></text>
+<rect x="524" y="92" width="111" height="34" rx="6" class="box"/>
+<text x="579.5" y="114" class="m"><tspan x="579.5" dy="0">1 PO</tspan></text>
+<rect x="524" y="132" width="111" height="34" rx="6" class="box"/>
+<text x="579.5" y="154" class="m"><tspan x="579.5" dy="0">1 TL</tspan></text>
+<rect x="524" y="172" width="111" height="64" rx="6" class="box"/>
+<text x="579.5" y="200" class="m"><tspan x="579.5" dy="0">2 a 5</tspan><tspan x="579.5" dy="16">DEVs</tspan></text>
+<text x="579.5" y="268" class="m s"><tspan x="579.5" dy="0">Integração de</tspan><tspan x="579.5" dy="15">empréstimo</tspan><tspan x="579.5" dy="15">e seguro</tspan></text>
+<rect x="641" y="44" width="111" height="38" rx="6" class="grp"/>
+<text x="696.5" y="59" class="m b"><tspan x="696.5" dy="0">CRM</tspan><tspan x="696.5" dy="15">(Salesforce)</tspan></text>
+<rect x="641" y="92" width="111" height="34" rx="6" class="box"/>
+<text x="696.5" y="114" class="m"><tspan x="696.5" dy="0">1 PO</tspan></text>
+<rect x="641" y="132" width="111" height="34" rx="6" class="box"/>
+<text x="696.5" y="154" class="m"><tspan x="696.5" dy="0">1 TL</tspan></text>
+<rect x="641" y="172" width="111" height="64" rx="6" class="box"/>
+<text x="696.5" y="200" class="m"><tspan x="696.5" dy="0">2 a 5</tspan><tspan x="696.5" dy="16">DEVs</tspan></text>
+<text x="696.5" y="268" class="m s"><tspan x="696.5" dy="0">Incidentes</tspan><tspan x="696.5" dy="15">Lead</tspan><tspan x="696.5" dy="15">management</tspan></text>
+<rect x="758" y="44" width="111" height="38" rx="6" class="grp"/>
+<text x="813.5" y="59" class="m b"><tspan x="813.5" dy="0">Pequenos</tspan><tspan x="813.5" dy="15">projetos/outros</tspan></text>
+<rect x="758" y="92" width="111" height="34" rx="6" class="box"/>
+<text x="813.5" y="114" class="m"><tspan x="813.5" dy="0">1 PO</tspan></text>
+<rect x="758" y="132" width="111" height="34" rx="6" class="box"/>
+<text x="813.5" y="154" class="m"><tspan x="813.5" dy="0">1 TL</tspan></text>
+<rect x="758" y="172" width="111" height="64" rx="6" class="box"/>
+<text x="813.5" y="200" class="m"><tspan x="813.5" dy="0">2 a 5</tspan><tspan x="813.5" dy="16">DEVs</tspan></text>
+<text x="813.5" y="268" class="m s"><tspan x="813.5" dy="0">Demandas</tspan><tspan x="813.5" dy="15">pequenas</tspan></text>
+<rect x="875" y="44" width="111" height="38" rx="6" class="accb"/>
+<text x="930.5" y="68" class="m b"><tspan x="930.5" dy="0">Tech</tspan></text>
+<rect x="875" y="92" width="111" height="34" rx="6" class="accb"/>
+<text x="930.5" y="114" class="m"><tspan x="930.5" dy="0">1 PO</tspan></text>
+<rect x="875" y="132" width="111" height="34" rx="6" class="accb"/>
+<text x="930.5" y="154" class="m b"><tspan x="930.5" dy="0">1 TL (eu)</tspan></text>
+<rect x="875" y="172" width="111" height="64" rx="6" class="accb"/>
+<text x="930.5" y="200" class="m"><tspan x="930.5" dy="0">2 a 5</tspan><tspan x="930.5" dy="16">DEVs</tspan></text>
+<text x="930.5" y="268" class="m s"><tspan x="930.5" dy="0">Gestão de ALM</tspan><tspan x="930.5" dy="15">App</tspan></text>
+<text x="48" y="268" class="e s"><tspan x="48" dy="0">Exemplos</tspan></text>
+<text x="48" y="284" class="e s"><tspan x="48" dy="0">de demanda</tspan></text>
+<line x1="56" y1="246" x2="986" y2="246" class="dash"/>
+</svg>

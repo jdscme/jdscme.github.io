@@ -1,0 +1,155 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1040 430" width="1040" height="430" role="img">
+<title>Matriz técnica preenchida para um candidato fictício</title>
+<style>
+:root{--tx:#16191d;--ln:#8a929b;--bx:#ffffff;--bd:#c9ced4;--gp:#eef1f4;--ac:#0b6e69;--as:#d9efed;--wn:#b5562b}
+
+text{fill:var(--tx);font-family:"Segoe UI",Arial,sans-serif;font-size:13px}
+.h{font-family:Lora,Georgia,serif;font-size:17px;font-weight:700}
+.s{font-size:12px}.b{font-weight:700}.m{text-anchor:middle}.e{text-anchor:end}
+.box{fill:var(--bx);stroke:var(--bd);stroke-width:1.2}
+.grp{fill:var(--gp);stroke:var(--bd);stroke-width:1}
+.accb{fill:var(--as);stroke:var(--ac);stroke-width:1.6}
+.wnb{fill:none;stroke:var(--wn);stroke-width:1.5;stroke-dasharray:5 4}
+.ln{stroke:var(--ln);stroke-width:1.5;fill:none}
+.dash{stroke:var(--ac);stroke-width:1.2;stroke-dasharray:4 4}
+.dot{fill:var(--ac)}
+text.ta{fill:var(--ac)}text.tw{fill:var(--wn)}
+.mk{fill:var(--ln)}
+</style>
+<defs><marker id="ar" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" class="mk"/></marker></defs>
+<text x="500" y="26" class="h m"><tspan x="500" dy="0">Matriz técnica: candidato fictício</tspan></text>
+<rect x="8" y="44" width="322" height="264" rx="6" class="grp"/>
+<text x="18" y="66" class="b"><tspan x="18" dy="0">Desenho</tspan></text>
+<text x="170.5" y="90" class="m s"><tspan x="170.5" dy="0">Nenhum</tspan></text>
+<text x="213.5" y="90" class="m s"><tspan x="213.5" dy="0">Baixo</tspan></text>
+<text x="256.5" y="90" class="m s"><tspan x="256.5" dy="0">Médio</tspan></text>
+<text x="299.5" y="90" class="m s"><tspan x="299.5" dy="0">Alto</tspan></text>
+<text x="18" y="119" class=""><tspan x="18" dy="0">Arq. hexagonal</tspan></text>
+<rect x="152" y="104" width="37" height="20" rx="4" class="box"/>
+<rect x="195" y="104" width="37" height="20" rx="4" class="box"/>
+<rect x="238" y="104" width="37" height="20" rx="4" class="box"/>
+<rect x="281" y="104" width="37" height="20" rx="4" class="accb"/>
+<text x="18" y="147" class=""><tspan x="18" dy="0">DDD</tspan></text>
+<rect x="152" y="132" width="37" height="20" rx="4" class="box"/>
+<rect x="195" y="132" width="37" height="20" rx="4" class="box"/>
+<rect x="238" y="132" width="37" height="20" rx="4" class="accb"/>
+<rect x="281" y="132" width="37" height="20" rx="4" class="box"/>
+<text x="18" y="175" class=""><tspan x="18" dy="0">Microsserviços</tspan></text>
+<rect x="152" y="160" width="37" height="20" rx="4" class="box"/>
+<rect x="195" y="160" width="37" height="20" rx="4" class="box"/>
+<rect x="238" y="160" width="37" height="20" rx="4" class="box"/>
+<rect x="281" y="160" width="37" height="20" rx="4" class="accb"/>
+<text x="18" y="203" class=""><tspan x="18" dy="0">Mensageria</tspan></text>
+<rect x="152" y="188" width="37" height="20" rx="4" class="box"/>
+<rect x="195" y="188" width="37" height="20" rx="4" class="box"/>
+<rect x="238" y="188" width="37" height="20" rx="4" class="accb"/>
+<rect x="281" y="188" width="37" height="20" rx="4" class="box"/>
+<text x="18" y="231" class=""><tspan x="18" dy="0">CQRS</tspan></text>
+<rect x="152" y="216" width="37" height="20" rx="4" class="box"/>
+<rect x="195" y="216" width="37" height="20" rx="4" class="accb"/>
+<rect x="238" y="216" width="37" height="20" rx="4" class="box"/>
+<rect x="281" y="216" width="37" height="20" rx="4" class="box"/>
+<text x="18" y="259" class=""><tspan x="18" dy="0">GraphQL</tspan></text>
+<rect x="152" y="244" width="37" height="20" rx="4" class="accb"/>
+<rect x="195" y="244" width="37" height="20" rx="4" class="box"/>
+<rect x="238" y="244" width="37" height="20" rx="4" class="box"/>
+<rect x="281" y="244" width="37" height="20" rx="4" class="box"/>
+<text x="18" y="287" class=""><tspan x="18" dy="0">Design de API</tspan></text>
+<rect x="152" y="272" width="37" height="20" rx="4" class="box"/>
+<rect x="195" y="272" width="37" height="20" rx="4" class="box"/>
+<rect x="238" y="272" width="37" height="20" rx="4" class="box"/>
+<rect x="281" y="272" width="37" height="20" rx="4" class="accb"/>
+<rect x="347" y="44" width="322" height="236" rx="6" class="grp"/>
+<text x="357" y="66" class="b"><tspan x="357" dy="0">Código</tspan></text>
+<text x="509.5" y="90" class="m s"><tspan x="509.5" dy="0">Nenhum</tspan></text>
+<text x="552.5" y="90" class="m s"><tspan x="552.5" dy="0">Baixo</tspan></text>
+<text x="595.5" y="90" class="m s"><tspan x="595.5" dy="0">Médio</tspan></text>
+<text x="638.5" y="90" class="m s"><tspan x="638.5" dy="0">Alto</tspan></text>
+<text x="357" y="119" class=""><tspan x="357" dy="0">Padrões de projeto</tspan></text>
+<rect x="491" y="104" width="37" height="20" rx="4" class="box"/>
+<rect x="534" y="104" width="37" height="20" rx="4" class="box"/>
+<rect x="577" y="104" width="37" height="20" rx="4" class="accb"/>
+<rect x="620" y="104" width="37" height="20" rx="4" class="box"/>
+<text x="357" y="147" class=""><tspan x="357" dy="0">SOLID</tspan></text>
+<rect x="491" y="132" width="37" height="20" rx="4" class="box"/>
+<rect x="534" y="132" width="37" height="20" rx="4" class="box"/>
+<rect x="577" y="132" width="37" height="20" rx="4" class="box"/>
+<rect x="620" y="132" width="37" height="20" rx="4" class="accb"/>
+<text x="357" y="175" class=""><tspan x="357" dy="0">Teste de unidade</tspan></text>
+<rect x="491" y="160" width="37" height="20" rx="4" class="box"/>
+<rect x="534" y="160" width="37" height="20" rx="4" class="box"/>
+<rect x="577" y="160" width="37" height="20" rx="4" class="accb"/>
+<rect x="620" y="160" width="37" height="20" rx="4" class="box"/>
+<text x="357" y="203" class=""><tspan x="357" dy="0">Spring Boot</tspan></text>
+<rect x="491" y="188" width="37" height="20" rx="4" class="box"/>
+<rect x="534" y="188" width="37" height="20" rx="4" class="box"/>
+<rect x="577" y="188" width="37" height="20" rx="4" class="box"/>
+<rect x="620" y="188" width="37" height="20" rx="4" class="accb"/>
+<text x="357" y="231" class=""><tspan x="357" dy="0">BD relacional</tspan></text>
+<rect x="491" y="216" width="37" height="20" rx="4" class="box"/>
+<rect x="534" y="216" width="37" height="20" rx="4" class="box"/>
+<rect x="577" y="216" width="37" height="20" rx="4" class="box"/>
+<rect x="620" y="216" width="37" height="20" rx="4" class="accb"/>
+<text x="357" y="259" class=""><tspan x="357" dy="0">BD não relacional</tspan></text>
+<rect x="491" y="244" width="37" height="20" rx="4" class="box"/>
+<rect x="534" y="244" width="37" height="20" rx="4" class="accb"/>
+<rect x="577" y="244" width="37" height="20" rx="4" class="box"/>
+<rect x="620" y="244" width="37" height="20" rx="4" class="box"/>
+<rect x="686" y="44" width="322" height="348" rx="6" class="grp"/>
+<text x="696" y="66" class="b"><tspan x="696" dy="0">Suporte</tspan></text>
+<text x="848.5" y="90" class="m s"><tspan x="848.5" dy="0">Nenhum</tspan></text>
+<text x="891.5" y="90" class="m s"><tspan x="891.5" dy="0">Baixo</tspan></text>
+<text x="934.5" y="90" class="m s"><tspan x="934.5" dy="0">Médio</tspan></text>
+<text x="977.5" y="90" class="m s"><tspan x="977.5" dy="0">Alto</tspan></text>
+<text x="696" y="119" class=""><tspan x="696" dy="0">Git flow</tspan></text>
+<rect x="830" y="104" width="37" height="20" rx="4" class="box"/>
+<rect x="873" y="104" width="37" height="20" rx="4" class="box"/>
+<rect x="916" y="104" width="37" height="20" rx="4" class="accb"/>
+<rect x="959" y="104" width="37" height="20" rx="4" class="box"/>
+<text x="696" y="147" class=""><tspan x="696" dy="0">Service mesh</tspan></text>
+<rect x="830" y="132" width="37" height="20" rx="4" class="accb"/>
+<rect x="873" y="132" width="37" height="20" rx="4" class="box"/>
+<rect x="916" y="132" width="37" height="20" rx="4" class="box"/>
+<rect x="959" y="132" width="37" height="20" rx="4" class="box"/>
+<text x="696" y="175" class=""><tspan x="696" dy="0">Teste de carga</tspan></text>
+<rect x="830" y="160" width="37" height="20" rx="4" class="box"/>
+<rect x="873" y="160" width="37" height="20" rx="4" class="accb"/>
+<rect x="916" y="160" width="37" height="20" rx="4" class="box"/>
+<rect x="959" y="160" width="37" height="20" rx="4" class="box"/>
+<text x="696" y="203" class=""><tspan x="696" dy="0">CI/CD</tspan></text>
+<rect x="830" y="188" width="37" height="20" rx="4" class="box"/>
+<rect x="873" y="188" width="37" height="20" rx="4" class="box"/>
+<rect x="916" y="188" width="37" height="20" rx="4" class="accb"/>
+<rect x="959" y="188" width="37" height="20" rx="4" class="box"/>
+<text x="696" y="231" class=""><tspan x="696" dy="0">Cluster (k8s)</tspan></text>
+<rect x="830" y="216" width="37" height="20" rx="4" class="box"/>
+<rect x="873" y="216" width="37" height="20" rx="4" class="accb"/>
+<rect x="916" y="216" width="37" height="20" rx="4" class="box"/>
+<rect x="959" y="216" width="37" height="20" rx="4" class="box"/>
+<text x="696" y="259" class=""><tspan x="696" dy="0">Serverless</tspan></text>
+<rect x="830" y="244" width="37" height="20" rx="4" class="accb"/>
+<rect x="873" y="244" width="37" height="20" rx="4" class="box"/>
+<rect x="916" y="244" width="37" height="20" rx="4" class="box"/>
+<rect x="959" y="244" width="37" height="20" rx="4" class="box"/>
+<text x="696" y="287" class=""><tspan x="696" dy="0">Cloud (AWS)</tspan></text>
+<rect x="830" y="272" width="37" height="20" rx="4" class="box"/>
+<rect x="873" y="272" width="37" height="20" rx="4" class="box"/>
+<rect x="916" y="272" width="37" height="20" rx="4" class="accb"/>
+<rect x="959" y="272" width="37" height="20" rx="4" class="box"/>
+<text x="696" y="315" class=""><tspan x="696" dy="0">Segurança</tspan></text>
+<rect x="830" y="300" width="37" height="20" rx="4" class="box"/>
+<rect x="873" y="300" width="37" height="20" rx="4" class="box"/>
+<rect x="916" y="300" width="37" height="20" rx="4" class="accb"/>
+<rect x="959" y="300" width="37" height="20" rx="4" class="box"/>
+<text x="696" y="343" class=""><tspan x="696" dy="0">Observabilidade</tspan></text>
+<rect x="830" y="328" width="37" height="20" rx="4" class="box"/>
+<rect x="873" y="328" width="37" height="20" rx="4" class="accb"/>
+<rect x="916" y="328" width="37" height="20" rx="4" class="box"/>
+<rect x="959" y="328" width="37" height="20" rx="4" class="box"/>
+<text x="696" y="371" class=""><tspan x="696" dy="0">Agilidade</tspan></text>
+<rect x="830" y="356" width="37" height="20" rx="4" class="box"/>
+<rect x="873" y="356" width="37" height="20" rx="4" class="box"/>
+<rect x="916" y="356" width="37" height="20" rx="4" class="box"/>
+<rect x="959" y="356" width="37" height="20" rx="4" class="accb"/>
+<text x="500" y="416" class="m s"><tspan x="500" dy="0">23 assuntos, 3 grupos, 4 níveis. Candidato fictício, níveis ilustrativos.</tspan></text>
+</svg>

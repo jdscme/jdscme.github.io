@@ -1,0 +1,157 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>5 lições de Staff Engineering: do plano à execução - J David S Carvalho</title>
+<script>(function(){try{var t=localStorage.getItem('jdsc-theme');if(t==='light'||t==='dark')document.documentElement.setAttribute('data-theme',t);}catch(e){}})();</script><script>(function(){var r=document.documentElement;
+function dk(){var t=r.getAttribute('data-theme');if(t)return t==='dark';return window.matchMedia&&matchMedia('(prefers-color-scheme: dark)').matches;}
+function paint(){var d=dk();document.querySelectorAll('img[data-dark]').forEach(function(im){var s=d?im.dataset.dark:im.dataset.light;if(im.getAttribute('src')!==s)im.setAttribute('src',s);var a=im.closest('a[href]');if(a)a.setAttribute('href',s);});}
+document.addEventListener('DOMContentLoaded',paint);new MutationObserver(paint).observe(r,{attributes:true,attributeFilter:['data-theme']});})();</script>
+<style>.entry-content img[data-dark],.lb-img[src*="-dark.svg"]{background:var(--card,transparent)}</style>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,700;1,400&family=Oswald:wght@400;500&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../style.css">
+<meta name="description" content="Em 2024, fui chamado para executar o plano diretor de TI que ajudei a desenhar em 2023, na financeira de uma grande montadora de veículos. Contei o…">
+<link rel="canonical" href="https://jdsc.me/5-licoes/">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='12' fill='%230d0c0a'/%3E%3Ctext x='32' y='47' font-family='Georgia,serif' font-size='42' font-weight='700' text-anchor='middle' fill='%23f0b04a'%3EJ%3C/text%3E%3C/svg%3E">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="J David S Carvalho">
+<meta property="og:locale" content="pt_BR">
+<meta property="og:title" content="5 lições de Staff Engineering: do plano à execução">
+<meta property="og:description" content="Em 2024, fui chamado para executar o plano diretor de TI que ajudei a desenhar em 2023, na financeira de uma grande montadora de veículos. Contei o…">
+<meta property="og:url" content="https://jdsc.me/5-licoes/">
+<meta property="og:image" content="https://jdsc.me/assets/uploads/2026/10/5-licoes-capa.png">
+<meta property="og:image:alt" content="5 lições de Staff Engineering: do plano à execução">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="480">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://jdsc.me/assets/uploads/2026/10/5-licoes-capa.png">
+</head>
+<body class="kind-post">
+<header class="site-header"><div class="col">
+  <a class="brand" href="../"><b>jdsc</b>/registros</a>
+  <nav><a href="../cv.pdf">Currículo</a><a href="../42-livros/">Livros</a><button class="theme-toggle" id="theme-toggle" type="button" aria-label="Alternar modo claro/escuro" title="Alternar claro/escuro"><span aria-hidden="true">☾</span></button>
+<script>(function(){var b=document.getElementById('theme-toggle'),r=document.documentElement;
+function cur(){var t=r.getAttribute('data-theme');if(t)return t;return window.matchMedia&&matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light';}
+function paint(){b.firstChild.textContent=cur()==='dark'?'\u2600':'\u263E';}
+b.addEventListener('click',function(){var n=cur()==='dark'?'light':'dark';r.setAttribute('data-theme',n);try{localStorage.setItem('jdsc-theme',n);}catch(e){}paint();});
+paint();})();</script></nav>
+</div></header>
+<section class="col intro">
+  <div class="intro-text">
+    <h1 class="intro-name">J David S Carvalho</h1>
+    <p class="intro-role">Staff Software Engineer</p>
+    <p class="intro-lede">Registros de engenharia de software: o contexto de cada projeto, o que foi decidido e o que aprendi.</p>
+  </div>
+  <img class="intro-photo" src="../assets/avatar.jpg" alt="Foto de J David S Carvalho" width="460" height="460">
+</section>
+<main class="col content">
+  <nav class="toc" id="toc" hidden><p class="toc-title">Seções</p><ol></ol></nav>
+  <article class="entry entry-post"><header class="entry-header"><p class="record"><span class="record-id">REG-007</span> <span class="record-status">aceito</span></p><h1 class="entry-title">5 lições de Staff Engineering: do plano à execução</h1><p class="meta"><time datetime="2026-10-12">12 de outubro de 2026</time></p></header><div class="entry-content"><p>Em 2024, fui chamado para executar o plano diretor de TI que ajudei a desenhar em 2023, na financeira de uma grande montadora de veículos. Contei o diagnóstico em <a href="../3-licoes/">3 lições atuando como Arquiteto de Soluções, Corporativo e Líder Técnico</a>.</p>
+<p>Formalmente, eu era o Tech Lead (TL) da frente Tech. Na prática, era o Staff Engineer (engenheiro de nível Staff) das 8 frentes: a referência técnica dos outros TLs e um dos principais contribuintes do plano de ação e das regras do jogo.</p>
+<p>O ponto de partida era grande: 52 sessões de entrevista com 25 áreas, 297 oportunidades de melhoria, 87 capacidades, 8 pilares e 13 soluções, em um roadmap de 3 ondas para os anos fiscais (FY) 2024 a 2027. Diagnosticar foi uma parte. Executar foi outra, e trouxe cinco lições que, a meu ver, valem para qualquer empresa.</p>
+<h2 id="em-resumo">Em resumo<a aria-label="Link para esta seção" class="anchor" href="#em-resumo">#</a></h2>
+<ul>
+<li><strong>Problema:</strong> um roadmap de 3 anos não dizia quem faz o quê na segunda-feira, e as entrevistas apontavam dependência de pessoas, trabalho manual e falta de padrão.</li>
+<li><strong>O que fiz:</strong> contribuí com decisões técnicas e com os mecanismos que as sustentam. Defendi o fim da aprovação do analista para release em desenvolvimento (DEV), com o controle mantido em homologação (HML) e produção (PRD), e a mesma configuração nos três ambientes. Propus a migração de banco de dados no pipeline e um tracing distribuído. No fluxo de valor, ajudei a incluir uma etapa técnica com prova de conceito (PoC) e registro da decisão em Architecture Decision Record (ADR), um registro curto de uma decisão e do seu motivo. Mantive vivo o repositório de arquitetura e montei uma matriz técnica de entrevista.</li>
+<li><strong>Medição:</strong> os resultados não foram medidos em números; o texto descreve o que foi feito e o que ficou em aberto.</li>
+</ul>
+<h2 id="1-estrat-gia-ligada-execu-o">1. Estratégia ligada à execução<a aria-label="Link para esta seção" class="anchor" href="#1-estrat-gia-ligada-execu-o">#</a></h2>
+<p>Um roadmap em 3 ondas do FY24 ao FY27 diz o que fazer, mas não diz quem faz amanhã.</p>
+<p>Entre outubro e dezembro de 2023, veio o diagnóstico. Em janeiro de 2024, ajudei a escrever a primeira versão do plano de ação, com o objetivo de aumentar a velocidade e a qualidade das entregas. Na onda 1, de alto impacto, estavam três soluções: criação de framework de TI, seleção de software e aceleração na entrega.</p>
+<figure><a href="../assets/uploads/2026/10/5-licoes-a1-roadmap-light.svg"><img alt="Roadmap com 8 pilares nas linhas e 3 ondas por impacto nas colunas, com a onda 1 destacada" data-dark="/assets/uploads/2026/10/5-licoes-a1-roadmap-dark.svg" data-light="/assets/uploads/2026/10/5-licoes-a1-roadmap-light.svg" loading="lazy" src="../assets/uploads/2026/10/5-licoes-a1-roadmap-light.svg" width="1000"/></a></figure>
+<p>Clique na imagem para expandir. Dados confidenciais foram omitidos.</p>
+<p>Desdobrei o roadmap em 4 áreas: Regras do jogo; Gestão; Conhecimento; e Infraestrutura, DevOps e Arquitetura. Cada área ganhou atividades, com responsável e status.</p>
+<figure><a href="../assets/uploads/2026/10/5-licoes-a2-plano-light.svg"><img alt="Fluxo do roadmap para 4 áreas, exemplos de atividades e acompanhamento no Jira" data-dark="/assets/uploads/2026/10/5-licoes-a2-plano-dark.svg" data-light="/assets/uploads/2026/10/5-licoes-a2-plano-light.svg" loading="lazy" src="../assets/uploads/2026/10/5-licoes-a2-plano-light.svg" width="1000"/></a></figure>
+<p>Clique na imagem para expandir. Dados confidenciais foram omitidos.</p>
+<p>Em janeiro, apresentei o plano de ação à gerência de TI do cliente. Propus um quadro no Jira para acompanhar a execução do próprio plano, e o acompanhamento entrou na reunião periódica de status. Propus também gatilhos para a entrada de novas melhorias.</p>
+<p>Também decidi não ficar com tudo. Regras do jogo e Conhecimento ficaram comigo, junto com os TLs das frentes. Infraestrutura e DevOps ficaram com o time de DevOps. Gestão, com o status no Jira e os indicadores, ficou com a gestão. Cada dono podia agir sem esperar por mim, e eu ficava livre para o trabalho que exigia o papel de Staff.</p>
+<p>Nem tudo andou no mesmo ritmo. A documentação esbarrou em algo prático: parte do time não tinha acesso ao Confluence. Esse trabalho de acessos e de transferência de conhecimento (KT) raramente aparece no roadmap, mas destrava os outros.</p>
+<p>A lição aprendida foi: <mark>estratégia só sai do papel quando vira plano com donos, status e ritual de acompanhamento; o trabalho do Staff é desenhar esse mecanismo e distribuir a posse, não concentrá-la.</mark></p>
+<h2 id="2-priorizar-pela-dor-real-e-dizer-o-que-fica-de-fo">2. Priorizar pela dor real e dizer o que fica de fora<a aria-label="Link para esta seção" class="anchor" href="#2-priorizar-pela-dor-real-e-dizer-o-que-fica-de-fo">#</a></h2>
+<p>Eram 297 oportunidades e 8 pilares. Fazer tudo era impossível, e o problema era difuso: frases soltas de entrevista, cada uma com um dono diferente.</p>
+<p>Ouvimos muita queixa concreta. "Existe instabilidade em ambiente não-produtivo." "Não existe migração de estrutura de BD em pipeline." "Muito trabalho manual."</p>
+<p>Escolhi começar por essas queixas, em vez das soluções mais abstratas do roadmap. O trade-off ficou explícito: ganhar confiança e velocidade com atritos que o time sente toda semana, e deixar para depois o que era estratégico, porém distante. Cada frase virou uma oportunidade e, depois, uma atividade do plano:</p>
+<ul><li>garantir que desenvolvimento, homologação e produção (DEV, HML e PRD) tenham a mesma configuração, como a versão do Java;</li><li>definir a migração de banco de dados no pipeline, porque passos manuais na change (requisição de mudança, no ITIL) causavam falhas;</li><li>verificar a instabilidade da ferramenta de logs (Kibana ou Graylog) e implantar uma solução de tracing distribuído.</li></ul>
+<figure><a href="../assets/uploads/2026/10/5-licoes-a3-frases-light.svg"><img alt="Quatro linhas ligando frase da entrevista, oportunidade e atividade do plano" data-dark="/assets/uploads/2026/10/5-licoes-a3-frases-dark.svg" data-light="/assets/uploads/2026/10/5-licoes-a3-frases-light.svg" loading="lazy" src="../assets/uploads/2026/10/5-licoes-a3-frases-light.svg" width="1000"/></a></figure>
+<p>Clique na imagem para expandir. Dados confidenciais foram omitidos.</p>
+<p>Dizer não também fez parte. Muita oportunidade ficou fora do plano de janeiro. Os gatilhos de entrada davam a ela um caminho claro de volta, em vez da insistência de quem gritasse mais alto.</p>
+<p>A lição aprendida foi: <mark>diante de um problema difuso, direção técnica é escolher poucas alavancas que melhoram todos os times de uma vez, dizer o que fica para depois e explicitar o custo de cada escolha.</mark></p>
+<h2 id="3-um-sistema-de-trabalho-que-funciona-sem-o-staff-">3. Um sistema de trabalho que funciona sem o Staff na sala<a aria-label="Link para esta seção" class="anchor" href="#3-um-sistema-de-trabalho-que-funciona-sem-o-staff-">#</a></h2>
+<p>Nas entrevistas: "Times estruturados por projeto em vez de por produto." E também: "Existe dependência de pessoas em vez de processos."</p>
+<p>O time estava organizado em 8 frentes de negócio: corretora de seguros, consórcio, marketing e produtos, controladoria, fast track, CRM, pequenos projetos e Tech. Cada frente tinha 1 Product Owner (PO), 1 TL e de 2 a 5 desenvolvedores. Eu não criei essas frentes, mas montei a "nova visão" de quem ficava em qual frente e defini o destino de cada pessoa contratada. Quem trabalha onde molda o sistema que se constrói (a Lei de Conway: sistemas espelham a comunicação de quem os constrói).</p>
+<figure><a href="../assets/uploads/2026/10/5-licoes-b1-times-light.svg"><img alt="Mapa dos 8 times: cada frente de negócio com 1 PO, 1 TL e de 2 a 5 devs, com exemplos de demanda" data-dark="/assets/uploads/2026/10/5-licoes-b1-times-dark.svg" data-light="/assets/uploads/2026/10/5-licoes-b1-times-light.svg" loading="lazy" src="../assets/uploads/2026/10/5-licoes-b1-times-light.svg" width="1000"/></a></figure>
+<p>Clique na imagem para expandir. Dados confidenciais foram omitidos.</p>
+<p>Com 50 pessoas, eu não conseguia estar em cada conversa. Por isso, ajudei a desenhar um fluxo único, da demanda até o KT com a sustentação: 10 etapas em 3 fases, Preparação, Construção e Transição. Ajudei a definir as regras do jogo (fluxo, critérios de entrada e saída e papéis) para todas as frentes. A adoção começou pela frente Tech e depois foi estendida às demais.</p>
+<p>Há dois portões. A Definition of Ready (DoR), o critério para começar, fica antes da Construção. A Definition of Done (DoD), o critério para concluir, fica antes da Entrega. Quem pergunta "isso está pronto?" é o processo, não uma pessoa.</p>
+<p>A etapa Técnica concentra o julgamento de engenharia. Identifica-se a melhoria, medem-se capacidade e velocidade, faz-se uma PoC, define-se a solução e registra-se a decisão em ADR. Nela entraram também as decisões de qualidade que vieram das entrevistas: DEV, HML e PRD com a mesma configuração, migração de BD no pipeline e tracing distribuído.</p>
+<p>Uma dessas decisões teve custo. Defendi retirar a aprovação do analista para release em DEV e manter o controle em HML e PRD, via change. A alternativa era manter a aprovação em todos os ambientes. O ganho foi velocidade e autonomia onde o risco é baixo, sem abrir mão do controle onde ele importa.</p>
+<figure><a href="../assets/uploads/2026/10/5-licoes-b2-fluxo-light.svg"><img alt="Fluxo de valor em 3 fases, com os portões DoR (critério para começar) e DoD (critério para concluir) e a faixa de papéis por etapa" data-dark="/assets/uploads/2026/10/5-licoes-b2-fluxo-dark.svg" data-light="/assets/uploads/2026/10/5-licoes-b2-fluxo-light.svg" loading="lazy" src="../assets/uploads/2026/10/5-licoes-b2-fluxo-light.svg" width="1000"/></a></figure>
+<p>Clique na imagem para expandir. Dados confidenciais foram omitidos.</p>
+<p>Se o fluxo diz o que acontece, falta dizer quem faz. Como eu não era chefe dos POs, dos TLs nem do negócio, meu instrumento foi a escrita: propus a definição de papéis em RACI (quem executa, quem responde, quem é consultado, quem é informado).</p>
+<p>Escrevi também um template de história, com descrição e subtarefas, e boas práticas para épico, história e subtarefa, para que a mesma demanda tivesse o mesmo formato em qualquer frente. A matriz abaixo é uma ilustração simplificada e genérica; não é a matriz do projeto.</p>
+<figure><a href="../assets/uploads/2026/10/5-licoes-b3-raci-light.svg"><img alt="Matriz RACI simplificada: atividades do fluxo nas linhas e papéis nas colunas" data-dark="/assets/uploads/2026/10/5-licoes-b3-raci-dark.svg" data-light="/assets/uploads/2026/10/5-licoes-b3-raci-light.svg" loading="lazy" src="../assets/uploads/2026/10/5-licoes-b3-raci-light.svg" width="1000"/></a></figure>
+<p>Clique na imagem para expandir.</p>
+<p>Havia também o trabalho invisível. O KT de um sistema, o onboarding, a estimativa de história, a criação de change e a abertura de requisição no ServiceNow foram documentados. Começamos em setembro pelas demandas novas e depois ampliamos o KT para o contexto global. As entrevistas diziam: "Não há conhecimento adequado no time de sustentação." Conhecimento só na cabeça de alguém é um risco do sistema.</p>
+<p>O fluxo ainda tinha uma pergunta em aberto: qual seria o fluxo para a sustentação, num time cuja demanda muda o tempo todo?</p>
+<p>A lição aprendida foi: <mark>para escalar além da própria presença, o Staff transforma julgamento técnico em mecanismo: portões de entrada e saída, papéis escritos e uma etapa técnica com PoC e ADR, pilotados numa frente antes de estender às demais.</mark></p>
+<h2 id="4-arquitetura-e-escrita-como-ferramentas-de-influ-">4. Arquitetura e escrita como ferramentas de influência<a aria-label="Link para esta seção" class="anchor" href="#4-arquitetura-e-escrita-como-ferramentas-de-influ-">#</a></h2>
+<p>No diagnóstico, criamos um repositório de arquitetura no Archi, com ArchiMate. Eu temia que ele ficasse parado após a entrega do serviço. Na execução, continuou vivo: uma das atividades do plano foi incluir nele dados de negócio e apresentá-los.</p>
+<p>Sem autoridade formal sobre os times, eu não podia mandar. Podia escrever e desenhar para convencer. Uma visão de integração mostrava quem chama, por onde passa e o que existe atrás: sistemas externos e internos chegam por um API Gateway, e atrás dele ficam os backends novos, em OpenShift, e os legados, que passam por um balanceador Apache.</p>
+<figure><a href="../assets/uploads/2026/10/5-licoes-a4-integracao-light.svg"><img alt="Canais chegam ao API Gateway, que expõe backends em OpenShift e, por um balanceador Apache, backends legados" data-dark="/assets/uploads/2026/10/5-licoes-a4-integracao-dark.svg" data-light="/assets/uploads/2026/10/5-licoes-a4-integracao-light.svg" loading="lazy" src="../assets/uploads/2026/10/5-licoes-a4-integracao-light.svg" width="1000"/></a></figure>
+<p>Clique na imagem para expandir. Dados confidenciais foram omitidos.</p>
+<p>As decisões da etapa Técnica também ganharam forma escrita, em ADR: quem não estava na sala consegue ler a decisão e o motivo.</p>
+<p>A lição aprendida foi: <mark>sem autoridade formal, a influência vem de artefatos que circulam sem você: um mapa de arquitetura que todos usam e decisões escritas com o motivo.</mark></p>
+<h2 id="5-contratar-com-crit-rio-t-cnico-expl-cito">5. Contratar com critério técnico explícito<a aria-label="Link para esta seção" class="anchor" href="#5-contratar-com-crit-rio-t-cnico-expl-cito">#</a></h2>
+<p>Time grande também contrata. Cada pessoa contratada multiplica o time, para o bem ou para o mal, e por isso a contratação é uma alavanca de Staff.</p>
+<p>Para as entrevistas técnicas, montei uma matriz de 23 assuntos em 3 grupos: Desenho, Código e Suporte. Cada assunto recebe um nível: Nenhum, Baixo, Médio ou Alto.</p>
+<p>Até novembro de 2024, foram 12 entrevistas registradas. O controle de candidatos guardava o feedback, a avaliação técnica, se foi enviado ao cliente, se foi aceito e o time de destino.</p>
+<figure><a href="../assets/uploads/2026/10/5-licoes-b5-matriz-light.svg"><img alt="Matriz técnica de 23 assuntos em 3 grupos, preenchida para um candidato fictício" data-dark="/assets/uploads/2026/10/5-licoes-b5-matriz-dark.svg" data-light="/assets/uploads/2026/10/5-licoes-b5-matriz-light.svg" loading="lazy" src="../assets/uploads/2026/10/5-licoes-b5-matriz-light.svg" width="1000"/></a></figure>
+<p>Clique na imagem para expandir.</p>
+<p>O candidato acima é fictício e os níveis são só para ilustrar. O valor da matriz está em comparar candidatos pelo mesmo critério, mostrar ao cliente onde há lacuna e manter a barra alta mesmo quando outra pessoa conduz a entrevista.</p>
+<p>A lição aprendida foi: <mark>critério técnico escrito torna a contratação repetível por outros entrevistadores; é assim que o Staff eleva a barra sem estar em todas as entrevistas.</mark></p>
+<h2 id="conclus-o">Conclusão<a aria-label="Link para esta seção" class="anchor" href="#conclus-o">#</a></h2>
+<p>O trabalho de Staff aqui foi desenhar o sistema em que as pessoas trabalham, ligar a estratégia à execução e deixar mecanismos que não dependem da minha presença.</p>
+<p>Olhando para trás, levaria duas coisas para o próximo lugar: combinar desde o início como o resultado será medido, e tratar a sustentação como parte do desenho do fluxo, e não como exceção.</p>
+<p>Os anos anteriores estão em <a href="../mat/">avaliação de maturidade da TI</a> (2021), <a href="../8-gcp/">solução de dados na GCP</a> (2022) e <a href="../3-licoes/">3 lições</a> (2023), onde está o diagnóstico.</p></div></article>
+</main>
+<footer class="site-footer"><div class="col"><p>© 2026 J David S Carvalho · Aprendizado contínuo</p></div></footer>
+<script>(function(){var hs=document.querySelectorAll('.entry-content h2[id]'),t=document.getElementById('toc');if(hs.length<2)return;
+var ol=t.querySelector('ol');hs.forEach(function(h){var li=document.createElement('li'),a=document.createElement('a');a.href='#'+h.id;
+a.textContent=h.firstChild?h.firstChild.textContent.trim():h.textContent;li.appendChild(a);ol.appendChild(li);});
+var hd=document.querySelector('.entry-header');if(hd)hd.after(t);t.hidden=false;})();</script>
+<script>(function(){
+var root=document.querySelector('.entry-content');if(!root)return;
+var imgs=[].slice.call(root.querySelectorAll('img'));if(!imgs.length)return;
+var imgRe=/\.(jpe?g|png|gif|webp|svg)(\?.*)?$/i;
+var items=imgs.map(function(im){var a=im.closest('a[href]');var full=(a&&imgRe.test(a.getAttribute('href')))?a.href:im.currentSrc||im.src;
+ var fig=im.closest('figure,.wp-caption');var fc=fig&&fig.querySelector('figcaption,.wp-caption-text');
+ im.classList.add('zoomable');if(a&&imgRe.test(a.getAttribute('href')))a.classList.add('zoomable');
+ return {el:im,src:full,cap:(fc&&fc.textContent.trim())||im.getAttribute('alt')||''};});
+var ov,imgEl,capEl,cntEl,bClose,bPrev,bNext,cur=-1,opener=null;
+function build(){ov=document.createElement('div');ov.className='lb';ov.hidden=true;ov.setAttribute('role','dialog');ov.setAttribute('aria-modal','true');ov.setAttribute('aria-label','Imagem ampliada');
+ ov.innerHTML='<button type="button" class="lb-close" aria-label="Fechar">\u2715</button><button type="button" class="lb-nav lb-prev" aria-label="Anterior">\u2190</button><figure class="lb-fig"><img class="lb-img" alt=""><figcaption class="lb-cap"></figcaption></figure><button type="button" class="lb-nav lb-next" aria-label="Pr\u00f3xima">\u2192</button><div class="lb-count" aria-live="polite"></div>';
+ document.body.appendChild(ov);imgEl=ov.querySelector('.lb-img');capEl=ov.querySelector('.lb-cap');cntEl=ov.querySelector('.lb-count');
+ bClose=ov.querySelector('.lb-close');bPrev=ov.querySelector('.lb-prev');bNext=ov.querySelector('.lb-next');
+ ov.addEventListener('click',function(e){if(e.target===ov||e.target.classList.contains('lb-fig'))closeUI();});
+ bClose.addEventListener('click',closeUI);bPrev.addEventListener('click',function(){go(-1);});bNext.addEventListener('click',function(){go(1);});
+ if(items.length<2){bPrev.hidden=bNext.hidden=cntEl.hidden=true;}}
+function show(i){cur=(i+items.length)%items.length;var it=items[cur];imgEl.src=(it.el.dataset&&it.el.dataset.dark)?it.el.src:it.src;imgEl.alt=it.cap;capEl.textContent=it.cap;capEl.hidden=!it.cap;cntEl.textContent=(cur+1)+' / '+items.length;}
+function go(d){if(items.length>1)show(cur+d);}
+function open(i){if(!ov)build();opener=document.activeElement;show(i);ov.hidden=false;document.body.classList.add('lb-open');
+ try{history.pushState({lb:1},'');}catch(e){}bClose.focus();}
+function hide(){if(!ov||ov.hidden)return;ov.hidden=true;document.body.classList.remove('lb-open');imgEl.removeAttribute('src');if(opener&&opener.focus)opener.focus();}
+function closeUI(){if(!ov||ov.hidden)return;if(history.state&&history.state.lb){history.back();}else hide();}
+window.addEventListener('popstate',function(){hide();});
+document.addEventListener('click',function(e){if(e.button||e.metaKey||e.ctrlKey||e.shiftKey)return;var t=e.target.closest&&e.target.closest('.entry-content img');if(!t)return;
+ var i=imgs.indexOf(t);if(i<0)return;e.preventDefault();open(i);});
+document.addEventListener('keydown',function(e){if(!ov||ov.hidden)return;
+ if(e.key==='Escape'){e.preventDefault();closeUI();}else if(e.key==='ArrowLeft'){go(-1);}else if(e.key==='ArrowRight'){go(1);}
+ else if(e.key==='Tab'){var f=[bClose,bPrev,bNext].filter(function(b){return !b.hidden;});var k=f.indexOf(document.activeElement);e.preventDefault();k=(k+(e.shiftKey?-1:1)+f.length)%f.length;f[k].focus();}});
+var sx=null;document.addEventListener('touchstart',function(e){if(ov&&!ov.hidden)sx=e.touches[0].clientX;},{passive:true});
+document.addEventListener('touchend',function(e){if(sx===null)return;var dx=e.changedTouches[0].clientX-sx;sx=null;if(Math.abs(dx)>60)go(dx<0?1:-1);},{passive:true});
+})();
+</script>
+</body>
+</html>
